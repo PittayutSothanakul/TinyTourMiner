@@ -1,0 +1,200 @@
+<!doctype html> {% extends "bootstrap/base.html" %} {% block content %}
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center">Please Input your traveling goal</h1><br>
+  <!-- <h2>Here are all interest {{all_interest}}</h2> -->
+  <form action="/search" method="post" style="text-align:center">
+    <!-- <input style="text-align: center" type="submit" value="Execute" /> -->
+        <h3>Choose Your Country  </h3>
+        <select  name="country">
+            <option> -- Choose your interest country -- </option>  
+            {% for item in country_list %}
+                <option>{{ item }}</option>
+            {% endfor %}
+        </select>  
+
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Interest</th>
+            <th scope="col">Apply Weight</th>
+            <!-- <th scope="col">Search !</th> -->
+          </tr>
+        </thead>
+        <tbody>
+                <th scope="row">1</th>
+                <td style="text-align: left">
+                        <select  id="interest1" name="interest1">
+                          <option> -- Choose your interest categories -- </option>  
+                          {% for index,item in all_interest1 %}
+                            {% if "Main Categories" not in item %}
+                                <option>{{ item }}</option>
+                            {% else %}
+                                <option class="bolden">{{ item }}</option>
+                            {% endif %}
+                             
+                          {% endfor %}
+                        </select>
+                </td>
+                <td>
+                    <select id="weight" name="weight1">
+                            <option>+1</option>
+                            <option>+2</option>
+                            <option>+3</option>
+                            <option>+4</option>
+                            <option>+5</option>
+                            <option>-1</option>
+                            <option>-2</option>
+                            <option>-3</option>
+                            <option>-4</option>
+                            <option>-5</option>
+                    </select>
+                </td>
+          </tr>
+          <tr>
+                <th scope="row">2</th>
+                    <td style="text-align: left">
+                            <select  name="interest2">
+                              <option> -- Choose your interest categories -- </option>  
+                              {% for index,item in all_interest2 %}
+                                {% if "Main Categories" not in item %}
+                                    <option>{{ item }}</option>
+                                {% else %}
+                                    <option class="bolden">{{ item }}</option>
+                                {% endif %}
+                                 
+                              {% endfor %}
+                            </select>
+                    </td>
+                    <td>
+                        <select name="weight2">
+                                <option>+1</option>
+                                <option>+2</option>
+                                <option>+3</option>
+                                <option>+4</option>
+                                <option>+5</option>
+                                <option>-1</option>
+                                <option>-2</option>
+                                <option>-3</option>
+                                <option>-4</option>
+                                <option>-5</option>
+                        </select>
+                    </td>
+              </tr>
+              <tr>
+                    <th scope="row">3</th>
+                    <td style="text-align: left">
+                            <select  name="interest3">
+                              <option> -- Choose your interest categories -- </option>  
+                              {% for index,item in all_interest3 %}
+                                {% if "Main Categories" not in item %}
+                                    <option>{{ item }}</option>
+                                {% else %}
+                                    <option class="bolden">{{ item }}</option>
+                                {% endif %}
+                                 
+                              {% endfor %}
+                            </select>
+                    </td>
+                    <td>
+                        <select name="weight3">
+                                <option>+1</option>
+                                <option>+2</option>
+                                <option>+3</option>
+                                <option>+4</option>
+                                <option>+5</option>
+                                <option>-1</option>
+                                <option>-2</option>
+                                <option>-3</option>
+                                <option>-4</option>
+                                <option>-5</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr>
+                      <th scope="row">4</th>
+                          <td style="text-align: left">
+                                  <select  name="interest4">
+                                    <option> -- Choose your interest categories -- </option>  
+                                    {% for index,item in all_interest4 %}
+                                      {% if "Main Categories" not in item %}
+                                          <option>{{ item }}</option>
+                                      {% else %}
+                                          <option class="bolden">{{ item }}</option>
+                                      {% endif %}
+                                       
+                                    {% endfor %}
+                                  </select>
+                          </td>
+                          <td>
+                              <select name="weight4">
+                                      <option>+1</option>
+                                      <option>+2</option>
+                                      <option>+3</option>
+                                      <option>+4</option>
+                                      <option>+5</option>
+                                      <option>-1</option>
+                                      <option>-2</option>
+                                      <option>-3</option>
+                                      <option>-4</option>
+                                      <option>-5</option>
+                              </select>
+                          </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">5</th>
+                            <td style="text-align: left">
+                                    <select  name="interest5">
+                                      <option> -- Choose your interest categories -- </option>  
+                                      {% for index,item in all_interest5 %}
+                                        {% if "Main Categories" not in item %}
+                                            <option>{{ item }}</option>
+                                        {% else %}
+                                            <option class="bolden">{{ item }}</option>
+                                        {% endif %}
+                                         
+                                      {% endfor %}
+                                    </select>
+                            </td>
+                            <td>
+                                <select name="weight5">
+                                        <option>+1</option>
+                                        <option>+2</option>
+                                        <option>+3</option>
+                                        <option>+4</option>
+                                        <option>+5</option>
+                                        <option>-1</option>
+                                        <option>-2</option>
+                                        <option>-3</option>
+                                        <option>-4</option>
+                                        <option>-5</option>
+                                </select>
+                            </td>
+                      </tr>
+              
+        </tbody>
+      </table>
+
+      <button class="btn btn-primary" type="submit">Search for Tour Record</button>
+      <!-- <input style="text-align: center" type="submit" value="Execute" /> -->
+    </form>
+</body>
+<style>
+        .bolden{font-family:"Arial Black"}
+</style>
+
+</html>
+{% endblock %}

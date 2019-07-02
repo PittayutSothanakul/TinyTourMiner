@@ -1,0 +1,79 @@
+<!doctype html> {% extends "bootstrap/base.html" %} {% block content %}
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .styleCenter{
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    }
+
+    .header {
+  padding: 10px;
+  text-align: center;
+  background: #56813A;
+  color: white;
+  }
+
+    .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #56813A;
+   color: white;
+   text-align: center;  
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    
+    <div class = "styleCenter">
+        <div class = "row">
+            <div class = "col align-self-center">
+                    <div class ="header">
+                            <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
+                    </div>
+            </div>
+        </div>
+        <br>
+        <br><h1 style=" font-size: 20px;">I can discover travel records perfect for you from mountains of travel records in the Internet.</h1></br>
+
+        <div class = "row">
+                <div class = "col align-self-center">
+                    <img src = "YamaMe.jpg">
+                </div>
+        </div>
+        <br>
+        <div class = "row">
+                <div class = "col align-self-center">
+                        <form action="/interest" method="post" style="text-align:center">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Start">
+                            <!-- <input type="button" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Start"> -->
+                        </form>
+                </div>
+        </div>
+
+        <div class="footer">
+            <br>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
+            <br>   
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}
+
+
