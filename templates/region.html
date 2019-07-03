@@ -1,0 +1,130 @@
+<!doctype html> {% extends "bootstrap/base.html" %} {% block content %}
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+
+    .styleCenter{
+      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
+      text-align:center;
+    }
+
+    .header {
+      padding: 10px;
+      text-align: center;
+      background: #56813A;
+      color: white;
+    }
+
+      .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #56813A;
+      color: white;
+      text-align: center;  
+    }
+
+      #container {
+        position:relative;
+    }
+
+      #img2 {
+        position: absolute;
+        left: 150px;
+        top: 0px;
+    }
+       #img3 {
+        position: absolute;
+        left: 20px;
+        top: 0px;
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    
+    <div class = "styleCenter">
+        <div class = "row">
+            <div class = "col align-self-center">
+                    <div class ="header">
+                            <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
+                    </div>
+            </div>
+        </div>
+        <br>
+        <br><h1 style=" font-size: 20px;">Select Your Interest Regions</h1></br>
+
+        <div class = "row">
+                <div class = "col align-self-center">
+                    
+                    <div id="container" >
+                        <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
+                        <map name="regionmap">
+                          <!-- x1 ,y1 ,x2 ,y2 -->
+                            <area shape="rect" coords="320,10,440,100" alt="Sun" href="../static/Hokkaido.png">
+                            <area shape="rect" coords="310,110,370,225" alt="Sun" href="../static/Tohoku.png">
+                            <area shape="rect" coords="283,230,340,277" alt="Sun" href="../static/Kanto.png">
+                            <area shape="rect" coords="220,200,300,290" alt="Sun" href="../static/Chubu.png">
+                            <area shape="rect" coords="185,250,230,310" alt="Sun" href="../static/Kansai.png">
+                            <area shape="rect" coords="90,250,180,285" alt="Sun" href="../static/Chugoku.png">
+                            <area shape="rect" coords="115,285,180,330" alt="Sun" href="../static/Shikoku.png">
+                            <area shape="rect" coords="45,285,115,380" alt="Sun" href="../static/Kyushu.png">
+
+                            <area shape="rect" coords="175,335,260,390" alt="Sun" href="../static/Okinawa.png">
+
+                        </map>
+                        <!-- <img src="{{url_for('static', filename='bgOfRegion.png')}}" width="500" height="500"/>
+                        <img src="{{url_for('static', filename='Hokkaido2.png')}}" width="250" height="200" id = "img2"/>
+                        <img src="{{url_for('static', filename='Tohoku2.png')}}" width="250" height="200" id = "img3"/> -->
+
+
+                    </div>
+
+                </div>
+        </div>
+        <br>
+        <div class = "row">
+            <div class = "col align-self-center">
+                    <form action="/home" method="post" style="text-align:center">
+                        <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Home">
+                    </form>
+            </div>
+
+            <div class = "col align-self-center">
+                    <form action="/interest" method="post" style="text-align:center">
+                        <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Back">
+                    </form>
+            </div>
+
+            <div class = "col align-self-center">
+                    <form action="/region" method="post" style="text-align:center">
+                        <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Next">
+                    </form>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <br>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
+            <br>   
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}
+
+

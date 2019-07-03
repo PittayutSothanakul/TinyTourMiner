@@ -1,4 +1,4 @@
-from flask import Flask , render_template , request
+from flask import Flask , render_template , request, url_for
 from flask_bootstrap import Bootstrap
 import json
 
@@ -10,6 +10,12 @@ def start():
     
     return render_template('home.html')
 
+
+@app.route("/region", methods=["GET", "POST"])
+def region():
+    
+    return render_template('region.html')
+    
 @app.route("/interest", methods=["GET", "POST"])
 def home():
     with open('categories.json', encoding='utf-8') as data_file:
@@ -43,6 +49,7 @@ def home():
     all_interest.sort()
 
     return render_template('interest.html', all_country_list = country_list ,all_list_interest = all_interest , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
+
 
 
 @app.route("/index2")
