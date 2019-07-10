@@ -1,9 +1,41 @@
 from flask import Flask , render_template , request, url_for
 from flask_bootstrap import Bootstrap
 import json
+import numpy as np
+from matplotlib.widgets import Button
+import matplotlib.image as mpimg
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
+
+
 
 app = Flask(__name__);
+app.config['GOOGLEMAPS_KEY'] = "AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o"
+
 Bootstrap(app)
+GoogleMaps(app, key="AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o")
+
+
+
+
+
+
+@app.route("/mapview", methods=["GET", "POST"])
+def mapview():
+    # creating a map in the view
+
+    mymap = Map(
+        identifier="view-side",
+        lat= 36.2048,
+        lng= 138.2529,
+        markers=[(33.9567931, 131.2709503)] ,
+        zoom = 4.5  ,
+        style = "height:400px;width:500px;margin:auto;"
+
+    )
+
+  
+    return render_template('mapview.html', mymap=mymap)
 
 @app.route("/home", methods=["GET", "POST"])
 def start():
@@ -16,6 +48,8 @@ def region():
     
     return render_template('region.html')
     
+
+
 @app.route("/interest", methods=["GET", "POST"])
 def home():
     with open('categories.json', encoding='utf-8') as data_file:
@@ -153,6 +187,16 @@ def search():
     return render_template('result.html', result = result , input = input)
 
 
+@app.route("/plot", methods=["GET", "POST"])
+def plot():
+
+    input_interest = request.form['interest']
+    input_country = request.form['country']
+    #{'Music Venue' : 1 , 'Food' : 2},'US'
+    result = main_v2(input_interest , input_country)
+
+    return render_template('plot.html', result = result , input = input)
+
 
 
 # ver 14. VENUE_NAME 出力のDEBUGを行った。
@@ -198,34 +242,65 @@ def main_v2(all_interest, country):
             #print(subset_category)
             for item in subset_category:
                 # person0 を作成
-                input_dict_category.update({item : 1 })
+                input_dict_category.update({item : 1 }) # 該当するカテの重み＝1,Dictに入れる
+#                input_dict_category.update({interest_location : 1 })
                 # TODO convert from weight score into multiplyier
                 
-                # 
                 #update alternative
                 #all_interest_all_category.update({item : weight_score})
-                all_interest_all_category[item] = weight_score
+                all_interest_all_category[item] = weight_score # 該当するカテに入力重み(1~5を適用)
+#                all_interest_all_category[interest_location] = weight_score
                 #print(all_interest_all_category)
-        dataset["0"] = input_dict_category;
-        all_interest = all_interest_all_category
+        dataset["0"] = input_dict_category; # User0 を datasetに入れる
+        all_interest = all_interest_all_category # Sub-Category＋重みをall_interestとして代入
         #transform the input all_interest into smaller category
-       
+        reader = ""
         print('Loading Traverler-Interest file...')
-        with open("./Traveler_Interest_all.csv", "r") as csvfile:   
- #       with open("./Traveler_Interest_1_89308.csv", "r") as csvfile:
-            reader = csv.reader(csvfile)
-# ver17 CSVの中に空の行があっても対応できるようにした。
-            for row in reader:
-                if len(row) == 0: #空の行に対応するため
-                    break         #空の行に対応するため    
-#                print(row)   # Debug用
-                if(row[0]=='USER_ID'):
-                    continue
-                category_frequency = {}
-                for i in range(1, len(row), 2):
-                    if len(row[i]) > 0:
-                        category_frequency[row[i]] = int(row[i + 1])
-                    dataset[row[0]] = category_frequency
+        if (country == "JP"):
+            print ("Using JP Record")
+            with open("./Traveler_Interest_JP.csv", "r") as csvfile:   
+                reader = csv.reader(csvfile)
+                for row in reader:
+                    if len(row) == 0: #空の行に対応するため
+                        break         #空の行に対応するため    
+                    if(row[0]=='USER_ID'):
+                        continue
+                    category_frequency = {}
+                    for i in range(1, len(row), 2):
+                        if len(row[i]) > 0:
+                            category_frequency[row[i]] = int(row[i + 1])
+                        dataset[row[0]] = category_frequency
+                    apply_weight(dataset[row[0]] , all_interest) #Weight（重み）
+        elif (country == "SG"):
+            print ("Using SG Record")
+            with open("./Traveler_Interest_SG.csv", "r") as csvfile:   
+                reader = csv.reader(csvfile)
+                for row in reader:
+                    if len(row) == 0: #空の行に対応するため
+                        break         #空の行に対応するため    
+                    if(row[0]=='USER_ID'):
+                        continue
+                    category_frequency = {}
+                    for i in range(1, len(row), 2):
+                        if len(row[i]) > 0:
+                            category_frequency[row[i]] = int(row[i + 1])
+                        dataset[row[0]] = category_frequency
+                    apply_weight(dataset[row[0]] , all_interest) #Weight（重み）
+        else:
+            print('Using All Traverler-Interest Data')
+            with open("./Traveler_Interest_all.csv", "r") as csvfile:   
+                reader = csv.reader(csvfile)
+                for row in reader:
+                    if len(row) == 0: #空の行に対応するため
+                        break         #空の行に対応するため    
+                    if(row[0]=='USER_ID'):
+                        continue
+                    category_frequency = {}
+                    for i in range(1, len(row), 2):
+                        if len(row[i]) > 0:
+                            category_frequency[row[i]] = int(row[i + 1])
+                        dataset[row[0]] = category_frequency
+                    apply_weight(dataset[row[0]] , all_interest) #Weight（重み）
  
 # 評価値の実験用に、以下３つのコマンドを ON-OFF の組み合わせでやる
                     
@@ -236,7 +311,7 @@ def main_v2(all_interest, country):
 #                remove_outlier(dataset[row[0]])
                     
 # 現時点では、Weight（重み）は必ず入れるようにする。                    
-                apply_weight(dataset[row[0]] , all_interest)
+                #apply_weight(dataset[row[0]] , all_interest)
                 
                 #break;
                 #print(dataset[row[0]])                     
@@ -250,20 +325,26 @@ def main_v2(all_interest, country):
             for row in reader:
                 if len(row) == 0: #空の行に対応するため
                     break         #空の行に対応するため 
-                    
+# ver21 if len(row[i]) > 0 の行に and int(row[i+1]) > 5: を追加した。              
                 country_frequency = {}
                 for i in range(1, len(row), 2):
-                    if len(row[i]) > 0:
+                    if len(row[i]) > 0 and int(row[i+1]) > 5:
                         country_frequency[row[i]] = int(row[i + 1])
                     countryset[row[0]] = country_frequency
     rankings = []
     # print(get_recommend(rankings, "0", country, 10))
     # Pattara が 3人だけ表示に修正した（時間短縮のため）
-    rankings = get_recommend(rankings, "0", country, 3 , dataset , countryset)
-    print(rankings)
-    print('Calling Visualize:')   # Debug用 
-    print(original_input,"\n")  # Debug用
-    return visualize("0", country, rankings , all_interest, original_input) 
+    print('Original Input from User:')
+    print(original_input, country, "\n")  # Debug用
+# v21.6 get_recommendの引数にoriginal_inputを追加
+    rankings = get_recommend(rankings, "0", country, 5 , dataset , countryset, original_input)
+    if (rankings == "Error"):
+        print("No record match ! Terminate Program !")
+        return 
+    print('Top Rankings:', rankings, "\n")
+    visualize("0", country, rankings , all_interest, original_input)
+
+
  
 # show_category() はFourSquareの全カテゴリーを試し出力（jsonファイルから）
 def show_category():
@@ -384,162 +465,6 @@ def get_recommend(rankings, person, country, top_N , dataset , countryset):
     rankings.reverse()
     return [i for i in rankings][:top_N]
 
-
-def visualize(person, country, rankings,all_interest,original_input):
-    
-    #Outputをファイル1,2へ書き込み用の初期化
-    
-    timestamp = datetime.now().strftime("%Y%m%d_%H_%M_%S") 
-    f = open("output_result " + timestamp + ".txt", "w" ,encoding='utf-8')
-    f2 = open("output_result2 " + timestamp + ".txt", "w" ,encoding='utf-8')
-#    f = open("output_result.txt", "w" ,encoding='utf-8')
-#    f2 = open("output_result2.txt", "w" ,encoding='utf-8')
-    # plt.figure(figsize=(14, 8))
-
- #地図を表示させたくない場合は、earth = Basemap()とearth.shadedrelief()をコメントアウトする
-    #earth = Basemap()
-    #earth.bluemarble()
-    #earth.shadedrelief()
-
-    #PROJECT_ID = 'tour-miner-project'
-    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project.iam.gserviceaccount.com'
-    JSON_KEY_PATH = 'tour-miner-project-8873e737b27c.json'
-    # BigQueryClientの取得
-    client = get_client(json_key_file=JSON_KEY_PATH, readonly=True)
-       
-    #Interest Keyとその重みを表示
-    print("Interested Category Input: ") 
-    for key , value in all_interest.items():
-        sys.stdout.write(key + ":" +str(value) +",")
-#    print("\n")
-    
-# Output2への書き込み用； Interest Keyとその重みをHeaderとして書き込む
-    f2.write("Original Input: \n")
-    for key , value in original_input.items():
-        f2.write(key + ":" +str(value) +",")
-    f2.write("\nInterested Category Input: \n") 
-    for key , value in all_interest.items():
-        f2.write(key + ":" +str(value) +",")
-    f2.write("\n \n")
-    f2.write("Ranking =" + str(rankings) + "\n \n")
-    
-    print(len(rankings))
-    web_result = ""
-    for u in rankings:
-        # queryの実行
-        print("\nUser:" + u[1])
-        query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = ' \
-         + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
-        print(query)
-
-        try:
-            job_id, results = client.query(query, timeout=60)
-        except BigQueryTimeoutException as e:
-            print('Exception')
-
-        # 日付のフォーマットを変換
-        for q in results:
-            q['DATE'] = q['DATE'][4:]
-            Mon = q['DATE'][:3]
-            q['DATE'] = q['DATE'][4:]
-            if Mon == "Jan":
-                q['DATE'] = "01" + q['DATE']
-            if Mon == "Feb":
-                q['DATE'] = "02" + q['DATE']
-            if Mon == "Mar":
-                q['DATE'] = "03" + q['DATE']
-            if Mon == "Apr":
-                q['DATE'] = "04" + q['DATE']
-            if Mon == "May":
-                q['DATE'] = "05" + q['DATE']
-            if Mon == "Jun":
-                q['DATE'] = "06" + q['DATE']
-            if Mon == "Jul":
-                q['DATE'] = "07" + q['DATE']
-            if Mon == "Aug":
-                q['DATE'] = "08" + q['DATE']
-            if Mon == "Sep":
-                q['DATE'] = "09" + q['DATE']
-            if Mon == "Oct":
-                q['DATE'] = "10" + q['DATE']
-            if Mon == "Nov":
-                q['DATE'] = "11" + q['DATE']
-            if Mon == "Dec":
-                q['DATE'] = "12" + q['DATE']
-            YEAR = q['DATE'][len(q['DATE'])-4:len(q['DATE'])]
-            q['DATE'] = YEAR + q['DATE'][:len(q['DATE'])-4]
-        
-        # 結果の表示
-        results.sort(key=lambda x: x['DATE'])
-        
-        #以下が旧バージョン version (result結果をprintだけ)
-        #print(results)
-       
-        total_weight = 0
-
-# 入力あれる Country Nameが JPの時だけ VENUE_NAMEで出力するように対応        
-        location_name = ""
- 
-        for q in results:
-          if (country == "JP"):
-                location_name = get_venue_name_from_venue_id(q['VENUE_ID'])
-          else:
-                location_name = q['VENUE_ID']
-                       
-          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + location_name)
-#          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
-#          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']))
-    
-# Output1へ書き込み:主観的評価用（岡部さん用）:ここから
-          #print ('Write file1')    #Debug用
-          #print(all_interest)
-          f = open("output_result " + timestamp + ".txt", "a" ,encoding='utf-8')
-#          f = open("output_result.txt", "a" ,encoding='utf-8')
-          counter = 0 
-          for key_category , weight in all_interest.items():
-              if (key_category == q['CATEGORY']):
-                  counter = weight
-              
-          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + location_name + ",weight:" + str(counter))  
-#          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']) + ",weight:" + str(counter))  
-#          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'] + ",weight:" + str(counter))  
-          f.write(("user:" + u[1]) + ',')  
-          f.write(writing_information+"\n")  
-# Output1へ書き込み：ここまで
-        
-# Output2へ書き込み:客観的評価用（パッタラ用）:ここから
-          #print ('Write file2')    #Debug用      
-          #print(all_interest)
-          counter = 0 
-          for key_category , weight in all_interest.items():
-              if (key_category == q['CATEGORY']):
-                  counter = weight
-                  total_weight += weight
-          
-#          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']) + ",weight:" + str(counter))  
-#          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'] + ",weight:" + str(counter))  
-          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + location_name + ",weight:" + str(counter))  
-          f2.write(("user:" + u[1]) + ',')  
-          f2.write(writing_information+"\n") 
-          web_result += "user:" + u[1] + ',' + writing_information + "\n"
-        f2.write("Weight Sum =" + str(total_weight) + "\n \n")
-# Output2へ書き込み：ここまで
-    
-        lngs = [float(q['LONGITUDE']) for q in results]
-        lats = [float(q['LATITUDE']) for q in results]
-    return web_result
-
-        #earth.drawcoastlines(color='#555566', linewidth=1)
-    # 地図へ表示させる部分
-        # plt.plot(lngs, lats, '-o', label=u[1]) 
-        
-    # plt.title('Travel Records of people who prefer checkin-spots similar to Traveler ' + person)
-    # plt.legend()
-    # plt.show()
-
-# get_venue_name_from_venue_id() の実行例 
-# get_venue_name_from_venue_id('4b569977f964a520551628e3')
-# 東京スカイツリー(TokyoSkyTree)
 def get_venue_name_from_venue_id(venue_id):
     #PROJECT_ID = 'tour-miner-project'
     SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project.iam.gserviceaccount.com'
@@ -611,3 +536,222 @@ def remove_outlier(current_dataset):
         current_dataset.pop(item_to_remove)
 if __name__ == "__main__":
     app.run(debug=True,use_reloader=True)
+
+
+def visualize(person, country, rankings,all_interest,original_input):
+    
+#  Outputをファイル1,2へ書き込み用の初期化   
+    timestamp = datetime.now().strftime("%Y%m%d_%H_%M_%S") 
+    f = open("output_result " + timestamp + ".txt", "w" ,encoding='utf-8')
+    f2 = open("output_result2 " + timestamp + ".txt", "w" ,encoding='utf-8')
+    f3 = open("output_result3 " + timestamp + ".txt", "w" ,encoding='utf-8')
+#    f = open("output_result.txt", "w" ,encoding='utf-8')
+#    f2 = open("output_result2.txt", "w" ,encoding='utf-8')
+    # fig, axs = plt.subplots(1, 2, constrained_layout=True)
+    
+    # plt.figure(figsize=(14, 8))
+    fig, axs = plt.subplots(1, 4, figsize=(13, 7))
+    axs[0] = plt.subplot(1, 2, 1 )
+    # plt.subplot(1, 2, 1 )
+
+#地図を表示させたくない場合は、earth = Basemap()とearth.shadedrelief()をコメントアウトする
+    if (country == "JP") :
+        earth = Basemap(llcrnrlon=125.,llcrnrlat=24.,urcrnrlon=150.,urcrnrlat=48.)
+        # earth = Basemap(llcrnrlon=.,llcrnrlat=24.,urcrnrlon=150.,urcrnrlat=48.)
+    else :
+        earth = Basemap()    
+    
+
+    # earth.bluemarble()
+    earth.shadedrelief()
+
+    #PROJECT_ID = 'tour-miner-project'
+#    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project-2019.iam.gserviceaccount.com'
+    JSON_KEY_PATH = 'tour-miner-project-2019-511090dd4bd9.json'
+    # BigQueryClientの取得
+    client = get_client(json_key_file=JSON_KEY_PATH, readonly=True)
+       
+    #Interest Keyとその重みを表示
+    print("Matched Interested Category: ") 
+    for key , value in all_interest.items():
+        sys.stdout.write(key + ":" +str(value) +",")
+#    print("\n")
+    
+# Output2への書き込み用； Interest Keyとその重みをHeaderとして書き込む
+    f2.write("Input Country from User: " + country + "\n")
+    f2.write("Input Interested Category from User: ")
+    for key , value in original_input.items():
+        f2.write(key + ":" +str(value) +",")
+    f2.write("\nMatched Interested Category: \n") 
+    for key , value in all_interest.items():
+        f2.write(key + ":" +str(value) +",")
+    f2.write("\n \n")
+    f2.write("Top Rankings (Similarity,User Name): " + str(rankings)+ "\n \n")
+    
+    
+    
+#Output 3 
+    f3.write("Input Country from User: " + country + "\n")
+    f3.write("Input Interested Category from User: ")
+    for key , value in original_input.items():
+        f3.write(key + ":" +str(value) +",")
+    f3.write("\nMatched Interested Category: \n") 
+    for key , value in all_interest.items():
+        f3.write(key + ":" +str(value) +",")
+    f3.write("\n \n")
+    f3.write("Top Rankings (Similarity,User Name): " + str(rankings)+ "\n \n")
+    
+    
+    
+    print(len(rankings))
+    for u in rankings:
+        # queryの実行
+        print("\nUser:" + u[1])
+        query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = '          + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
+        #print(query)
+
+        try:
+            job_id, results = client.query(query, timeout=60)
+        except BigQueryTimeoutException as e:
+            print('Exception')
+
+        # 日付のフォーマットを変換
+        for q in results:
+            q['DATE'] = q['DATE'][4:]
+            Mon = q['DATE'][:3]
+            q['DATE'] = q['DATE'][4:]
+            if Mon == "Jan":
+                q['DATE'] = "01" + q['DATE']
+            if Mon == "Feb":
+                q['DATE'] = "02" + q['DATE']
+            if Mon == "Mar":
+                q['DATE'] = "03" + q['DATE']
+            if Mon == "Apr":
+                q['DATE'] = "04" + q['DATE']
+            if Mon == "May":
+                q['DATE'] = "05" + q['DATE']
+            if Mon == "Jun":
+                q['DATE'] = "06" + q['DATE']
+            if Mon == "Jul":
+                q['DATE'] = "07" + q['DATE']
+            if Mon == "Aug":
+                q['DATE'] = "08" + q['DATE']
+            if Mon == "Sep":
+                q['DATE'] = "09" + q['DATE']
+            if Mon == "Oct":
+                q['DATE'] = "10" + q['DATE']
+            if Mon == "Nov":
+                q['DATE'] = "11" + q['DATE']
+            if Mon == "Dec":
+                q['DATE'] = "12" + q['DATE']
+            YEAR = q['DATE'][len(q['DATE'])-4:len(q['DATE'])]
+            q['DATE'] = YEAR + q['DATE'][:len(q['DATE'])-4]
+        
+        # 結果の表示
+        results.sort(key=lambda x: x['DATE'])
+
+        total_weight = 0     
+        time_counter = 0
+        
+        previous_venue = "" # Version21で追加
+        previous_date = ""  # Version21で追加
+
+# 入力される Country Nameが JPの時だけ VENUE_NAMEで出力するように対応        
+        location_name_dictionary = {}
+        if (country == "JP"):
+            location_name_dictionary = location_name = get_venue_names_from_venue_ids([q['VENUE_ID'] for q in results])
+        location_name = ""
+        previous_venue = "0"
+        for q in results:
+          if q['VENUE_ID'] in location_name_dictionary:
+              location_name = location_name_dictionary[q['VENUE_ID']]
+          else:
+              location_name = q['VENUE_ID']
+                       
+          counter = 0 
+          for key_category , weight in all_interest.items():
+              if (key_category == q['CATEGORY']):
+                  counter = weight
+ 
+          print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
+#         print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
+    
+# Output1へ書き込み:主観的評価用（岡部さん用）:ここから
+          f = open("output_result " + timestamp + ".txt", "a" ,encoding='utf-8')
+#          f = open("output_result.txt", "a" ,encoding='utf-8')
+              
+          writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter) + ", Similarity:" + str("{0:.4f}".format(u[0])))  
+#          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']) + ",weight:" + str(counter))  
+          f.write(("user:" + u[1]) + ', ')  
+          f.write(writing_information+"\n")  
+# Output1へ書き込み：ここまで
+        
+# Output2へ書き込み:客観的評価用（パッタラ用）:ここから          
+          counter = 0 
+#          print(q['VENUE_ID'])
+          if (previous_venue != q['VENUE_ID'] and previous_date != q['DATE']):             
+              for key_category , weight in all_interest.items():
+                  if (key_category == q['CATEGORY']):
+                      time_counter += 1  
+                      counter = weight
+                      total_weight += weight
+          previous_venue = q['VENUE_ID']
+          previous_date = q['DATE']
+          
+          writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
+          f2.write(("user:" + u[1]) + ',')  
+          f2.write(writing_information+"\n") 
+        
+          if (counter>0):
+              writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
+              f3.write(("user:" + u[1]) + ',')  
+              f3.write(writing_information+"\n") 
+        
+        
+        f2.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + ", Number of correspond place = "+ str(time_counter) + "\n \n")
+        f3.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + "\n \n")
+        
+        print("Sum Weight = " + str(total_weight))
+# Output2へ書き込み：ここまで
+    
+        lngs = [float(q['LONGITUDE']) for q in results]
+        lats = [float(q['LATITUDE']) for q in results]
+
+        # get_venue_names_from_venue_ids([q['VENUE_ID'] for q in results])
+        #earth.drawcoastlines(color='#555566', linewidth=1)
+        # set japanese font 
+        font = {'family' : 'IPAexGothic'}
+        # set Thai font
+        # font = {'family' : 'Tahoma'}
+
+    # 地図へ表示させる部分
+    
+        # plt.plot(lngs, lats, '-o', label=u[1] , markersize=5)
+        axs[0].plot(lngs, lats, '-o', label=u[1] , markersize=5)
+        #place name in the map.
+        for q in results :
+            if q['VENUE_ID'] in location_name_dictionary:
+              location_name2 = location_name_dictionary[q['VENUE_ID']]
+            else:
+              location_name2 = q['VENUE_ID']
+            # axs[0].text(float(q['LONGITUDE']), float(q['LATITUDE']), location_name2, dict(size=7),**font)
+            # plt.text(float(q['LONGITUDE']), float(q['LATITUDE']), location_name2, dict(size=7),**font)
+    axs[0].set_title('Travel Records of Top Rankings Persons',**font)
+    # plt.title('Travel Records of Top Rankings Persons',**font)
+    
+    
+#    plt.title('Travel Records of people who prefer checkin-spots similar to Traveler ' + person)
+    plt.legend(loc=4)
+        
+        #Travel Records by User.
+        # p2 = plt.subplot(1, 2, 2)
+        
+        # to check that array is which in rankings.
+    ranking_number = -1
+    next_button = None
+    # axs[1] = plt.subplot(2, 2, 2 )
+    # axs[2] = plt.subplot(2, 2, 4 )
+    axs[2] = plt.subplot(1, 2, 2 )
+    axs[2].axis([0, 10, 0, 100])
+
+  
