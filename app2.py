@@ -53,16 +53,18 @@ def region():
 @app.route('/interest', methods=['POST'])
 def my_form_post():
     country = request.form['country']
+
     cat1 = request.form['category1']
     cat2 = request.form['category2']
     cat3 = request.form['category3']
     cat4 = request.form['category4']
     cat5 = request.form['category5']
 
-    testtext = country+cat1+cat2+cat3+cat4+cat5
+    country_text = country
+    cate_text = cat1+cat2+cat3+cat4+cat5
 
 
-    return render_template('region.html', testtext = testtext )
+    return render_template('region.html', country_text = country_text , cate_text = cate_text )
 
 @app.route("/interest", methods=["GET", "POST"])
 def home():
