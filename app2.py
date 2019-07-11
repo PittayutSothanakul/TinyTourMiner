@@ -769,4 +769,3 @@ def visualize(person, country, rankings,all_interest,original_input):
     axs[2] = plt.subplot(1, 2, 2 )
     axs[2].axis([0, 10, 0, 100])
 
-  

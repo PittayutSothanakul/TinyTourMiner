@@ -67,13 +67,18 @@
 
         <div class = "row">
                 <div class = "col align-self-center">
-                    
+                    <form>
+                        <input type="text" name="Example"/>
+                    </form>
+
                     <div id="container" >
                         <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
                         <map name="regionmap">
                           <!-- x1 ,y1 ,x2 ,y2 -->
-                            <area shape="rect" coords="320,10,440,100" alt="Hokkaido" href="../static/Hokkaido.png">
-                            <area shape="rect" coords="310,110,370,225" alt="Tohoku" href="../static/Tohoku.png">
+                            <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[0].elements['Example'].value = 'Hokkaido' ">
+                            <!-- href="../static/Hokkaido.png" -->
+                            <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick= "document.forms[0].elements['Example'].value = 'Tohoku'">
+                            <!-- href="../static/Tohoku.png" -->
                             <area shape="rect" coords="283,230,340,277" alt="Kanto" href="../static/Kanto.png">
                             <area shape="rect" coords="220,200,300,290" alt="Chubu" href="../static/Chubu.png">
                             <area shape="rect" coords="185,250,230,310" alt="Kansai" href="../static/Kansai.png">
@@ -86,7 +91,7 @@
                         <!-- <img src="{{url_for('static', filename='bgOfRegion.png')}}" width="500" height="500"/>
                         <img src="{{url_for('static', filename='Hokkaido2.png')}}" width="250" height="200" id = "img2"/>
                         <img src="{{url_for('static', filename='Tohoku2.png')}}" width="250" height="200" id = "img3"/> -->
-
+                 
 
                     </div>
 
