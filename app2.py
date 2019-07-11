@@ -37,7 +37,7 @@ def mapview():
   
     return render_template('mapview.html', mymap=mymap)
 
-@app.route("/home", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def start():
     
     return render_template('home.html')
@@ -45,10 +45,24 @@ def start():
 
 @app.route("/region", methods=["GET", "POST"])
 def region():
+
     
-    return render_template('region.html')
+    return render_template('region.html', testtext = testtext)
     
 
+@app.route('/interest', methods=['POST'])
+def my_form_post():
+    country = request.form['country']
+    cat1 = request.form['category1']
+    cat2 = request.form['category2']
+    cat3 = request.form['category3']
+    cat4 = request.form['category4']
+    cat5 = request.form['category5']
+
+    testtext = country+cat1+cat2+cat3+cat4+cat5
+
+
+    return render_template('region.html', testtext = testtext )
 
 @app.route("/interest", methods=["GET", "POST"])
 def home():
@@ -83,6 +97,7 @@ def home():
     all_interest.sort()
 
     return render_template('interest.html', all_country_list = country_list ,all_list_interest = all_interest , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
+
 
 
 
@@ -129,31 +144,31 @@ def index3():
     return render_template('index3.html' , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
 
 
-@app.route("/")
-def index2():
-    with open('categories.json', encoding='utf-8') as data_file:
-        data = json.loads(data_file.read())
+# @app.route("/")
+# def index2():
+#     with open('categories.json', encoding='utf-8') as data_file:
+#         data = json.loads(data_file.read())
 
-    with open('countries.json', encoding='utf-8') as country_file:
-        country = json.loads(country_file.read())
+#     with open('countries.json', encoding='utf-8') as country_file:
+#         country = json.loads(country_file.read())
 
-    all_interest = [];
-    AllBigName = data["response"]["categories"]
-    for bigName in AllBigName:
-        big_category = "Main Categories : " + bigName["name"]
-        all_interest.append(big_category)
-        for midName in bigName["categories"]:
-            mid_category = "  Sub Categories : " + midName["name"]
-            all_interest.append(mid_category)
-            # for smallName in midName["categories"]:
-            #     small_category = "    Small Categories : " + smallName["name"]
-            #     all_interest.append(small_category)
-                # for tinyName in smallName["categories"]:
-                #     tiny_category = "       Current Tiny : " + tinyName["name"]
-                #     all_interest.append(tiny_category)
-    country_list =  [d['name'] for d in country] 
-    print (country_list[0])
-    return render_template('index2.html' , country_list = [d['name'] for d in country] , all_interest1 = enumerate(all_interest) ,  all_interest2 = enumerate(all_interest)  , all_interest3 = enumerate(all_interest)  , all_interest4 = enumerate(all_interest)  , all_interest5 = enumerate(all_interest)    )
+#     all_interest = [];
+#     AllBigName = data["response"]["categories"]
+#     for bigName in AllBigName:
+#         big_category = "Main Categories : " + bigName["name"]
+#         all_interest.append(big_category)
+#         for midName in bigName["categories"]:
+#             mid_category = "  Sub Categories : " + midName["name"]
+#             all_interest.append(mid_category)
+#             # for smallName in midName["categories"]:
+#             #     small_category = "    Small Categories : " + smallName["name"]
+#             #     all_interest.append(small_category)
+#                 # for tinyName in smallName["categories"]:
+#                 #     tiny_category = "       Current Tiny : " + tinyName["name"]
+#                 #     all_interest.append(tiny_category)
+#     country_list =  [d['name'] for d in country] 
+#     print (country_list[0])
+#     return render_template('index2.html' , country_list = [d['name'] for d in country] , all_interest1 = enumerate(all_interest) ,  all_interest2 = enumerate(all_interest)  , all_interest3 = enumerate(all_interest)  , all_interest4 = enumerate(all_interest)  , all_interest5 = enumerate(all_interest)    )
 
 @app.route("/search" ,methods=['POST'])
 def search():

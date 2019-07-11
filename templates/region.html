@@ -63,7 +63,7 @@
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px;">Select Your Interest Regions</h1></br>
+        <br><h1 style=" font-size: 20px;">Select Your Interest Regions {{ processed_text }} {{ testtext }}</h1></br>
 
         <div class = "row">
                 <div class = "col align-self-center">
@@ -72,16 +72,15 @@
                         <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
                         <map name="regionmap">
                           <!-- x1 ,y1 ,x2 ,y2 -->
-                            <area shape="rect" coords="320,10,440,100" alt="Sun" href="../static/Hokkaido.png">
-                            <area shape="rect" coords="310,110,370,225" alt="Sun" href="../static/Tohoku.png">
-                            <area shape="rect" coords="283,230,340,277" alt="Sun" href="../static/Kanto.png">
-                            <area shape="rect" coords="220,200,300,290" alt="Sun" href="../static/Chubu.png">
-                            <area shape="rect" coords="185,250,230,310" alt="Sun" href="../static/Kansai.png">
-                            <area shape="rect" coords="90,250,180,285" alt="Sun" href="../static/Chugoku.png">
-                            <area shape="rect" coords="115,285,180,330" alt="Sun" href="../static/Shikoku.png">
-                            <area shape="rect" coords="45,285,115,380" alt="Sun" href="../static/Kyushu.png">
-
-                            <area shape="rect" coords="175,335,260,390" alt="Sun" href="../static/Okinawa.png">
+                            <area shape="rect" coords="320,10,440,100" alt="Hokkaido" href="../static/Hokkaido.png">
+                            <area shape="rect" coords="310,110,370,225" alt="Tohoku" href="../static/Tohoku.png">
+                            <area shape="rect" coords="283,230,340,277" alt="Kanto" href="../static/Kanto.png">
+                            <area shape="rect" coords="220,200,300,290" alt="Chubu" href="../static/Chubu.png">
+                            <area shape="rect" coords="185,250,230,310" alt="Kansai" href="../static/Kansai.png">
+                            <area shape="rect" coords="90,250,180,285" alt="Chugoku" href="../static/Chugoku.png">
+                            <area shape="rect" coords="115,285,180,330" alt="Shikoku" href="../static/Shikoku.png">
+                            <area shape="rect" coords="45,285,115,380" alt="Kyushu" href="../static/Kyushu.png">
+                            <area shape="rect" coords="175,335,260,390" alt="Okinawa" href="../static/Okinawa.png">
 
                         </map>
                         <!-- <img src="{{url_for('static', filename='bgOfRegion.png')}}" width="500" height="500"/>
@@ -96,13 +95,13 @@
         <br>
         <div class = "row">
             <div class = "col align-self-center">
-                    <form action="/home" method="post" style="text-align:center">
+                    <form action="/" method="post" style="text-align:center">
                         <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Home">
                     </form>
             </div>
 
             <div class = "col align-self-center">
-                    <form action="/interest" method="post" style="text-align:center">
+                    <form action="/interest" method="GET" style="text-align:center">
                         <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Back">
                     </form>
             </div>
