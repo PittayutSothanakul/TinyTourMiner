@@ -45,6 +45,34 @@ def region():
     
     return render_template('region.html', testtext = testtext)
     
+travel_record1 = ""
+travel_record2 = ""
+travel_record3 = ""
+travel_record4 = ""
+travel_record5 = ""
+
+array_record1 = []
+array_record2 = []
+array_record3 = []
+array_record4 = []
+array_record5 = []
+
+check_date = ""
+text_date = ""
+text_time = ""
+text_category = ""
+text_plcename = ""
+array_date =[]
+array_time = []
+array_category = []
+array_location = []
+
+user1=""
+user2=""
+user3=""
+user4=""
+user5=""
+
 
 @app.route('/interest', methods=['POST'])
 def my_form_post():
@@ -69,11 +97,23 @@ def my_form_post():
 
     )
 
-    main_v2({'Temple':1},'JP')
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")    
-    # main_v2({'Temple':1},'JP')
+    #result = main_v2({'Temple':1},'JP')
+    result = main_v2({str(cat1):1},country)
+    # print(cat1)
 
-    return render_template('mapview.html', country_text = country_text , cate_text = cate_text , mymap = mymap )
+
+
+    print("==================== Test Load ====================")  
+    print(array_record1)    
+    print("==================== Finished Load ====================")   
+
+
+    return render_template('mapview.html'
+    , country_text = country_text , cate_text = cate_text , mymap = mymap
+    , text_date = text_date , text_plcename = text_plcename , text_time = text_time
+    , array_category = array_category, array_location=array_location , array_date= array_date
+    , array_record1=array_record1 , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
+    , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
 @app.route("/interest", methods=["GET", "POST"])
 def home():
@@ -558,9 +598,49 @@ def get_recommend(rankings, person, country, top_N , dataset , countryset, origi
     return [i for i in rankings][:top_N]
 
 
+
+# ranking_number = 0
+
 def visualize(person, country, rankings,all_interest,original_input):
     
 #Outputをファイル1,2へ書き込み用の初期化   
+        
+    global travel_record1
+    global travel_record2
+    global travel_record3
+    global travel_record4
+    global travel_record5
+
+    global array_record1
+    global array_record2
+    global array_record3
+    global array_record4
+    global array_record5
+    global check_date
+    global array_date
+    global array_time
+    global array_category
+    global array_location
+    global text_date
+    global text_time
+    global check_category
+    global text_category
+    global text_plcename
+
+    global user1
+    global user2
+    global user3
+    global user4
+    global user5
+    
+    array_record1.clear()
+    array_record2.clear()
+    array_record3.clear()
+    array_record4.clear()
+    array_record5.clear()
+
+    global ranking_number
+
     timestamp = datetime.now().strftime("%Y%m%d_%H_%M_%S") 
     f = open("output_result " + timestamp + ".txt", "w" ,encoding='utf-8')
     f2 = open("output_result2 " + timestamp + ".txt", "w" ,encoding='utf-8')
@@ -606,117 +686,168 @@ def visualize(person, country, rankings,all_interest,original_input):
         f3.write(key + ":" +str(value) +",")
     f3.write("\n \n")
     f3.write("Top Rankings (Similarity,User Name): " + str(rankings)+ "\n \n")
+
+
+
+    # print(len(rankings))
     
-    
-    
-    print(len(rankings))
     for u in rankings:
+
+        #check user, Which that 
+        ranking_number = 0
+
+        user1= rankings[0][1]
+        user2= rankings[1][1]
+        user3= rankings[2][1]
+        user4= rankings[3][1]
+        user5= rankings[4][1]
+
+
+        if(ranking_number == len(rankings)) :
+            ranking_number = 0
+
+        user = np.array(rankings[ranking_number])
+        if(u[1] == user[1]) :
+            
         # queryの実行
-        print("\nUser:" + u[1])
-        query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = '          + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
-        #print(query)
+            print("\nUser:" + u[1])
+            query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = '          + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
+            #print(query)
 
-        try:
-            job_id, results = client.query(query, timeout=60)
-        except BigQueryTimeoutException as e:
-            print('Exception')
+            try:
+                job_id, results = client.query(query, timeout=60)
+            except BigQueryTimeoutException as e:
+                print('Exception')
 
-        # 日付のフォーマットを変換
-        for q in results:
-            q['DATE'] = q['DATE'][4:]
-            Mon = q['DATE'][:3]
-            q['DATE'] = q['DATE'][4:]
-            if Mon == "Jan":
-                q['DATE'] = "01" + q['DATE']
-            if Mon == "Feb":
-                q['DATE'] = "02" + q['DATE']
-            if Mon == "Mar":
-                q['DATE'] = "03" + q['DATE']
-            if Mon == "Apr":
-                q['DATE'] = "04" + q['DATE']
-            if Mon == "May":
-                q['DATE'] = "05" + q['DATE']
-            if Mon == "Jun":
-                q['DATE'] = "06" + q['DATE']
-            if Mon == "Jul":
-                q['DATE'] = "07" + q['DATE']
-            if Mon == "Aug":
-                q['DATE'] = "08" + q['DATE']
-            if Mon == "Sep":
-                q['DATE'] = "09" + q['DATE']
-            if Mon == "Oct":
-                q['DATE'] = "10" + q['DATE']
-            if Mon == "Nov":
-                q['DATE'] = "11" + q['DATE']
-            if Mon == "Dec":
-                q['DATE'] = "12" + q['DATE']
-            YEAR = q['DATE'][len(q['DATE'])-4:len(q['DATE'])]
-            q['DATE'] = YEAR + q['DATE'][:len(q['DATE'])-4]
+            # 日付のフォーマットを変換
+            for q in results:
+                q['DATE'] = q['DATE'][4:]
+                Mon = q['DATE'][:3]
+                q['DATE'] = q['DATE'][4:]
+                if Mon == "Jan":
+                    q['DATE'] = "01" + q['DATE']
+                if Mon == "Feb":
+                    q['DATE'] = "02" + q['DATE']
+                if Mon == "Mar":
+                    q['DATE'] = "03" + q['DATE']
+                if Mon == "Apr":
+                    q['DATE'] = "04" + q['DATE']
+                if Mon == "May":
+                    q['DATE'] = "05" + q['DATE']
+                if Mon == "Jun":
+                    q['DATE'] = "06" + q['DATE']
+                if Mon == "Jul":
+                    q['DATE'] = "07" + q['DATE']
+                if Mon == "Aug":
+                    q['DATE'] = "08" + q['DATE']
+                if Mon == "Sep":
+                    q['DATE'] = "09" + q['DATE']
+                if Mon == "Oct":
+                    q['DATE'] = "10" + q['DATE']
+                if Mon == "Nov":
+                    q['DATE'] = "11" + q['DATE']
+                if Mon == "Dec":
+                    q['DATE'] = "12" + q['DATE']
+                YEAR = q['DATE'][len(q['DATE'])-4:len(q['DATE'])]
+                q['DATE'] = YEAR + q['DATE'][:len(q['DATE'])-4]
         
-        # 結果の表示
-        results.sort(key=lambda x: x['DATE'])
+            # 結果の表示
+            results.sort(key=lambda x: x['DATE'])
 
-        total_weight = 0     
-        time_counter = 0
+            total_weight = 0     
+            time_counter = 0
+            
+            previous_venue = "" # Version21で追加
+            previous_date = ""  # Version21で追加
+
+    # 入力される Country Nameが JPの時だけ VENUE_NAMEで出力するように対応        
+            location_name_dictionary = {}
+            if (country == "JP"):
+                location_name_dictionary = location_name = get_venue_names_from_venue_ids([q['VENUE_ID'] for q in results])
+            location_name = ""
+            previous_venue = "0"
+            for q in results:
+
+                if q['VENUE_ID'] in location_name_dictionary:
+                    location_name2 = location_name_dictionary[q['VENUE_ID']]
+                else:
+                    location_name2 = q['VENUE_ID']   
+
+                check_date = q['DATE']
+                array_date.append(check_date.split(" ")[0])
+                array_time.append(check_date.split(" ")[1])
+                array_category.append(q['CATEGORY'])
+                array_location.append(location_name2)
+
+                text_date = check_date.split(" ")[0]
+                text_time = check_date.split(" ")[1] 
+                check_category = q['CATEGORY']
+                text_category = q['CATEGORY']
+                text_plcename = location_name2
+
+                counter = 0 
+                for key_category , weight in all_interest.items():
+                    if (key_category == q['CATEGORY']):
+                        counter = weight
+
+                if(ranking_number==0) :
+                      travel_record1 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                elif(ranking_number==1) :
+                      travel_record2 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                elif(ranking_number==2) :
+                      travel_record3 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                elif(ranking_number==3) :
+                      travel_record4 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                elif(ranking_number==4) :
+                      travel_record5 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+
+                array_record1.append(travel_record1)
+                array_record2.append(travel_record2)
+                array_record3.append(travel_record3)
+                array_record4.append(travel_record4)
+                array_record5.append(travel_record5)
+
+
+
+
+            print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
+    #          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
         
-        previous_venue = "" # Version21で追加
-        previous_date = ""  # Version21で追加
-
-# 入力される Country Nameが JPの時だけ VENUE_NAMEで出力するように対応        
-        location_name_dictionary = {}
-        if (country == "JP"):
-            location_name_dictionary = location_name = get_venue_names_from_venue_ids([q['VENUE_ID'] for q in results])
-        location_name = ""
-        previous_venue = "0"
-        for q in results:
-          if q['VENUE_ID'] in location_name_dictionary:
-              location_name = location_name_dictionary[q['VENUE_ID']]
-          else:
-              location_name = q['VENUE_ID']
-                       
-          counter = 0 
-          for key_category , weight in all_interest.items():
-              if (key_category == q['CATEGORY']):
-                  counter = weight
- 
-          print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
-#          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
-    
 # Output1へ書き込み:主観的評価用（岡部さん用）:ここから
-          f = open("output_result " + timestamp + ".txt", "a" ,encoding='utf-8')
+            f = open("output_result " + timestamp + ".txt", "a" ,encoding='utf-8')
 #          f = open("output_result.txt", "a" ,encoding='utf-8')
               
-          writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter) + ", Similarity:" + str("{0:.4f}".format(u[0])))  
-#          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']) + ",weight:" + str(counter))  
-          f.write(("user:" + u[1]) + ', ')  
-          f.write(writing_information+"\n")  
+            writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter) + ", Similarity:" + str("{0:.4f}".format(u[0])))  
+    #          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']) + ",weight:" + str(counter))  
+            f.write(("user:" + u[1]) + ', ')  
+            f.write(writing_information+"\n")  
 # Output1へ書き込み：ここまで
         
 # Output2へ書き込み:客観的評価用（パッタラ用）:ここから          
-          counter = 0 
+            counter = 0 
 #          print(q['VENUE_ID'])
-          if (previous_venue != q['VENUE_ID'] and previous_date != q['DATE']):             
-              for key_category , weight in all_interest.items():
-                  if (key_category == q['CATEGORY']):
-                      time_counter += 1  
-                      counter = weight
-                      total_weight += weight
-          previous_venue = q['VENUE_ID']
-          previous_date = q['DATE']
-          
-          writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
-          f2.write(("user:" + u[1]) + ',')  
-          f2.write(writing_information+"\n") 
-        
-          if (counter>0):
-              writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
-              f3.write(("user:" + u[1]) + ',')  
-              f3.write(writing_information+"\n") 
-        
-        
-        f2.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + ", Number of correspond place = "+ str(time_counter) + "\n \n")
-        f3.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + "\n \n")
-        
+            if (previous_venue != q['VENUE_ID'] and previous_date != q['DATE']):             
+                for key_category , weight in all_interest.items():
+                    if (key_category == q['CATEGORY']):
+                        time_counter += 1  
+                        counter = weight
+                        total_weight += weight
+            previous_venue = q['VENUE_ID']
+            previous_date = q['DATE']
+            
+            writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
+            f2.write(("user:" + u[1]) + ',')  
+            f2.write(writing_information+"\n") 
+            
+            if (counter>0):
+                writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
+                f3.write(("user:" + u[1]) + ',')  
+                f3.write(writing_information+"\n") 
+            
+            
+            f2.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + ", Number of correspond place = "+ str(time_counter) + "\n \n")
+            f3.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + "\n \n")
+            
 
 #   上記Debug用  
 
@@ -836,4 +967,5 @@ def remove_outlier(current_dataset):
     for item_to_remove in category_to_remove:
         current_dataset.pop(item_to_remove)
 if __name__ == "__main__":
+    app.config['DEBUG'] = True
     app.run(debug=True,use_reloader=True)

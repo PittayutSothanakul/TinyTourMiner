@@ -60,18 +60,40 @@
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px;">Map and Travel record. {{ processed_text }} {{ testtext }}</h1></br>
+        <br><h1 style=" font-size: 20px;">Map and Travel record. </h1></br>
+        <select>
+            <option value="user1">{{user1}}</option>
+            <option value="user2">{{user2}}</option>
+            <option value="user3">{{user3}}</option>
+            <option value="user4">{{user4}}</option>
+            <option value="user5">{{user5}}</option>
+
+          </select>
 
         <div class = "row">
                 <div class = "col align-self-center">
                     <!-- <div id="map-container">{{mymap.html}}</div> -->
-                    {{mymap.html}}
+                    {{ mymap.html }}
                     <!-- <div id="elevation_chart"></div> -->
                 </div>
 
                 <div class = "col align-self-center">
                         <!-- <img src ="./static/image/YamaMe.jpg"/> -->
-                        Travel record
+
+                        <ol> 
+                            <!-- For loop logic of jinja template -->
+                            {%for i in array_record1 %} 
+                              
+                                <li>{{i}}</li> 
+                            {%endfor%} 
+<!-- 
+                            {%for i in array_record2 %} 
+                              
+                            <li>{{i}}</li> 
+                            {%endfor%}  -->
+                              
+                        </ol> 
+
                 </div>
         </div>
         <br>
@@ -105,6 +127,10 @@
             <br>   
         </div>
     </div>
+
+    <script>
+
+    </script>
 
 </body>
 
