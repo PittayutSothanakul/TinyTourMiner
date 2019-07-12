@@ -16,10 +16,6 @@ Bootstrap(app)
 GoogleMaps(app, key="AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o")
 
 
-
-
-
-
 @app.route("/mapview", methods=["GET", "POST"])
 def mapview():
     # creating a map in the view
@@ -99,7 +95,6 @@ def home():
     all_interest.sort()
 
     return render_template('interest.html', all_country_list = country_list ,all_list_interest = all_interest , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
-
 
 
 
@@ -214,9 +209,36 @@ def plot():
 
     return render_template('plot.html', result = result , input = input)
 
+def remove_outlier(current_dataset):
+    #if length is only 1 then do nothing
+    if (len(current_dataset) == 1):
+        return
+    
+    #find stdev
+    current_stdev = statistics.stdev(current_dataset.values())
+    category_to_remove = []
+    #check  outlier
+    for dataset_key , dataset_value in current_dataset.items():
+        if (current_stdev > dataset_value):
+            category_to_remove.append(dataset_key)
+    
+    #remove outlier
+    for item_to_remove in category_to_remove:
+        current_dataset.pop(item_to_remove)
+if __name__ == "__main__":
+    app.run(debug=True,use_reloader=True)
 
 
-# ver 14. VENUE_NAME 出力のDEBUGを行った。
+# Ver 21.6 ANDに対応 main_v2({"Train Station":3 , "Mall" : 3} , "JP")は
+# (Train Station || Platform || Train) &&  Mallという解釈
+# AND検索する場合は316行目でget_similarity_ANDを使う。従来通りの場合get_similarityを使う
+# Ver 21. ①Sum Weight計算を変更。DataBaseのBugで全く同時刻に同じVENUEのcheckinが
+# 見つかっため、previous_venue と previous_date を用いて、Sum Weightに加わらないようにした。
+# ② 比較的に短いTravel Record(checkin数が例えば5箇所以下)を除外するために、
+# main_v2()内に、元々の if len(row[i]) > 0 : の行を 
+# if len(row[i]) > 0 and int(row[i+1]) > 5: に変更。5は適宜に変更して下さい。
+# ③ 入力国がJPとSGの場合、プログラムが自動的にそれらの国のCSVファイルを使うようにした。
+# ver 14. VENUE_NAME 出力のDEBUGを行った。SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM
 # ver.11 Tiny_categoryのDebug @2018_1218 14:00 
 # ver.10 Country Name がJPの場合だけ、VENUE_NAMEを出力
 # ver.9  重みがマイナスの場合でも対応できるように絶対値(abs)を使用 @2018_1215
@@ -230,12 +252,16 @@ from math import sqrt
 import csv
 import sys
 import json
+import numpy as np
+from matplotlib.widgets import Button
+import matplotlib.image as mpimg
+
 
 # 以下は BigQueryや地図表示するためのImport。
 from bigquery import get_client
 from bigquery.errors import BigQueryTimeoutException
-# import matplotlib.pyplot as plt
-# from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
 
 #以下の Gloval Variable をMain_v2内へ移動」
 #dataset = {}
@@ -359,9 +385,7 @@ def main_v2(all_interest, country):
         print("No record match ! Terminate Program !")
         return 
     print('Top Rankings:', rankings, "\n")
-    visualize("0", country, rankings , all_interest, original_input)
-
-
+    visualize("0", country, rankings , all_interest, original_input) 
  
 # show_category() はFourSquareの全カテゴリーを試し出力（jsonファイルから）
 def show_category():
@@ -405,9 +429,11 @@ def take_input(all_interest):
         data = json.loads(data_file.read())
     clean_data = data["response"]["categories"]
     for interest in all_interest:
+        counter =0
         #print(interest)
         for big_name in clean_data:
             if(interest == big_name["name"]):
+                counter = 1
                 #find and add the rest subcategory
                 all_input_interest.append(big_name["name"])
                 for mid_name in big_name["categories"]:
@@ -419,6 +445,7 @@ def take_input(all_interest):
   
             for mid_name in big_name["categories"]:
                 if(interest == mid_name["name"]):
+                    counter = 1
                     all_input_interest.append(mid_name["name"])
                     for small_name in mid_name["categories"]:
                         all_input_interest.append(small_name["name"])
@@ -427,20 +454,27 @@ def take_input(all_interest):
   
                 for small_name in mid_name["categories"]:
                     if(interest == small_name["name"]):
+                        counter = 1
                         all_input_interest.append(small_name["name"])
                         for tiny_name in small_name["categories"]:
                             all_input_interest.append(tiny_name["name"])
                         
                     for tiny_name in small_name["categories"]:
                         if(interest == tiny_name["name"]):
+                            counter = 1
                             all_input_interest.append(tiny_name["name"])
+        if (counter == 0):
+            all_input_interest.append(interest)
 #     #WRITE FILE
 #     f = open("take_input_output.txt", "w" )
 #     for item in all_input_interest:
 #         f.write(item)\
- 
+
     return all_input_interest
  
+# 2018_1225 person1のチェックインしたカテゴリ集合⊆person2のチェックインしたカテゴリ集合でなければ
+# (person2がperson1のチェックインしたカテゴリを全て訪問していなければ)類似度0とする
+# 
 # 2018_1215 重みがマイナスの場合でも対応できるように  
 #    union_num += absdataset[person1][union] を
 #    union_num += abs(dataset[person1][union]) に変更 
@@ -458,6 +492,8 @@ def get_similarity(person1, person2, dataset):
     #person1とperson2の両方がチェックしたカテゴリがない
     if len(set_person1.intersection(set_person2)) == 0:
         return 0
+    #if not set_person1 <= set_person2:
+     #   return 0
     # person1とperson2の両方がチェックしたカテゴリがある
     inter_num = 0
     union_num = 0
@@ -470,117 +506,74 @@ def get_similarity(person1, person2, dataset):
         if union in dataset[person2]:
             union_num += abs(dataset[person2][union])
     return inter_num / union_num
+
+def get_similarity_AND(person1, person2, dataset, original_input):
+    set_person1 = set(dataset[person1].keys())
+    set_person2 = set(dataset[person2].keys())
+    #person1とperson2の両方がチェックしたカテゴリがない
+    if len(set_person1.intersection(set_person2)) == 0:
+        return 0
+# AND対応
+    original_input_list = list(original_input)
+    expanded_input = take_input(original_input)
+    for i in range(len(original_input_list)):
+        j = expanded_input.index(original_input_list[i])
+        if i < len(original_input_list)-1:
+            k = expanded_input.index(original_input_list[i+1])
+        else:
+            k = len(expanded_input)
+        if len(set(expanded_input[j:k]).intersection(set_person2)) == 0:
+#            print("not found:" + str(set(expanded_input[j:k])))# + "###" + str(set_person2))
+            return 0
+    #if not set_person1 <= set_person2:
+     #   return 0
+    # person1とperson2の両方がチェックしたカテゴリがある
+#    print("OK:" + str(expanded_input))
+    inter_num = 0
+    union_num = 0
+    for inter in set_person1.intersection(set_person2):
+        inter_num += dataset[person1][inter]
+        inter_num += dataset[person2][inter]
+    for union in set_person1.union(set_person2):
+        if union in dataset[person1]:
+            union_num += abs(dataset[person1][union])
+        if union in dataset[person2]:
+            union_num += abs(dataset[person2][union])
+    return inter_num / union_num
+
  
 # 旅行者personに類似する他の旅行者を上位top_Nまでランキングする
-def get_recommend(rankings, person, country, top_N , dataset , countryset):
+def get_recommend(rankings, person, country, top_N , dataset , countryset, original_input):
+    counter = 0
     for other in list(dataset.keys()):
         if person != other: # 自分を除く
             if country in countryset[other].keys(): # 他の旅行者がcountryを訪問してるか？
-                sim = get_similarity(person, other, dataset)
+# v21_6 AND対応
+#                sim = get_similarity(person, other, dataset)
+                sim = get_similarity_AND(person, other, dataset, original_input)
                 rankings.append((sim, other))
+                if (sim != 0):
+                    #print(counter)
+                    counter = counter + 1
     rankings.sort()
     rankings.reverse()
+    if (counter == 0 ):
+        return "Error"
     return [i for i in rankings][:top_N]
-
-def get_venue_name_from_venue_id(venue_id):
-    #PROJECT_ID = 'tour-miner-project'
-    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project.iam.gserviceaccount.com'
-    JSON_KEY_PATH = 'tour-miner-project-8873e737b27c.json'
-    # BigQueryClientの取得
-    client = get_client(json_key_file=JSON_KEY_PATH, readonly=True)
-
-    query = '#standardSQL\nSELECT VENUE_NAME FROM `tour-miner-project.dataset_TIST2015.JP_VENUE_DICTIONARY` WHERE VENUE_ID = \'' + venue_id + '\' LIMIT 1'
-#    print(query)
-
-    try:
-        job_id, results = client.query(query, timeout=60)
-    except BigQueryTimeoutException as e:
-        print(e)
-
-    #venue_idと  VENUE_NAMEが該当しない時にエラーが出るため改良した
-    #print(results[0]['VENUE_NAME'])
-    if len(results)==0:
-        return '該当なし'
-    else:
-        return (results[0]['VENUE_NAME'])
-
-# 重みを与えるためのサブルーチン
-def apply_weight(current_dataset , all_interest):
-    #print(all_interest)
-    for dataset_key , dataset_value in current_dataset.items():
-        for interest_key , interest_value in all_interest.items():
-            if(dataset_key == interest_key):
-                current_dataset[dataset_key] *= interest_value
-                #print("KEY IS " + dataset_key)
-
-# 正規化計算 (ver10から追加)               
-def normalize(current_dataset):
-
-    minimum_value = 0
-    maximum_value = 0
-    
-    #Find Max and Min 
-    for dataset_value in current_dataset.values():
-        #print(dataset_value)
-        if(maximum_value < dataset_value):
-            maximum_value = dataset_value
-        
-        if(minimum_value > dataset_value ):
-            minimum_value = dataset_value
-            
-    #normalize 
-    for dataset_key , dataset_value in current_dataset.items():
-        new_value = ( dataset_value - minimum_value ) / (maximum_value - minimum_value )
-        current_dataset[dataset_key] = new_value
-
-# 偏差値以下のデータを取り除く (ver10から追加)       
-import statistics
-def remove_outlier(current_dataset):
-    #if length is only 1 then do nothing
-    if (len(current_dataset) == 1):
-        return
-    
-    #find stdev
-    current_stdev = statistics.stdev(current_dataset.values())
-    category_to_remove = []
-    #check  outlier
-    for dataset_key , dataset_value in current_dataset.items():
-        if (current_stdev > dataset_value):
-            category_to_remove.append(dataset_key)
-    
-    #remove outlier
-    for item_to_remove in category_to_remove:
-        current_dataset.pop(item_to_remove)
-if __name__ == "__main__":
-    app.run(debug=True,use_reloader=True)
 
 
 def visualize(person, country, rankings,all_interest,original_input):
     
-#  Outputをファイル1,2へ書き込み用の初期化   
+#Outputをファイル1,2へ書き込み用の初期化   
     timestamp = datetime.now().strftime("%Y%m%d_%H_%M_%S") 
     f = open("output_result " + timestamp + ".txt", "w" ,encoding='utf-8')
     f2 = open("output_result2 " + timestamp + ".txt", "w" ,encoding='utf-8')
     f3 = open("output_result3 " + timestamp + ".txt", "w" ,encoding='utf-8')
 #    f = open("output_result.txt", "w" ,encoding='utf-8')
 #    f2 = open("output_result2.txt", "w" ,encoding='utf-8')
-    # fig, axs = plt.subplots(1, 2, constrained_layout=True)
-    
-    # plt.figure(figsize=(14, 8))
-    fig, axs = plt.subplots(1, 4, figsize=(13, 7))
-    axs[0] = plt.subplot(1, 2, 1 )
-    # plt.subplot(1, 2, 1 )
 
-#地図を表示させたくない場合は、earth = Basemap()とearth.shadedrelief()をコメントアウトする
-    if (country == "JP") :
-        earth = Basemap(llcrnrlon=125.,llcrnrlat=24.,urcrnrlon=150.,urcrnrlat=48.)
-        # earth = Basemap(llcrnrlon=.,llcrnrlat=24.,urcrnrlon=150.,urcrnrlat=48.)
-    else :
-        earth = Basemap()    
-    
 
-    # earth.bluemarble()
-    earth.shadedrelief()
+
 
     #PROJECT_ID = 'tour-miner-project'
 #    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project-2019.iam.gserviceaccount.com'
@@ -691,7 +684,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                   counter = weight
  
           print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
-#         print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
+#          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
     
 # Output1へ書き込み:主観的評価用（岡部さん用）:ここから
           f = open("output_result " + timestamp + ".txt", "a" ,encoding='utf-8')
@@ -728,46 +721,105 @@ def visualize(person, country, rankings,all_interest,original_input):
         f2.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + ", Number of correspond place = "+ str(time_counter) + "\n \n")
         f3.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + "\n \n")
         
-        print("Sum Weight = " + str(total_weight))
-# Output2へ書き込み：ここまで
-    
-        lngs = [float(q['LONGITUDE']) for q in results]
-        lats = [float(q['LATITUDE']) for q in results]
 
-        # get_venue_names_from_venue_ids([q['VENUE_ID'] for q in results])
-        #earth.drawcoastlines(color='#555566', linewidth=1)
-        # set japanese font 
-        font = {'family' : 'IPAexGothic'}
-        # set Thai font
-        # font = {'family' : 'Tahoma'}
+#   上記Debug用  
 
-    # 地図へ表示させる部分
+
+# get_venue_name_from_venue_id() の実行例 
+# get_venue_name_from_venue_id('4b569977f964a520551628e3')
+# 東京スカイツリー(TokyoSkyTree)
+def get_venue_name_from_venue_id(venue_id):
+    #PROJECT_ID = 'tour-miner-project'
+#    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project.iam.gserviceaccount.com'
+#    JSON_KEY_PATH = 'tour-miner-project-8873e737b27c.json'
+    SERVICE_ACCOUNT ='bigquery-admin@tour-miner-project-2019.iam.gserviceaccount.com'
+    JSON_KEY_PATH = 'tour-miner-project-2019-511090dd4bd9.json'    
     
-        # plt.plot(lngs, lats, '-o', label=u[1] , markersize=5)
-        axs[0].plot(lngs, lats, '-o', label=u[1] , markersize=5)
-        #place name in the map.
-        for q in results :
-            if q['VENUE_ID'] in location_name_dictionary:
-              location_name2 = location_name_dictionary[q['VENUE_ID']]
-            else:
-              location_name2 = q['VENUE_ID']
-            # axs[0].text(float(q['LONGITUDE']), float(q['LATITUDE']), location_name2, dict(size=7),**font)
-            # plt.text(float(q['LONGITUDE']), float(q['LATITUDE']), location_name2, dict(size=7),**font)
-    axs[0].set_title('Travel Records of Top Rankings Persons',**font)
-    # plt.title('Travel Records of Top Rankings Persons',**font)
+    # BigQueryClientの取得
+    client = get_client(json_key_file=JSON_KEY_PATH, readonly=True)
+
+    query = '#standardSQL\nSELECT VENUE_NAME FROM `tour-miner-project.dataset_TIST2015.JP_VENUE_DICTIONARY` WHERE VENUE_ID = \'' + venue_id + '\' LIMIT 1'
+#    print(query)
+
+    try:
+        job_id, results = client.query(query, timeout=60)
+    except BigQueryTimeoutException as e:
+        print(e)
+
+    #venue_idと  VENUE_NAMEが該当しない時にエラーが出るため改良した
+    #print(results[0]['VENUE_NAME'])
+    if len(results)==0:
+        return '該当なし'
+    else:
+        return (results[0]['VENUE_NAME'])
+
+# Venue idのリストを名前のリストに一括変換する関数
+# 2018年12月時点では、JPに限定されることに注意
+# Input: List of venue id, ex. ['4d96a21fc19fb60c41908365', '4e478efcd164155c0df4bafc']    
+# Output Dictionary of venue name (key: venue id, value venue name)
+# {'VENUE_NAME': '上野動物園パンダ舎(GiantPandasCage-', 'VENUE_NAME': '上野動物園カピバラ舎'}
+def get_venue_names_from_venue_ids(venue_id_list):
+    #PROJECT_ID = 'tour-miner-project'
+#    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project.iam.gserviceaccount.com'
+#    JSON_KEY_PATH = 'tour-miner-project-8873e737b27c.json'
+#    SERVICE_ACCOUNT ='bigquery-admin@tour-miner-project-2019.iam.gserviceaccount.com'
+    JSON_KEY_PATH = 'tour-miner-project-2019-511090dd4bd9.json'    
     
+    # BigQueryClientの取得
+    client = get_client(json_key_file=JSON_KEY_PATH, readonly=True)
     
-#    plt.title('Travel Records of people who prefer checkin-spots similar to Traveler ' + person)
-    plt.legend(loc=4)
+    where_phrase = ''
+    for i in range(len(venue_id_list)):
+        where_phrase += "VENUE_ID = \'" + venue_id_list[i] + "\'"
+        if i < len(venue_id_list) - 1: # 最後でなければORをつける
+            where_phrase += ' or '
+#    query = '#standardSQL\nSELECT VENUE_ID, VENUE_NAME FROM `tour-miner-project.dataset_TIST2015.JP_VENUE_DICTIONARY` WHERE ' + where_phrase
+    query = '#standardSQL\nSELECT VENUE_ID, VENUE_NAME FROM `tour-miner-project-2019.dataset_TIST2015.JP_VENUE_DICTIONARY` WHERE ' + where_phrase
+ #   print(query)
+
+    try:
+        job_id, results = client.query(query, timeout=60)
+    except BigQueryTimeoutException as e:
+        print(e)
+ #   print(results)
+    location_name_dictionary = {}
+    for q in results:
+        location_name_dictionary[q['VENUE_ID']] = q['VENUE_NAME']
+    return location_name_dictionary
+
+
+# 重みを与えるためのサブルーチン
+def apply_weight(current_dataset , all_interest):
+    #print(all_interest)
+    for dataset_key , dataset_value in current_dataset.items():
+        for interest_key , interest_value in all_interest.items():
+            if(dataset_key == interest_key):
+                current_dataset[dataset_key] *= interest_value
+                #print("KEY IS " + dataset_key)
+
+# 正規化計算 (ver10から追加)               
+def normalize(current_dataset):
+
+    minimum_value = 0
+    maximum_value = 0
+    
+    #Find Max and Min 
+    for dataset_value in current_dataset.values():
+        #print(dataset_value)
+        if(maximum_value < dataset_value):
+            maximum_value = dataset_value
         
-        #Travel Records by User.
-        # p2 = plt.subplot(1, 2, 2)
-        
-        # to check that array is which in rankings.
-    ranking_number = -1
-    next_button = None
-    # axs[1] = plt.subplot(2, 2, 2 )
-    # axs[2] = plt.subplot(2, 2, 4 )
-    axs[2] = plt.subplot(1, 2, 2 )
-    axs[2].axis([0, 10, 0, 100])
+        if(minimum_value > dataset_value ):
+            minimum_value = dataset_value
+            
+    #normalize 
+    for dataset_key , dataset_value in current_dataset.items():
+        new_value = ( dataset_value - minimum_value ) / (maximum_value - minimum_value )
+        current_dataset[dataset_key] = new_value
 
+# 偏差値以下のデータを取り除く (ver10から追加)       
+# main_v2({'Jazz Club':2,'Museum':1},'US')
+# main_v2({'Temple':1},'JP')
+# main_v2({'Temple':1},'JP')
+
+# main_v2({'Spiritual Center':1},'JP')
