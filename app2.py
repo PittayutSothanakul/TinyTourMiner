@@ -59,8 +59,21 @@ def my_form_post():
     country_text = country
     cate_text = cat1+cat2+cat3+cat4+cat5
 
+    mymap = Map(
+        identifier="view-side",
+        lat= 36.2048,
+        lng= 138.2529,
+        markers=[(33.9567931, 131.2709503)] ,
+        zoom = 4.5  ,
+        style = "height:400px;width:500px;margin:auto;"
 
-    return render_template('region.html', country_text = country_text , cate_text = cate_text )
+    )
+
+    main_v2({'Temple':1},'JP')
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")    
+    # main_v2({'Temple':1},'JP')
+
+    return render_template('mapview.html', country_text = country_text , cate_text = cate_text , mymap = mymap )
 
 @app.route("/interest", methods=["GET", "POST"])
 def home():
@@ -209,24 +222,7 @@ def plot():
 
     return render_template('plot.html', result = result , input = input)
 
-def remove_outlier(current_dataset):
-    #if length is only 1 then do nothing
-    if (len(current_dataset) == 1):
-        return
-    
-    #find stdev
-    current_stdev = statistics.stdev(current_dataset.values())
-    category_to_remove = []
-    #check  outlier
-    for dataset_key , dataset_value in current_dataset.items():
-        if (current_stdev > dataset_value):
-            category_to_remove.append(dataset_key)
-    
-    #remove outlier
-    for item_to_remove in category_to_remove:
-        current_dataset.pop(item_to_remove)
-if __name__ == "__main__":
-    app.run(debug=True,use_reloader=True)
+
 
 
 # Ver 21.6 ANDに対応 main_v2({"Train Station":3 , "Mall" : 3} , "JP")は
@@ -820,6 +816,24 @@ def normalize(current_dataset):
 # 偏差値以下のデータを取り除く (ver10から追加)       
 # main_v2({'Jazz Club':2,'Museum':1},'US')
 # main_v2({'Temple':1},'JP')
-# main_v2({'Temple':1},'JP')
 
 # main_v2({'Spiritual Center':1},'JP')
+
+def remove_outlier(current_dataset):
+    #if length is only 1 then do nothing
+    if (len(current_dataset) == 1):
+        return
+    
+    #find stdev
+    current_stdev = statistics.stdev(current_dataset.values())
+    category_to_remove = []
+    #check  outlier
+    for dataset_key , dataset_value in current_dataset.items():
+        if (current_stdev > dataset_value):
+            category_to_remove.append(dataset_key)
+    
+    #remove outlier
+    for item_to_remove in category_to_remove:
+        current_dataset.pop(item_to_remove)
+if __name__ == "__main__":
+    app.run(debug=True,use_reloader=True)
