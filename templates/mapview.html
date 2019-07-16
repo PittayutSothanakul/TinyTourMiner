@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    {{mymap.js}}
+
 
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
@@ -45,6 +45,12 @@
 
   </style>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  {{mymap.js}}
+  {{mymap2.js}}
+  {{mymap3.js}}
+  {{mymap4.js}}
+  {{mymap5.js}}
+
 
 
 </head>
@@ -61,39 +67,36 @@
         </div>
         <br>
         <br><h1 style=" font-size: 20px;">Map and Travel record. </h1></br>
-        <select>
+
+        <select type="text" id="mySelect" onchange="myFunction()">
             <option value="user1">{{user1}}</option>
             <option value="user2">{{user2}}</option>
             <option value="user3">{{user3}}</option>
             <option value="user4">{{user4}}</option>
             <option value="user5">{{user5}}</option>
 
-          </select>
+        </select>
 
         <div class = "row">
                 <div class = "col align-self-center">
-                    <!-- <div id="map-container">{{mymap.html}}</div> -->
-                    {{ mymap.html }}
-                    <!-- <div id="elevation_chart"></div> -->
+                    <div id="Travelrecord_Map">
+                         {{ mymap.html }}
+                         {{ mymap.js}}
+                    </div>
+                    <!-- <div id="Travelrecord_Map2">
+                            {{ mymap.html }}
+                            {{ mymap2.js}}
+                     </div> -->
                 </div>
 
                 <div class = "col align-self-center">
                         <!-- <img src ="./static/image/YamaMe.jpg"/> -->
-
+                    <div id="Travelrecord_Text">
                         <ol> 
-                            <!-- For loop logic of jinja template -->
-                            {%for i in array_record1 %} 
-                              
-                                <li>{{i}}</li> 
-                            {%endfor%} 
-<!-- 
-                            {%for i in array_record2 %} 
-                              
-                            <li>{{i}}</li> 
-                            {%endfor%}  -->
-                              
+                                {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%}
+  
                         </ol> 
-
+                    </div>
                 </div>
         </div>
         <br>
@@ -128,8 +131,54 @@
         </div>
     </div>
 
-    <script>
 
+    <script>
+        
+        function myFunction() {
+            // var x = document.getElementById("Travelrecord_Map");
+            // if (x.style.display === "none") {
+            //       x.style.display = "block";
+            // } else {
+            //       x.style.display = "none";
+            // }
+
+            // if (document.getElementById("mySelect").value == "user1") {
+            //     // document.getElementById("Travelrecord_Text").innerHTML = "{{ array_record1 }}";
+            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%} ";
+            // } else if (document.getElementById("mySelect").value == "user2") {
+            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record2 %} <h>{{i}}</h><br> {%endfor%} ";
+            //     // document.getElementById("Travelrecord_Map").innerHTML =  "{{ mymap.html}}";
+
+            // } else if (document.getElementById("mySelect").value == "user3") {
+            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record3 %} <h>{{i}}</h><br> {%endfor%} ";
+            // } else if (document.getElementById("mySelect").value == "user4") {
+            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record4 %} <h>{{i}}</h><br> {%endfor%} ";
+            // } else if (document.getElementById("mySelect").value == "user5") {
+            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
+            // }
+
+            var which_user = document.getElementById("mySelect").value;
+            var text;
+            switch(which_user) {
+                case "user1" :
+                  text =  "  {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%} ";
+                break;
+                case "user2" :
+                   text =  "  {%for i in array_record2 %} <h>{{i}}</h><br> {%endfor%} ";
+                break;
+                case "user3" :
+                    text =  "  {%for i in array_record3 %} <h>{{i}}</h><br> {%endfor%} ";
+                break;
+                case "user4" :
+                   text =  "  {%for i in array_record4 %} <h>{{i}}</h><br> {%endfor%} ";
+                break;
+                case "user5" :
+                   text =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
+                break;
+            }
+            document.getElementById("Travelrecord_Text").innerHTML  = text;
+
+        }
     </script>
 
 </body>
