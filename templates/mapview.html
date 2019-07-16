@@ -53,6 +53,7 @@
 
 
 
+
 </head>
 
 <body>
@@ -80,25 +81,21 @@
         <div class = "row">
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Map">
-                         {{ mymap.html }}
-                         {{ mymap.js}}
+                         {{ mymap.html }}{{ mymap.js}}
                     </div>
-                    <!-- <div id="Travelrecord_Map2">
-                            {{ mymap.html }}
-                            {{ mymap2.js}}
-                     </div> -->
                 </div>
 
                 <div class = "col align-self-center">
-                        <!-- <img src ="./static/image/YamaMe.jpg"/> -->
-                    <div id="Travelrecord_Text">
+                    <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
                         <ol> 
-                                {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%}
-  
+                                {%for i in array_record1 %} <h1 style="font-size:15px;">{{i}}</h1><br> {%endfor%}
                         </ol> 
                     </div>
                 </div>
         </div>
+
+        </div>
+
         <br>
      
 
@@ -156,27 +153,48 @@
             // } else if (document.getElementById("mySelect").value == "user5") {
             //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
             // }
-
+// 2
+            // var which_user = document.getElementById("mySelect").value;
+            // var text;
+            // switch(which_user) {
+            //     case "user1" :
+            //       text =  "  {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%} ";
+            //     break;
+            //     case "user2" :
+            //        text =  "  {%for i in array_record2 %} <h>{{i}}</h><br> {%endfor%} ";
+            //     break;
+            //     case "user3" :
+            //         text =  "  {%for i in array_record3 %} <h>{{i}}</h><br> {%endfor%} ";
+            //     break;
+            //     case "user4" :
+            //        text =  "  {%for i in array_record4 %} <h>{{i}}</h><br> {%endfor%} ";
+            //     break;
+            //     case "user5" :
+            //        text =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
+            //     break;
+            // }
+            // document.getElementById("Travelrecord_Text").innerHTML  = text;
+// 3
             var which_user = document.getElementById("mySelect").value;
-            var text;
+            var text_record;
             switch(which_user) {
                 case "user1" :
-                  text =  "  {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%} ";
+                    text_record =  "  {%for i in array_record1 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
                 break;
                 case "user2" :
-                   text =  "  {%for i in array_record2 %} <h>{{i}}</h><br> {%endfor%} ";
+                    text_record = "  {%for i in array_record2 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
                 break;
                 case "user3" :
-                    text =  "  {%for i in array_record3 %} <h>{{i}}</h><br> {%endfor%} ";
+                    text_record = "  {%for i in array_record3 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
                 break;
                 case "user4" :
-                   text =  "  {%for i in array_record4 %} <h>{{i}}</h><br> {%endfor%} ";
+                    text_record = "  {%for i in array_record4 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
                 break;
                 case "user5" :
-                   text =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
+                    text_record = "  {%for i in array_record5 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
                 break;
             }
-            document.getElementById("Travelrecord_Text").innerHTML  = text;
+            document.getElementById("Travelrecord_Text").innerHTML  = text_record;
 
         }
     </script>

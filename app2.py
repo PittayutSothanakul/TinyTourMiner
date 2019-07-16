@@ -111,7 +111,7 @@ def my_form_post():
         list_latlong.append(copy.deepcopy(temp_dict))
 
     polyline = {
-        'stroke_color': '#B22222',
+        'stroke_color': '#0000FF',
         'stroke_opacity': 1.0,
         'stroke_weight': 3,
         # 'path': [
@@ -141,6 +141,7 @@ def my_form_post():
         style = "height:400px;width:500px;margin:auto;" ,
         # polylines=[polyline, path1, path2, path3, path4]
         polylines=[polyline]
+        
 
     )
 
@@ -151,7 +152,7 @@ def my_form_post():
         list_latlong2.append(copy.deepcopy(temp_dict2))
 
     polyline2 = {
-        'stroke_color': '#B22222',
+        'stroke_color': '#FFA500',
         'stroke_opacity': 1.0,
         'stroke_weight': 3,
         'path': []
@@ -175,7 +176,7 @@ def my_form_post():
         list_latlong3.append(copy.deepcopy(temp_dict3))
 
     polyline3 = {
-        'stroke_color': '#B22222',
+        'stroke_color': '#008000',
         'stroke_opacity': 1.0,
         'stroke_weight': 3,
         'path': []
@@ -224,12 +225,21 @@ def my_form_post():
         list_latlong5.append(copy.deepcopy(temp_dict5))
 
     polyline5 = {
-        'stroke_color': '#B22222',
+        'stroke_color': '#800080',
         'stroke_opacity': 1.0,
         'stroke_weight': 3,
         'path': []
+        # 'path': [
+        #     {'lat': float(array_latitude[0]) , 'lng': float(array_longitude[0])} ,
+        #     {'lat': float(array_latitude[1]) , 'lng': float(array_longitude[1])} ,
+        #     {'lat': float(array_latitude[2]) , 'lng': float(array_longitude[2])} ,
+        #     {'lat': float(array_latitude[3]) , 'lng': float(array_longitude[3])} ,
+        #     {'lat': float(array_latitude[4]) , 'lng': float(array_longitude[4])} ,
+        #     {'lat': float(array_latitude[5]) , 'lng': float(array_longitude[5])} ,
+        #     {'lat': float(array_latitude[6]) , 'lng': float(array_longitude[6])} ,
+        #     {'lat': float(array_latitude[7]) , 'lng': float(array_longitude[7])} ,
+        # ]
     }
-
     polyline5.update({'path': list_latlong5})
     mymap5 = Map(
         identifier="view-side",
@@ -241,13 +251,33 @@ def my_form_post():
         polylines=[polyline5]
     )
 
- 
-    testmap = Map(
-        identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
-    )
+
+    # list_marker1 =[]
+    # temp_marker1 ={}
+    # for i in range(len(array_latitude)) :
+    #     temp_marker1 = {'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    #                     'lat' : float(array_latitude[i]),
+    #                     'lng': float(array_longitude[i]),
+    #                     'infobox': "<img src ='/static/Building.png'/>"
+    #     }
+    # list_marker1.append(copy.deepcopy(temp_marker1))
+
+    # mymap_all = Map(
+    #     identifier="view-side",
+    #     lat= 36.2048,
+    #     lng= 138.2529,
+    #     markers=[ i for i in zip(array_latitude, array_longitude)] ,
+
+    #     # markers=[(array_longitude[0], array_latitude[0]) , (array_longitude[1], array_latitude[1])] ,
+    #     # markers=[(33.9567931, 131.2709503)] ,         
+    #     zoom = 4.5  ,
+    #     style = "height:400px;width:500px;margin:auto;" ,
+    #     polylines=[polyline,polyline2,polyline3,polyline4,polyline5]
+
+    # )
+
+    # mymap_all.update({'markers' : list_marker1})
+
     print("==================== Test Load ====================")  
     print(array_record1)
     print(polyline)
@@ -280,11 +310,8 @@ def my_form_post():
 
     return render_template('mapview.html'
     , country_text = country_text , cate_text = cate_text 
-    , mymap = mymap 
-    , mymap2=mymap2 
-
-    , mymap3=mymap3 
-    , mymap4=mymap4 , mymap5=mymap5
+    , mymap = mymap , mymap2=mymap2 , mymap3=mymap3 , mymap4=mymap4 , mymap5=mymap5
+    , array_latitude=array_latitude , array_longitude=array_longitude
     , text_date = text_date , text_plcename = text_plcename , text_time = text_time
     , array_category = array_category, array_location=array_location , array_date= array_date
     , array_record1=array_record1 , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
@@ -993,27 +1020,28 @@ def visualize(person, country, rankings,all_interest,original_input):
                             counter = weight
 
                     if(ranking_number==0) :
-                        travel_record1 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                        travel_record1 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
+                        # travel_record1 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
                         array_latitude.append(str(float(q['LATITUDE'])))
                         array_longitude.append(str(float(q['LONGITUDE'])))
                         array_record1.append(travel_record1)
                     elif(ranking_number==1) :
-                        travel_record2 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                        travel_record2 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude2.append(str(float(q['LATITUDE'])))
                         array_longitude2.append(str(float(q['LONGITUDE'])))
                         array_record2.append(travel_record2)
                     elif(ranking_number==2) :
-                        travel_record3 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                        travel_record3 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude3.append(str(float(q['LATITUDE'])))
                         array_longitude3.append(str(float(q['LONGITUDE'])))
                         array_record3.append(travel_record3)
                     elif(ranking_number==3) :
-                        travel_record4 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                        travel_record4 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude4.append(str(float(q['LATITUDE'])))
                         array_longitude4.append(str(float(q['LONGITUDE'])))
                         array_record4.append(travel_record4)
                     elif(ranking_number==4) :
-                        travel_record5 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
+                        travel_record5 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude5.append(str(float(q['LATITUDE'])))
                         array_longitude5.append(str(float(q['LONGITUDE'])))
                         array_record5.append(travel_record5)
