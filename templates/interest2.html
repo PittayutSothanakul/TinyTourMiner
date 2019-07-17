@@ -87,7 +87,7 @@
               <div class = "row">
                   <div class = "col align-self-center">
                       <h1 style=" font-size: 20px;"> Select Your Interest Category<form>
-                          <h3 style="text-align:center; font-size: 20px;">Input Categories <input class="autocomplete" style="width:300px;" id="myInputCategories" type="text" name="category1" placeholder="Category1">
+                          <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
                           </h3>
                       </form></h1>
                   </div>
@@ -95,7 +95,7 @@
                 <div class = "col align-self-center">
                     <div class = "col align-self-center">
                         <h1 style=" font-size: 20px;"> Select Your Interest Regions<form>
-                            <input type="text" name="interest_region"/>
+                            <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputCategories" type="text" name="interest_region" placeholder="Please select region">
                         </form></h1>                        
                     </div>
                 </div>
@@ -107,40 +107,38 @@
               
               <div class = "row">
                   <div class = "col align-self-center">
-                    <!-- <h3 style="text-align:center; font-size: 20px;">Input Categories 
-                      <input class="autocomplete" style="width:300px;" id="myInputCategories" type="text" name="category1" placeholder="Category1">
-                    </h3> -->
 
                         <div class="row">
                             <div class = "col align-self-center">
-                              <button class="button button_white" id = "button_1" name="Temple" type="submit" value="Temple" onclick="myFunction()">Temple</button>
-                              <button class="button button_white" id = "button_2" name="Shrine" type="submit" value="Shrine" onclick="myFunction2()">Shrine</button>
-                              <!-- <button class="button button_black">Museum</button> -->
+                              
+                              <button class="button button_white" id = "button_1"  onclick="myFunction()"><img src="/static/Temple.png" width="30" height="30" > Temple</button>
+                              <!-- style="background: url('/static/Temple.png'); background-size: 50px 55px;" -->
+                              <button class="button button_white" id = "button_2"  onclick="myFunction2()"><img src="/static/Shrine.png" width="30" height="30" > Shrine</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "ิbutton_3" name="Baseball Stadium" type="submit" value="Baseball Stadium" onclick="myFunction3()">Baseball</button>
-                                <button class="button button_white" id = "button_4" name="Shrine2" type="submit" value="Shrine2" onclick="myFunction4()">Shrine2</button>
+                                <button class="button button_white" id = "ิbutton_3" onclick="myFunction3()"><img src="/static/Castle.png" width="30" height="30" > Castle</button>
+                                <button class="button button_white" id = "button_4" onclick="myFunction4()"><img src="/static/Historic Site.png" width="30" height="30" > Historic</button>
                               <!-- <button class="button button_black">Museum2</button> -->
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "button_5" name="Temple3" type="submit" value="Temple3" onclick="myFunction5()">Temple3</button>
-                                <button class="button button_white" id = "button_6" name="Shrine3" type="submit" value="Shrine3" onclick="myFunction6()">Shrine3</button>
+                                <button class="button button_white" id = "button_5" onclick="myFunction5()"><img src="/static/Museum.png" width="30" height="30" > Museum</button>
+                                <button class="button button_white" id = "button_6" onclick="myFunction6()"><img src="/static/Theme Park.png" width="25" height="30" > Theme Park</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "button_7" name="Temple4" type="submit" value="Temple4" onclick="myFunction7()">Temple4</button>
-                                <button class="button button_white" id = "button_8" name="Shrine4" type="submit" value="Shrine4" onclick="myFunction8()">Shrine4</button>
+                                <button class="button button_white" id = "button_7" onclick="myFunction7()"><img src="/static/Mall.png" width="40" height="30" > Mall</button>
+                                <button class="button button_white" id = "button_8" onclick="myFunction8()"><img src="/static/Japanese Restaurant.png" width="30" height="30" > Restaurant</button>
                             </div>
                         </div>
                         <div class="row">
-                            <div class = "col align-self-center">
-                                <button class="button button_white" id = "button_9" name="Temple5" type="submit" value="Temple5" onclick="myFunction9()">Temple5</button>
-                                <button class="button button_white" id = "button_10" name="Shrine5" type="submit" value="Shrine5" onclick="myFunction10()">Shrine5</button>
+                            <div class = "col align-self-center"> 
+                                <button class="button button_white" id = "button_9" onclick="myFunction9()"><img src="/static/Baseball Stadium.png" width="30" height="30" > Baseball</button>
+                                <button class="button button_white" id = "button_10" onclick="myFunction10()"><img src="/static/Garden.png" width="30" height="30" > Garden</button>
                             </div>
                         </div>
                         
@@ -152,6 +150,7 @@
                     <div class = "col align-self-center">
 
                         <div id="container" >
+                            <!-- <img src ='/static/Building.png'> -->
                             <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
                             <map name="regionmap">
                               <!-- x1 ,y1 ,x2 ,y2 -->
@@ -223,35 +222,44 @@
     function myFunction3() {
         var element = document.getElementById("ิbutton_3");
         element.classList.toggle("button_black");
-        document.getElementById("myInputCategories").value = "Baseball Stadium";
+        document.getElementById("myInputCategories").value = "Castle";
     }
     function myFunction4() {
         var element = document.getElementById("button_4");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Baseball Stadium";
     }
     function myFunction5() {
         var element = document.getElementById("button_5");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Museum";
     }
     function myFunction6() {
         var element = document.getElementById("button_6");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Theme Park";
     }
     function myFunction7() {
         var element = document.getElementById("button_7");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Mall";
     }
     function myFunction8() {
         var element = document.getElementById("button_8");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Japanese Restaurant";
     }
     function myFunction9() {
         var element = document.getElementById("button_9");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Historic Site";
+
     }
     function myFunction10() {
         var element = document.getElementById("button_10");
         element.classList.toggle("button_black");
+        document.getElementById("myInputCategories").value = "Garden";
+
     }
 </script>
 </body>

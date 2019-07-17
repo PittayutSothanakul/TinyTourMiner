@@ -91,7 +91,8 @@ user5=""
 @app.route('/interest2', methods=['POST'])
 def my_form_post2():
 
-    cat1 = request.form['category1']
+    cat1 = request.form['interest_category']
+    interest_region = request.form['interest_category']
     # interest_cat = request.form['interest_category']
     #result = main_v2({'Temple':1},'JP')
     result = main_v2({str(cat1):1},'JP')
@@ -231,7 +232,7 @@ def my_form_post2():
 
 
     return render_template('mapview.html'
-    # , interest_cat=interest_cat
+    
     , mymap = mymap , mymap2=mymap2 , mymap3=mymap3 , mymap4=mymap4 , mymap5=mymap5
     , array_latitude=array_latitude , array_longitude=array_longitude
     , text_date = text_date , text_plcename = text_plcename , text_time = text_time
@@ -808,7 +809,49 @@ def main_v2(all_interest, country):
     print('Original Input from User:')
     print(original_input, country, "\n")  # Debug用
 # v21.6 get_recommendの引数にoriginal_inputを追加
-    rankings = get_recommend(rankings, "0", country, 5 , dataset , countryset, original_input)
+    
+   # ver190717 begin
+#    rankings = get_recommend(rankings, "0", country, 5 , dataset , countryset, original_input)
+    rankings = get_recommend(rankings, "0", country, 10, dataset , countryset, original_input)
+#    print(rankings)
+    specufied_regions = ("Hokkaido")
+    user_visited_region_num = {}
+    with open("./JP_Travelers_VENU_ID_REGION_FREQ2.csv", "r") as csvfile:   
+            reader = csv.reader(csvfile)
+            for row in reader:
+                if len(row) == 0: #空の行に対応するため
+                    break         #空の行に対応するため    
+                if(row[0]=='USER_ID'):
+                    continue
+                visited_region_num = 0
+                for i in range(1, len(row)):
+                    if row[i] in specufied_regions:
+                        visited_region_num=visited_region_num + 1
+                user_visited_region_num[row[0]] = visited_region_num
+#    print(user_visited_region_num)
+    new_rankings = []
+    for u in rankings:
+        new_rankings.append([u[0], u[1], user_visited_region_num[u[1]]])
+#    print(new_rankings)   
+    sorted_new_rankings = sorted(new_rankings, key=lambda a: a[2], reverse=True)
+    print("Before sort")
+    print(rankings)   
+    print("After sort")
+    print(sorted_new_rankings)   
+    rankings = []
+    for u in sorted_new_rankings:
+        rankings.append((u[0], u[1]))
+#    print(rankings)   
+#    print(sorted_user_visited_region_num)
+#    new_rankings = []
+#    for item in sorted_user_visited_region_num:
+#        for jtem in rankings:
+#            if item[0] = jtem[0]:
+#                new_rankings.append(jtem)
+#    print(new_rankings)
+
+# ver190717 end
+
     if (rankings == "Error"):
         print("No record match ! Terminate Program !")
         return 
