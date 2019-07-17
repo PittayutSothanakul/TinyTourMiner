@@ -48,8 +48,9 @@
     
     .button {
         border: none;
-        color: white;
+        /* color: black; */
         padding: 15px 32px;
+        /* background-color: #e7e7e7; */
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -87,7 +88,8 @@
               <div class = "row">
                   <div class = "col align-self-center">
                       <h1 style=" font-size: 20px;"> Select Your Interest Category<form>
-                          <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
+                          <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
+                          <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category"> -->
                           </h3>
                       </form></h1>
                   </div>
@@ -95,7 +97,7 @@
                 <div class = "col align-self-center">
                     <div class = "col align-self-center">
                         <h1 style=" font-size: 20px;"> Select Your Interest Regions<form>
-                            <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputCategories" type="text" name="interest_region" placeholder="Please select region">
+                            <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region">
                         </form></h1>                        
                     </div>
                 </div>
@@ -118,7 +120,7 @@
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "ิbutton_3" onclick="myFunction3()"><img src="/static/Castle.png" width="30" height="30" > Castle</button>
+                                <button class="button button_white" id = "button_3" onclick="myFunction3()"><img src="/static/Castle.png" width="30" height="30" > Castle</button>
                                 <button class="button button_white" id = "button_4" onclick="myFunction4()"><img src="/static/Historic Site.png" width="30" height="30" > Historic</button>
                               <!-- <button class="button button_black">Museum2</button> -->
                             </div>
@@ -192,7 +194,7 @@
 
                   <div class = "col align-self-center">
                           <!-- <form action="/" method="post" style="text-align:center"> -->
-                              <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
+                              <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
                           <!-- </form> -->
                   </div>
               </div>
@@ -206,58 +208,159 @@
             <br>   
         </div>
     </div>
-    </form>>
+    </form>
 <script>
+    var button_1 = document.getElementById("button_1");
+    var button_2 = document.getElementById("button_2");
+    var button_3 = document.getElementById("button_3");
+    var button_4 = document.getElementById("button_4");
+    var button_5 = document.getElementById("button_5");
+    var button_6 = document.getElementById("button_6");
+    var button_7 = document.getElementById("button_7");
+    var button_8 = document.getElementById("button_8");
+    var button_9 = document.getElementById("button_9");
+    var button_10 = document.getElementById("button_10");
+    
+    function IsEmpty(){
+      if(document.getElementById("myInputCategories").value === "" 
+      && document.getElementById("myInputRegions").value === "" 
+      ){
+          alert("Please Select Your Interest Category");
+          return false;
+      }
+          return true;
+    }
+
     function myFunction() {
-        var element = document.getElementById("button_1");
         // var cate_value = document.getElementById("interest_category")
-        element.classList.toggle("button_black");
+        button_1.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Temple"
     }
     function myFunction2() {
-        var element = document.getElementById("button_2");
-        element.classList.toggle("button_black");
+        button_2.classList.toggle("button_black");
+        button_1.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Shrine";
     }
     function myFunction3() {
-        var element = document.getElementById("ิbutton_3");
-        element.classList.toggle("button_black");
+        button_3.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Castle";
     }
     function myFunction4() {
-        var element = document.getElementById("button_4");
-        element.classList.toggle("button_black");
+        button_4.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Baseball Stadium";
     }
     function myFunction5() {
-        var element = document.getElementById("button_5");
-        element.classList.toggle("button_black");
+        button_5.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Museum";
     }
     function myFunction6() {
-        var element = document.getElementById("button_6");
-        element.classList.toggle("button_black");
+        button_6.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Theme Park";
     }
     function myFunction7() {
-        var element = document.getElementById("button_7");
-        element.classList.toggle("button_black");
+        button_7.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Mall";
     }
     function myFunction8() {
-        var element = document.getElementById("button_8");
-        element.classList.toggle("button_black");
+        button_8.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Japanese Restaurant";
     }
     function myFunction9() {
-        var element = document.getElementById("button_9");
-        element.classList.toggle("button_black");
+        button_9.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_1.classList.remove("button_black");
+        button_10.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Historic Site";
 
     }
     function myFunction10() {
-        var element = document.getElementById("button_10");
-        element.classList.toggle("button_black");
+        button_10.classList.toggle("button_black");
+        button_2.classList.remove("button_black");
+        button_3.classList.remove("button_black");
+        button_4.classList.remove("button_black");
+        button_5.classList.remove("button_black");
+        button_6.classList.remove("button_black");
+        button_7.classList.remove("button_black");
+        button_8.classList.remove("button_black");
+        button_9.classList.remove("button_black");
+        button_1.classList.remove("button_black");
         document.getElementById("myInputCategories").value = "Garden";
 
     }
