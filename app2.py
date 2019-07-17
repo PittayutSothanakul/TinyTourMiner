@@ -86,19 +86,16 @@ user3=""
 user4=""
 user5=""
 
-# This is interest2_newversion
+
+# This is new version of interest2
 @app.route('/interest2', methods=['POST'])
-def interest2():
-    cat1 = request.form['interest_category']
-    cat2 = request.form['category2']
-    cat3 = request.form['category3']
-    cat4 = request.form['category4']
-    cat5 = request.form['category5']
+def my_form_post2():
 
-    country_text = country
-    cate_text = cat1+cat2+cat3+cat4+cat5
-
+    cat1 = request.form['category1']
+    # interest_cat = request.form['interest_category']
+    #result = main_v2({'Temple':1},'JP')
     result = main_v2({str(cat1):1},'JP')
+    # print(cat1)
     
     list_latlong = []         
     temp_dict = {}
@@ -121,7 +118,6 @@ def interest2():
         lat= 36.2048,
         lng= 138.2529,
         markers=[ i for i in zip(array_latitude, array_longitude)] ,
-
         zoom = 4.5  ,
         style = "height:400px;width:500px;margin:auto;" ,
         polylines=[polyline]
@@ -213,6 +209,7 @@ def interest2():
         'stroke_opacity': 1.0,
         'stroke_weight': 3,
         'path': []
+
     }
     polyline5.update({'path': list_latlong5})
     mymap5 = Map(
@@ -226,17 +223,15 @@ def interest2():
     )
 
 
-
     print("==================== Test Load ====================")  
-    # print(array_record1)
-    # print(polyline)
+    print(array_record1)
+    print(polyline)
 
     print("==================== Finished Load ====================")   
 
 
     return render_template('mapview.html'
-    , cate_text = cate_text 
-    , interest_category=interest_category
+    # , interest_cat=interest_cat
     , mymap = mymap , mymap2=mymap2 , mymap3=mymap3 , mymap4=mymap4 , mymap5=mymap5
     , array_latitude=array_latitude , array_longitude=array_longitude
     , text_date = text_date , text_plcename = text_plcename , text_time = text_time
@@ -245,14 +240,43 @@ def interest2():
     , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
 @app.route("/interest2", methods=["GET", "POST"])
-def interest2_form():
+def home2():
+    with open('categories.json', encoding='utf-8') as data_file:
+        data = json.loads(data_file.read())
 
-    return render_template('interest2.html' )
+
+    with open('countries.json', encoding='utf-8') as country_file:
+        country = json.loads(country_file.read())
+
+    all_interest = [];
+    all_countries = [];
+    arrayTest = ["thai","japan"];
+    country_list =  [d['name'] for d in country] 
+
+    AllBigName = data["response"]["categories"]
+
+    for bigName in AllBigName:
+        big_category = bigName["name"]
+        all_interest.append(big_category)
+        for midName in bigName["categories"]:
+            mid_category = midName["name"]
+            all_interest.append(mid_category)
+            for smallName in midName["categories"]:
+                small_category = smallName["name"]
+                all_interest.append(small_category)
+                for tinyName in smallName["categories"]:
+                    tiny_category = tinyName["name"]
+                    all_interest.append(tiny_category)
+                    
+    country_list.sort()
+    all_interest.sort()
+
+    return render_template('interest2.html', all_country_list = country_list ,all_list_interest = all_interest , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
 
 
 
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# This is interest_oldversion
+# This is oldversion of interest
 @app.route('/interest', methods=['POST'])
 def my_form_post():
     country = request.form['country']
