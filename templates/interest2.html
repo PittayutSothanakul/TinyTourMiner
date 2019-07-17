@@ -70,7 +70,7 @@
 </head>
 
 <body>
-    <form method="POST">
+    <!-- <form method="POST"> -->
 
     <div class = "styleCenter">
         <div class = "row">
@@ -88,16 +88,15 @@
               <div class = "row">
                   <div class = "col align-self-center">
                       <h1 style=" font-size: 20px;"> Select Your Interest Category<form>
-                          <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
-                          <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category"> -->
-                          </h3>
+                          <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
+                          </h3> -->
                       </form></h1>
                   </div>
 
                 <div class = "col align-self-center">
                     <div class = "col align-self-center">
                         <h1 style=" font-size: 20px;"> Select Your Interest Regions<form>
-                            <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region">
+                            <!-- <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region"> -->
                         </form></h1>                        
                     </div>
                 </div>
@@ -156,15 +155,15 @@
                             <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
                             <map name="regionmap">
                               <!-- x1 ,y1 ,x2 ,y2 -->
-                                <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[1].elements['interest_region'].value = 'Hokkaido' ">
+                                <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[2].elements['interest_region'].value = 'Hokkaido' ">
                                 <!-- href="../static/Hokkaido.png" -->
-                                <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick= "document.forms[1].elements['interest_region'].value = 'Tohoku'">
-                                <area shape="rect" coords="283,230,340,277" alt="Kanto" onclick= "document.forms[1].elements['interest_region'].value = 'Kanto'">
-                                <area shape="rect" coords="220,200,300,290" alt="Chubu" onclick= "document.forms[1].elements['interest_region'].value = 'Chubu'">
-                                <area shape="rect" coords="185,250,230,310" alt="Kansai" onclick= "document.forms[1].elements['interest_region'].value = 'Kinki'">
-                                <area shape="rect" coords="90,250,180,285" alt="Chugoku" onclick= "document.forms[1].elements['interest_region'].value = 'Chugoku'">
+                                <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick= "document.forms[2].elements['interest_region'].value = 'Tohoku'">
+                                <area shape="rect" coords="283,230,340,277" alt="Kanto" onclick= "document.forms[2].elements['interest_region'].value = 'Kanto'">
+                                <area shape="rect" coords="220,200,300,290" alt="Chubu" onclick= "document.forms[2].elements['interest_region'].value = 'Chubu'">
+                                <area shape="rect" coords="185,250,230,310" alt="Kansai" onclick= "document.forms[2].elements['interest_region'].value = 'Kinki'">
+                                <area shape="rect" coords="90,250,180,285" alt="Chugoku" onclick= "document.forms[2].elements['interest_region'].value = 'Chugoku'">
                                 <!-- <area shape="rect" coords="115,285,180,330" alt="Shikoku" onclick= "document.forms[0].elements['interest_region'].value = 'Shikoku'"> -->
-                                <area shape="rect" coords="45,285,115,380" alt="Kyushu" onclick= "document.forms[1].elements['interest_region'].value = 'Kyushu'">
+                                <area shape="rect" coords="45,285,115,380" alt="Kyushu" onclick= "document.forms[2].elements['interest_region'].value = 'Kyushu'">
                                 <!-- <area shape="rect" coords="175,335,260,390" alt="Okinawa" onclick= "document.forms[0].elements['interest_region'].value = 'Okinawa'"> -->
                                 <!-- Shikoku & Okinawa is no data -->
                             </map>
@@ -179,8 +178,13 @@
 
                     
               <br>
+              <form method="POST">
+
               <div class = "row">
                   <div class = "col align-self-center">
+                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
+                        <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category"> -->
+                      </h3>
                           <form action="/" method="post" style="text-align:center">
                               <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Home" >
                           </form>
@@ -193,11 +197,14 @@
                   </div> -->
 
                   <div class = "col align-self-center">
+                      <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region">
+                      </h3>
                           <!-- <form action="/" method="post" style="text-align:center"> -->
                               <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
                           <!-- </form> -->
                   </div>
               </div>
+              </form>
               <br>
 
         </div>
@@ -208,7 +215,7 @@
             <br>   
         </div>
     </div>
-    </form>
+    <!-- </form> -->
 <script>
     var button_1 = document.getElementById("button_1");
     var button_2 = document.getElementById("button_2");
@@ -222,9 +229,7 @@
     var button_10 = document.getElementById("button_10");
     
     function IsEmpty(){
-      if(document.getElementById("myInputCategories").value === "" 
-      && document.getElementById("myInputRegions").value === "" 
-      ){
+      if(document.getElementById("myInputCategories").value === "" ){
           alert("Please Select Your Interest Category");
           return false;
       }
