@@ -183,7 +183,7 @@
 
               <div class = "row">
                   <div class = "col align-self-center">
-                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
+                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
                         <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category"> -->
                       </h3>
                           <form action="/" method="post" style="text-align:center">
@@ -198,7 +198,7 @@
                   </div> -->
 
                   <div class = "col align-self-center">
-                      <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region">
+                      <h3 style="text-align:center; font-size: 15px;"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
                       </h3>
                           <!-- <form action="/" method="post" style="text-align:center"> -->
                               <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
@@ -228,6 +228,8 @@
     var button_8 = document.getElementById("button_8");
     var button_9 = document.getElementById("button_9");
     var button_10 = document.getElementById("button_10");
+
+    var region_id = document.getElementById("myInputRegions");
     
     function IsEmpty(){
       if(document.getElementById("myInputCategories").value === "" ){
@@ -236,27 +238,84 @@
       }
           return true;
     }
+    var boolean_hokkaido = false
+    var boolean_tohoku = false
+    var boolean_kanto = false
+    var boolean_chubu = false
+    var boolean_kansai = false
+    var boolean_chugoku = false
+    var boolean_kyushu = false
+    var str_array = [];
 
     function region_hokkaido() {
-        document.getElementById("myInputRegions").value = "Hokkaido"
+      if(!boolean_hokkaido){
+        boolean_hokkaido = true
+        str_array.push("Hokkaido")
+      }else {
+        boolean_hokkaido = false
+        str_array = str_array.filter(x=> x !== "Hokkaido") 
+      }
+      region_id.value = str_array
     }
     function region_tohoku() {
-        document.getElementById("myInputRegions").value = "Tohoku"
+      if(!boolean_tohoku){
+        boolean_tohoku = true
+        str_array.push("Tohoku")
+      }else {
+        boolean_tohoku = false
+        str_array = str_array.filter(x=> x !== "Tohoku") 
+      }
+      region_id.value = str_array
     }
     function region_kanto() {
-        document.getElementById("myInputRegions").value = "Kanto"
+      if(!boolean_kanto){
+        boolean_kanto = true
+        str_array.push("Kanto")
+      }else {
+        boolean_kanto = false
+        str_array = str_array.filter(x=> x !== "Kanto") 
+      }
+      region_id.value = str_array
     }
     function region_chubu() {
-        document.getElementById("myInputRegions").value = "Chubu"
+      if(!boolean_chubu){
+        boolean_chubu = true
+        str_array.push("Chubu")
+      }else {
+        boolean_chubu = false
+        str_array = str_array.filter(x=> x !== "Chubu") 
+      }
+      region_id.value = str_array
     }
     function region_kansai() {
-        document.getElementById("myInputRegions").value = "Kinki"
+      if(!boolean_kansai){
+        boolean_kansai = true
+        str_array.push("Kinki")
+      }else {
+        boolean_kansai = false
+        str_array = str_array.filter(x=> x !== "Kinki") 
+      }
+      region_id.value = str_array
     }
     function region_chugoku() {
-        document.getElementById("myInputRegions").value = "Chugoku"
+      if(!boolean_chugoku){
+        boolean_chugoku = true
+        str_array.push("Chugoku")
+      }else {
+        boolean_chugoku = false
+        str_array = str_array.filter(x=> x !== "Chugoku") 
+      }
+      region_id.value = str_array
     }
     function region_kyushu() {
-        document.getElementById("myInputRegions").value = "Kyushu"
+      if(!boolean_kyushu){
+        boolean_kyushu = true
+        str_array.push("Kyushu")
+      }else {
+        boolean_kyushu = false
+        str_array = str_array.filter(x=> x !== "Kyushu") 
+      }
+      region_id.value = str_array
     }
 
     function myFunction() {
