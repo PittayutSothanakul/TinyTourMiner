@@ -63,21 +63,21 @@
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px;">Your interest {{ country_text }} about {{ cate_text }} Select Your Interest Regions</h1></br>
+        <br><h1 style=" font-size: 20px;"> Select Your Interest Regions</h1></br>
 
         <div class = "row">
                 <div class = "col align-self-center">
                     <form>
-                        <input type="text" name="Example"/>
+                        <input type="text" name="interest_region"/>
                     </form>
 
                     <div id="container" >
                         <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
                         <map name="regionmap">
                           <!-- x1 ,y1 ,x2 ,y2 -->
-                            <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[0].elements['Example'].value = 'Hokkaido' ">
+                            <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[0].elements['interest_region'].value = 'Hokkaido' ">
                             <!-- href="../static/Hokkaido.png" -->
-                            <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick= "document.forms[0].elements['Example'].value = 'Tohoku'">
+                            <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick= "document.forms[0].elements['interest_region'].value = 'Tohoku'">
                             <!-- href="../static/Tohoku.png" -->
                             <area shape="rect" coords="283,230,340,277" alt="Kanto" href="../static/Kanto.png">
                             <area shape="rect" coords="220,200,300,290" alt="Chubu" href="../static/Chubu.png">
@@ -106,13 +106,13 @@
             </div>
 
             <div class = "col align-self-center">
-                    <form action="/interest" method="GET" style="text-align:center">
+                    <form action="/" method="GET" style="text-align:center">
                         <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Back">
                     </form>
             </div>
 
             <div class = "col align-self-center">
-                    <form action="/mapview" method="post" style="text-align:center">
+                    <form action="/interest2" method="post" style="text-align:center">
                         <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Next">
                     </form>
             </div>
