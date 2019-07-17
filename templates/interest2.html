@@ -155,15 +155,16 @@
                             <img src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
                             <map name="regionmap">
                               <!-- x1 ,y1 ,x2 ,y2 -->
-                                <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[2].elements['interest_region'].value = 'Hokkaido' ">
+                                <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick="return region_hokkaido()" >
+                                <!-- <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick= "document.forms[2].elements['interest_region'].value = 'Hokkaido' "> -->
                                 <!-- href="../static/Hokkaido.png" -->
-                                <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick= "document.forms[2].elements['interest_region'].value = 'Tohoku'">
-                                <area shape="rect" coords="283,230,340,277" alt="Kanto" onclick= "document.forms[2].elements['interest_region'].value = 'Kanto'">
-                                <area shape="rect" coords="220,200,300,290" alt="Chubu" onclick= "document.forms[2].elements['interest_region'].value = 'Chubu'">
-                                <area shape="rect" coords="185,250,230,310" alt="Kansai" onclick= "document.forms[2].elements['interest_region'].value = 'Kinki'">
-                                <area shape="rect" coords="90,250,180,285" alt="Chugoku" onclick= "document.forms[2].elements['interest_region'].value = 'Chugoku'">
+                                <area shape="rect" coords="310,110,370,225" alt="Tohoku" onclick="return region_tohoku()" >
+                                <area shape="rect" coords="283,230,340,277" alt="Kanto" onclick="return region_kanto()" >
+                                <area shape="rect" coords="220,200,300,290" alt="Chubu" onclick="return region_chubu()" >
+                                <area shape="rect" coords="185,250,230,310" alt="Kansai" onclick="return region_kansai()" >
+                                <area shape="rect" coords="90,250,180,285" alt="Chugoku" onclick="return region_chugoku()" >
                                 <!-- <area shape="rect" coords="115,285,180,330" alt="Shikoku" onclick= "document.forms[0].elements['interest_region'].value = 'Shikoku'"> -->
-                                <area shape="rect" coords="45,285,115,380" alt="Kyushu" onclick= "document.forms[2].elements['interest_region'].value = 'Kyushu'">
+                                <area shape="rect" coords="45,285,115,380" alt="Kyushu" onclick="return region_kyushu()" >
                                 <!-- <area shape="rect" coords="175,335,260,390" alt="Okinawa" onclick= "document.forms[0].elements['interest_region'].value = 'Okinawa'"> -->
                                 <!-- Shikoku & Okinawa is no data -->
                             </map>
@@ -234,6 +235,28 @@
           return false;
       }
           return true;
+    }
+
+    function region_hokkaido() {
+        document.getElementById("myInputRegions").value = "Hokkaido"
+    }
+    function region_tohoku() {
+        document.getElementById("myInputRegions").value = "Tohoku"
+    }
+    function region_kanto() {
+        document.getElementById("myInputRegions").value = "Kanto"
+    }
+    function region_chubu() {
+        document.getElementById("myInputRegions").value = "Chubu"
+    }
+    function region_kansai() {
+        document.getElementById("myInputRegions").value = "Kinki"
+    }
+    function region_chugoku() {
+        document.getElementById("myInputRegions").value = "Chugoku"
+    }
+    function region_kyushu() {
+        document.getElementById("myInputRegions").value = "Kyushu"
     }
 
     function myFunction() {
