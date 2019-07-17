@@ -92,10 +92,10 @@ user5=""
 def my_form_post2():
 
     cat1 = request.form['interest_category']
-    interest_region = request.form['interest_category']
+    interest_region = "("+request.form['interest_region']+")"
     # interest_cat = request.form['interest_category']
     #result = main_v2({'Temple':1},'JP')
-    result = main_v2({str(cat1):1},'JP')
+    result = main_v2({str(cat1):1},'JP',str(interest_region))
     # print(cat1)
     
     list_latlong = []         
@@ -225,15 +225,16 @@ def my_form_post2():
 
 
     print("==================== Test Load ====================")  
-    print(array_record1)
-    print(polyline)
-
+    # print(array_record1)
+    # print(polyline)
+    print(interest_region)
     print("==================== Finished Load ====================")   
 
 
     return render_template('mapview.html'
     
     , mymap = mymap , mymap2=mymap2 , mymap3=mymap3 , mymap4=mymap4 , mymap5=mymap5
+    , interest_region =interest_region
     , array_latitude=array_latitude , array_longitude=array_longitude
     , text_date = text_date , text_plcename = text_plcename , text_time = text_time
     , array_category = array_category, array_location=array_location , array_date= array_date
@@ -697,7 +698,7 @@ from mpl_toolkits.basemap import Basemap
 #countryset = {}
 
 # 新しいバージョンの Main
-def main_v2(all_interest, country):
+def main_v2(all_interest, country,interest_region):
    
     dataset = {}
     countryset = {}
@@ -814,7 +815,11 @@ def main_v2(all_interest, country):
 #    rankings = get_recommend(rankings, "0", country, 5 , dataset , countryset, original_input)
     rankings = get_recommend(rankings, "0", country, 10, dataset , countryset, original_input)
 #    print(rankings)
-    specufied_regions = ("Hokkaido")
+
+    # specufied_regions = ("Hokkaido")
+    # specufied_regions = ("Hokkaido", "Kanto")
+    specufied_regions = interest_region
+
     user_visited_region_num = {}
     with open("./JP_Travelers_VENU_ID_REGION_FREQ2.csv", "r") as csvfile:   
             reader = csv.reader(csvfile)
