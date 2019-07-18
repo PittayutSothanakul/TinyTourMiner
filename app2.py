@@ -1449,4 +1449,11 @@ def remove_outlier(current_dataset):
         current_dataset.pop(item_to_remove)
 if __name__ == "__main__":
     app.config['DEBUG'] = True
-    app.run(debug=True,use_reloader=True)
+    
+    # app.run(host='192.168.8.100',debug=True,use_reloader=True)
+    # software1
+    app.run(host='0.0.0.0', port=80,debug=True,use_reloader=True)
+
+    # app.run(host='192.168.11.44', port=80 ,debug=True,use_reloader=True)
+    # softbank tourminer
+    # app.run(host='10.221.208.217',debug=True,use_reloader=True)

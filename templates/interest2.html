@@ -179,11 +179,12 @@
 
                     
               <br>
-              <form method="POST">
 
               <div class = "row">
                   <div class = "col align-self-center">
-                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
+                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;display: none;" id="myInputCategories1" type="text" name="interest_category" placeholder="Please select category" readonly>
+                      <h3 style="text-align:center; font-size: 15px;"><input  style="width:300px;display: none;" id="myInputCategories2" type="text" name="interest_category" placeholder="Please select category" readonly>
+ 
                         <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category"> -->
                       </h3>
                           <form action="/" method="post" style="text-align:center">
@@ -196,16 +197,21 @@
                               <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Back">
                           </form>
                   </div> -->
-
+              
                   <div class = "col align-self-center">
+                      <form method="POST">
+                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
+
                       <h3 style="text-align:center; font-size: 15px;"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
                       </h3>
                           <!-- <form action="/" method="post" style="text-align:center"> -->
                               <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
                           <!-- </form> -->
+                      </form>
+
                   </div>
               </div>
-              </form>
+
               <br>
 
         </div>
@@ -369,7 +375,7 @@
         button_8.classList.remove("button_black");
         button_9.classList.remove("button_black");
         button_10.classList.remove("button_black");
-        document.getElementById("myInputCategories").value = "Baseball Stadium";
+        document.getElementById("myInputCategories").value = "Historic Site";
     }
     function myFunction5() {
         button_5.classList.toggle("button_black");
@@ -434,7 +440,7 @@
         button_8.classList.remove("button_black");
         button_1.classList.remove("button_black");
         button_10.classList.remove("button_black");
-        document.getElementById("myInputCategories").value = "Historic Site";
+        document.getElementById("myInputCategories").value = "Baseball Stadium";
 
     }
     function myFunction10() {
