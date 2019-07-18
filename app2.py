@@ -1454,6 +1454,9 @@ if __name__ == "__main__":
     # software1
     app.run(host='0.0.0.0', port=80,debug=True,use_reloader=True)
 
+    # Mac mini
+    app.run(host='133.62.160.28', port=80,debug=True,use_reloader=True)
+
     # app.run(host='192.168.11.44', port=80 ,debug=True,use_reloader=True)
     # softbank tourminer
     # app.run(host='10.221.208.217',debug=True,use_reloader=True)
