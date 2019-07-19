@@ -95,7 +95,9 @@ def my_form_post2():
     interest_region = "("+request.form['interest_region']+")"
     # interest_cat = request.form['interest_category']
     #result = main_v2({'Temple':1},'JP')
-    result = main_v2({str(cat1):1},'JP',str(interest_region))
+    main_v2({'Museum':1,'Mall':1,'Baseball Stadium':1},'JP',str(interest_region))
+
+    # result = main_v2({str(cat1):1},'JP',str(interest_region))
     # print(cat1)
     
     list_latlong = []         

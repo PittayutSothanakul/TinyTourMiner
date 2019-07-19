@@ -244,6 +244,17 @@
       }
           return true;
     }
+    var boolean_btcat1 = false
+    var boolean_btcat2 = false
+    var boolean_btcat3 = false
+    var boolean_btcat4 = false
+    var boolean_btcat5 = false
+    var boolean_btcat6 = false
+    var boolean_btcat7 = false
+    var boolean_btcat8 = false
+    var boolean_btcat9 = false
+    var boolean_btcat10 = false
+    
     var boolean_hokkaido = false
     var boolean_tohoku = false
     var boolean_kanto = false
@@ -326,134 +337,114 @@
 
     function myFunction() {
         // var cate_value = document.getElementById("interest_category")
-        button_1.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat1){
+          boolean_btcat1 = true
+          button_1.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat1 = false
+          button_1.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Temple"
     }
     function myFunction2() {
-        button_2.classList.toggle("button_black");
-        button_1.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat2){
+          boolean_btcat2 = true
+          button_2.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat1 = false
+          button_2.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Shrine";
     }
     function myFunction3() {
-        button_3.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat3){
+          boolean_btcat3 = true
+          button_3.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat3 = false
+          button_3.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Castle";
     }
     function myFunction4() {
-        button_4.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat4){
+          boolean_btcat4 = true
+          button_4.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat4 = false
+          button_4.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Historic Site";
     }
     function myFunction5() {
-        button_5.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat5){
+          boolean_btcat5 = true
+          button_5.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat5 = false
+          button_5.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Museum";
     }
     function myFunction6() {
-        button_6.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+      if(!boolean_btcat6){
+          boolean_btcat6 = true
+          button_6.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat6 = false
+          button_6.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Theme Park";
     }
     function myFunction7() {
-        button_7.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat7){
+          boolean_btcat7 = true
+          button_7.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat7 = false
+          button_7.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Mall";
     }
     function myFunction8() {
-        button_8.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+        if(!boolean_btcat8){
+          boolean_btcat8 = true
+          button_8.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat8 = false
+          button_8.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Japanese Restaurant";
     }
-    function myFunction9() {
-        button_9.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_1.classList.remove("button_black");
-        button_10.classList.remove("button_black");
+      function myFunction9() {
+      if(!boolean_btcat9){
+          boolean_btcat9 = true
+          button_9.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat9 = false
+          button_9.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Baseball Stadium";
 
     }
     function myFunction10() {
-        button_10.classList.toggle("button_black");
-        button_2.classList.remove("button_black");
-        button_3.classList.remove("button_black");
-        button_4.classList.remove("button_black");
-        button_5.classList.remove("button_black");
-        button_6.classList.remove("button_black");
-        button_7.classList.remove("button_black");
-        button_8.classList.remove("button_black");
-        button_9.classList.remove("button_black");
-        button_1.classList.remove("button_black");
+       if(!boolean_btcat10){
+          boolean_btcat10 = true
+          button_10.classList.toggle("button_black");
+
+        }else {
+          boolean_btcat10 = false
+          button_10.classList.remove("button_black");
+        }
         document.getElementById("myInputCategories").value = "Garden";
 
     }
