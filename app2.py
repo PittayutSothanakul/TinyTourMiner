@@ -90,13 +90,43 @@ user5=""
 # This is new version of interest2
 @app.route('/interest2', methods=['POST'])
 def my_form_post2():
-
+    cat1_array = []
     cat1 = request.form['interest_category']
+
+    cat1_array = cat1.split(',')
+    print(cat1_array) #['Temple', 'Shrine']
+
     interest_region = "("+request.form['interest_region']+")"
     # interest_cat = request.form['interest_category']
     #result = main_v2({'Temple':1},'JP')
-    main_v2({'Museum':1,'Mall':1,'Baseball Stadium':1},'JP',str(interest_region))
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ cat1")
+    print(cat1) #Shrine,Temple
+    print(len(cat1_array))
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ cat1")
 
+    if(len(cat1_array) == 1):
+        result = main_v2({str(cat1_array[0]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 2):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 3):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 4):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 5):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 6):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 7):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 8):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 9):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1,str(cat1_array[8]):1},'JP',str(interest_region))
+    elif(len(cat1_array) == 9):
+        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1,str(cat1_array[8]):1,str(cat1_array[9]):1},'JP',str(interest_region))
+    # main_v2({'Museum':1,'Mall':1,'Baseball Stadium':1},'JP',str(interest_region))
+    # result = main_v2({'Shrine,Temple': 1},'JP')
+    # main_v2({'Shrine':1,'Temple':1},'JP',str(interest_region))
     # result = main_v2({str(cat1):1},'JP',str(interest_region))
     # print(cat1)
     
