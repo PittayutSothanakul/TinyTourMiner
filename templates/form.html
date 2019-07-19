@@ -1,0 +1,344 @@
+<!doctype html> {% extends "bootstrap/base.html" %} {% block content %}
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .styleCenter{
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    }
+
+    .header {
+  padding: 10px;
+  text-align: center;
+  background: #56813A;
+  color: white;
+  }
+
+    .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #56813A;
+   color: white;
+   text-align: center;  
+    }
+
+    .button {
+        border: none;
+        /* color: black; */
+        padding: 15px 32px;
+        /* background-color: #e7e7e7; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width:200px;
+    }
+
+    .button_white {background-color: #e7e7e7; color: black;} /* Gray */ 
+    .button_black {background-color: #555555; color: white;} /* Black */
+
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    
+    <div class = "styleCenter">
+        <div class = "row">
+            <div class = "col align-self-center">
+                    <div class ="header">
+                            <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
+                    </div>
+            </div>
+        </div>
+        <br>
+        <br><h1 style=" font-size: 20px;"> First, please tell me about you.</h1></br>
+        <img style="width: 70px" src ="/static/YamaMe.jpg"/>
+        <br>
+        <br>
+
+        <div class = "row">
+                <div class = "col align-self-center">
+                    
+                    <div class="row">
+                            <div class = "col align-self-center">
+                              <h1 style=" font-size: 20px;"> Gender :    <br>
+                              <button class="button button_white" id = "button_male"  onclick="clicked_male()"><img src="/static/boy.png" width="20" height="20" > Male</button>
+                              <!-- style="background: url('/static/Temple.png'); background-size: 50px 55px;" -->
+                              <button class="button button_white" id = "button_female"  onclick="clicked_female()"><img src="/static/girl.png" width="20" height="20" > Female</button>
+                            </h1>
+                            </div>
+                    </div>
+                    <br><br>
+      
+                    <div class="row">
+                            <div class = "col align-self-center">
+                              <h1 style=" font-size: 20px;"> Age :    <br>
+                              <button class="button button_white" id = "button_1"  onclick="myFunction()"> 10s or less</button>
+                              <button class="button button_white" id = "button_2"  onclick="myFunction2()">20s</button>
+                              <button class="button button_white" id = "button_3"  onclick="myFunction3()"> 30s</button>
+
+                            </h1>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class = "col align-self-center">
+                                    <button class="button button_white" id = "button_4"  onclick="myFunction4()"> 40s</button>
+                                    <button class="button button_white" id = "button_5"  onclick="myFunction5()">50s </button>
+                                    <button class="button button_white" id = "button_6"  onclick="myFunction6()">60s or more</button>
+                            </h1>
+                            </div>
+                    </div>
+
+
+                </div>
+        </div>
+        <br>
+        <br><br>
+
+
+
+        <div class = "row">
+                <div class = "col align-self-center">
+                        <!-- <form action="/interest" method="get" style="text-align:center">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="StartOld">
+                        </form> -->
+                        <form action="/" method="get" style="text-align:center">
+                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="Home">
+                       </form>
+                </div>
+
+                <div class = "col align-self-center">
+                    <h3 style="text-align:center; font-size: 15px;display: none"><input  style="width:300px;" id="myInputGender" type="text" name="input_gender" placeholder="Please select your gender" readonly></h3>
+
+                    <h3 style="text-align:center; font-size: 15px;display: none"><input style="width:400px; " id="myInputAge" type="text" name="input_age" placeholder="Please select your age" readonly></h3>
+
+                    <form action="/interest2" method="get" style="text-align:center">
+                        <input type="submit"onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="Next">
+                    </form>
+                </div>
+                
+        </div>
+
+        <div class="footer">
+            <br>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
+            <br>   
+        </div>
+    </div>
+<script>
+    var button_1 = document.getElementById("button_1");
+    var button_2 = document.getElementById("button_2");
+    var button_3 = document.getElementById("button_3");
+    var button_4 = document.getElementById("button_4");
+    var button_5 = document.getElementById("button_5");
+    var button_6 = document.getElementById("button_6");
+    
+    var button_male = document.getElementById("button_male");
+    var button_female = document.getElementById("button_female");
+
+    var var_gender = document.getElementById("myInputGender");
+    var var_age = document.getElementById("myInputAge");
+
+    var boolean_male = false
+    var boolean_female = false
+
+    var boolean_button1 = false
+    var boolean_button2 = false
+    var boolean_button3 = false
+    var boolean_button4 = false
+    var boolean_button5 = false
+    var boolean_button6 = false
+
+
+    
+    function IsEmpty(){
+      if(var_gender.value === "" ){
+          alert("Please Select Your Gender");
+          return false;
+      }else if(var_age.value === ""){
+        alert("Please Select Your Age");
+          return false;
+
+      }
+          return true;
+    }
+
+    function clicked_male() {
+        if(!boolean_male){
+            button_male.classList.toggle("button_black");
+            button_female.classList.remove("button_black");
+            boolean_male = true
+            boolean_female = false
+            var_gender.value = "Male"
+        }else{
+            var_gender.value = ""
+            button_male.classList.remove("button_black");
+            boolean_male= false
+        }
+    }
+    function clicked_female() {
+        if(!boolean_female){
+            button_female.classList.toggle("button_black");
+            button_male.classList.remove("button_black");
+            boolean_female = true
+            boolean_male =false
+            var_gender.value = "Female"
+        }else{
+            var_gender.value = ""
+            button_female.classList.remove("button_black");
+            boolean_female= false
+        }
+    }
+
+    function myFunction() {
+        if(!boolean_button1){
+            button_1.classList.toggle("button_black");
+            button_2.classList.remove("button_black");
+            button_3.classList.remove("button_black");
+            button_4.classList.remove("button_black");
+            button_5.classList.remove("button_black");
+            button_6.classList.remove("button_black");
+            boolean_button1 = true;
+            boolean_button2 = false;
+            boolean_button3 = false;
+            boolean_button4 = false;
+            boolean_button5 = false;
+            boolean_button6 = false;
+            document.getElementById("myInputAge").value = "10s or less"
+        }else{
+            boolean_button1 = false;
+            button_1.classList.remove("button_black");
+            document.getElementById("myInputAge").value = ""
+        }
+    }
+
+    function myFunction2() {
+        if(!boolean_button2){
+            button_2.classList.toggle("button_black");
+            button_1.classList.remove("button_black");
+            button_3.classList.remove("button_black");
+            button_4.classList.remove("button_black");
+            button_5.classList.remove("button_black");
+            button_6.classList.remove("button_black");
+            boolean_button2 = true;
+            boolean_button1 = false;
+            boolean_button3 = false;
+            boolean_button4 = false;
+            boolean_button5 = false;
+            boolean_button6 = false;
+            document.getElementById("myInputAge").value = "20s"
+        }else{
+            boolean_button2 = false;
+            button_2.classList.remove("button_black");
+            document.getElementById("myInputAge").value = ""
+        }
+    }
+
+    function myFunction3() {
+        if(!boolean_button3){
+            button_3.classList.toggle("button_black");
+            button_2.classList.remove("button_black");
+            button_1.classList.remove("button_black");
+            button_4.classList.remove("button_black");
+            button_5.classList.remove("button_black");
+            button_6.classList.remove("button_black");
+            boolean_button3 = true;
+            boolean_button2 = false;
+            boolean_button1 = false;
+            boolean_button4 = false;
+            boolean_button5 = false;
+            boolean_button6 = false;
+            document.getElementById("myInputAge").value = "30s"
+        }else{
+            boolean_button3 = false;
+            button_3.classList.remove("button_black");
+            document.getElementById("myInputAge").value = ""
+        }
+    }
+
+    function myFunction4() {
+        if(!boolean_button4){
+            button_4.classList.toggle("button_black");
+            button_2.classList.remove("button_black");
+            button_3.classList.remove("button_black");
+            button_1.classList.remove("button_black");
+            button_5.classList.remove("button_black");
+            button_6.classList.remove("button_black");
+            boolean_button4 = true;
+            boolean_button2 = false;
+            boolean_button3 = false;
+            boolean_button1 = false;
+            boolean_button5 = false;
+            boolean_button6 = false;
+            document.getElementById("myInputAge").value = "40s"
+        }else{
+            boolean_button4 = false;
+            button_4.classList.remove("button_black");
+            document.getElementById("myInputAge").value = ""
+        }
+    }
+
+    function myFunction5() {
+        if(!boolean_button5){
+            button_5.classList.toggle("button_black");
+            button_2.classList.remove("button_black");
+            button_3.classList.remove("button_black");
+            button_4.classList.remove("button_black");
+            button_1.classList.remove("button_black");
+            button_6.classList.remove("button_black");
+            boolean_button5 = true;
+            boolean_button2 = false;
+            boolean_button3 = false;
+            boolean_button4 = false;
+            boolean_button1 = false;
+            boolean_button6 = false;
+            document.getElementById("myInputAge").value = "50s"
+        }else{
+            boolean_button5 = false;
+            button_5.classList.remove("button_black");
+            document.getElementById("myInputAge").value = ""
+        }
+    }
+
+    function myFunction6() {
+        if(!boolean_button6){
+            button_6.classList.toggle("button_black");
+            button_2.classList.remove("button_black");
+            button_3.classList.remove("button_black");
+            button_4.classList.remove("button_black");
+            button_5.classList.remove("button_black");
+            button_1.classList.remove("button_black");
+            boolean_button6 = true;
+            boolean_button2 = false;
+            boolean_button3 = false;
+            boolean_button4 = false;
+            boolean_button5 = false;
+            boolean_button61= false;
+            document.getElementById("myInputAge").value = "60s or more"
+        }else{
+            boolean_button6 = false;
+            button_6.classList.remove("button_black");
+            document.getElementById("myInputAge").value = ""
+        }
+    }
+
+</script>
+
+</body>
+
+</html>
+{% endblock %}
+

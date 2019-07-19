@@ -39,6 +39,11 @@ def start():
     
     return render_template('home.html')
 
+@app.route("/form", methods=["GET", "POST"])
+def form():
+
+    
+    return render_template('form.html')
 
 @app.route("/region", methods=["GET", "POST"])
 def region():
