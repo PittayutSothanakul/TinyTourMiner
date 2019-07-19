@@ -99,10 +99,6 @@ def my_form_post2():
     interest_region = "("+request.form['interest_region']+")"
     # interest_cat = request.form['interest_category']
     #result = main_v2({'Temple':1},'JP')
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ cat1")
-    print(cat1) #Shrine,Temple
-    print(len(cat1_array))
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ cat1")
 
     if(len(cat1_array) == 1):
         result = main_v2({str(cat1_array[0]):1},'JP',str(interest_region))
@@ -122,7 +118,7 @@ def my_form_post2():
         result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1},'JP',str(interest_region))
     elif(len(cat1_array) == 9):
         result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1,str(cat1_array[8]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 9):
+    elif(len(cat1_array) == 10):
         result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1,str(cat1_array[8]):1,str(cat1_array[9]):1},'JP',str(interest_region))
     # main_v2({'Museum':1,'Mall':1,'Baseball Stadium':1},'JP',str(interest_region))
     # result = main_v2({'Shrine,Temple': 1},'JP')
