@@ -724,7 +724,7 @@ import matplotlib.image as mpimg
 from bigquery import get_client
 from bigquery.errors import BigQueryTimeoutException
 import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap
+# from mpl_toolkits.basemap import Basemap
 
 #以下の Gloval Variable をMain_v2内へ移動」
 #dataset = {}
