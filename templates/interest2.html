@@ -200,7 +200,7 @@
               
                   <div class = "col align-self-center">
                       <form method="POST">
-                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
+                      <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
 
                       <h3 style="text-align:center; font-size: 15px;"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
                       </h3>
@@ -335,118 +335,136 @@
       region_id.value = str_array
     }
 
+    cat_array = []
     function myFunction() {
         // var cate_value = document.getElementById("interest_category")
         if(!boolean_btcat1){
           boolean_btcat1 = true
           button_1.classList.toggle("button_black");
-
+          cat_array.push("Temple")
         }else {
           boolean_btcat1 = false
           button_1.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Temple") 
         }
-        document.getElementById("myInputCategories").value = "Temple"
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction2() {
         if(!boolean_btcat2){
           boolean_btcat2 = true
           button_2.classList.toggle("button_black");
-
+          cat_array.push("Shrine")
         }else {
-          boolean_btcat1 = false
+          boolean_btcat2 = false
           button_2.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Shrine") 
         }
-        document.getElementById("myInputCategories").value = "Shrine";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction3() {
         if(!boolean_btcat3){
           boolean_btcat3 = true
           button_3.classList.toggle("button_black");
-
+          cat_array.push("Castle")
         }else {
           boolean_btcat3 = false
           button_3.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Castle") 
         }
-        document.getElementById("myInputCategories").value = "Castle";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction4() {
         if(!boolean_btcat4){
           boolean_btcat4 = true
           button_4.classList.toggle("button_black");
-
+          cat_array.push("Historic Site")
         }else {
           boolean_btcat4 = false
           button_4.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Historic Site") 
         }
-        document.getElementById("myInputCategories").value = "Historic Site";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction5() {
         if(!boolean_btcat5){
           boolean_btcat5 = true
           button_5.classList.toggle("button_black");
-
+          cat_array.push("Museum")
         }else {
           boolean_btcat5 = false
           button_5.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Museum") 
         }
-        document.getElementById("myInputCategories").value = "Museum";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction6() {
-      if(!boolean_btcat6){
+        if(!boolean_btcat6){
           boolean_btcat6 = true
           button_6.classList.toggle("button_black");
-
+          cat_array.push("Theme Park")
         }else {
           boolean_btcat6 = false
           button_6.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Theme Park") 
         }
-        document.getElementById("myInputCategories").value = "Theme Park";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction7() {
         if(!boolean_btcat7){
           boolean_btcat7 = true
           button_7.classList.toggle("button_black");
-
+          cat_array.push("Mall")
         }else {
           boolean_btcat7 = false
           button_7.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Mall") 
         }
-        document.getElementById("myInputCategories").value = "Mall";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction8() {
         if(!boolean_btcat8){
           boolean_btcat8 = true
           button_8.classList.toggle("button_black");
-
+          cat_array.push("Japanese Restaurant")
         }else {
           boolean_btcat8 = false
           button_8.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Japanese Restaurant") 
         }
-        document.getElementById("myInputCategories").value = "Japanese Restaurant";
+        document.getElementById("myInputCategories").value = cat_array
     }
+
       function myFunction9() {
       if(!boolean_btcat9){
           boolean_btcat9 = true
           button_9.classList.toggle("button_black");
-
+          cat_array.push("Baseball Stadium")
         }else {
           boolean_btcat9 = false
           button_9.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Baseball Stadium") 
         }
-        document.getElementById("myInputCategories").value = "Baseball Stadium";
-
+        document.getElementById("myInputCategories").value = cat_array
     }
+
     function myFunction10() {
        if(!boolean_btcat10){
           boolean_btcat10 = true
           button_10.classList.toggle("button_black");
-
+          cat_array.push("Garden")
         }else {
           boolean_btcat10 = false
           button_10.classList.remove("button_black");
+          cat_array = cat_array.filter(x=> x !== "Garden") 
         }
-        document.getElementById("myInputCategories").value = "Garden";
-
+        document.getElementById("myInputCategories").value = cat_array
     }
 </script>
 </body>
