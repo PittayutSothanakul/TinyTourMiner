@@ -39,11 +39,45 @@ def start():
     
     return render_template('home.html')
 
-@app.route("/form", methods=["GET", "POST"])
-def form():
+@app.route("/mapview3", methods=["POST"])
+def mapview3():
+    if request.method == 'POST':
+        interest_region = "("+request.form['interest_region']+")"
 
-    
-    return render_template('form.html')
+        print(interest_region)
+        
+        return render_template("mapview3.html")
+
+
+@app.route("/region3", methods=["POST"])
+def region3():
+    if request.method == 'POST':
+        cat1_array = []
+        cat1 = request.form['interest_category']
+        print("")
+        print(cat1)
+
+        cat1_array = cat1.split(',')
+        print(cat1_array) #['Temple', 'Shrine']
+
+        return render_template("region3.html")
+
+
+@app.route("/interest3", methods=["POST"])
+def interest3():
+    if request.method == 'POST':
+        gender = request.form.get('input_gender')
+        age = request.form['input_age']
+        print(gender)
+        print(age)
+        return render_template("interest3.html",gender = gender,age=age)
+
+
+
+
+@app.route("/form")
+def form():
+   return render_template('form.html')
 
 @app.route("/region", methods=["GET", "POST"])
 def region():
@@ -97,6 +131,8 @@ user5=""
 def my_form_post2():
     cat1_array = []
     cat1 = request.form['interest_category']
+    print("")
+    print(cat1)
 
     cat1_array = cat1.split(',')
     print(cat1_array) #['Temple', 'Shrine']
