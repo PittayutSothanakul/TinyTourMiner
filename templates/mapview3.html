@@ -49,7 +49,6 @@
 
 
 
-
 </head>
 
 <body>
@@ -80,14 +79,29 @@
         <div class = "row">
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Map">
+                        
                     </div>
                 </div>
 
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
-                        <ol> 
-                                {%for i in array_record1 %} <h1 style="font-size:15px;">{{i}}</h1><br> {%endfor%}
-                        </ol> 
+                            <div class='row'>
+                                <div class='col-sm-2'>
+                                        {%for i in modify_array_cat2 %} 
+                                            {% autoescape false %}
+                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                            {% endautoescape %}
+                                        {%endfor%}
+                                </div>
+                                <div class='col-sm-10'>
+                                        {%for i in modify_array_record2 %} 
+                                            {% autoescape false %}
+                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                            {% endautoescape %}
+                                        {%endfor%}
+                                </div>
+                            </div>
+
                     </div>
                 </div>
         </div>
@@ -105,18 +119,10 @@
           </div>
 
           <div class = "col align-self-center">
-                  <form action="/interest2" method="GET" style="text-align:center">
+                  <form action="/form" method="GET" style="text-align:center">
                       <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Back">
                   </form>
           </div>
-
-          <!-- <div class = "col align-self-center">
-                  <form action="/mapview" method="post" style="text-align:center">
-                      <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
-                  </form>
-          </div> -->
-
-
 
 
         <div class="footer">
@@ -130,65 +136,24 @@
     <script>
         
         function myFunction() {
-            // var x = document.getElementById("Travelrecord_Map");
-            // if (x.style.display === "none") {
-            //       x.style.display = "block";
-            // } else {
-            //       x.style.display = "none";
-            // }
-
-            // if (document.getElementById("mySelect").value == "user1") {
-            //     // document.getElementById("Travelrecord_Text").innerHTML = "{{ array_record1 }}";
-            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%} ";
-            // } else if (document.getElementById("mySelect").value == "user2") {
-            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record2 %} <h>{{i}}</h><br> {%endfor%} ";
-
-            // } else if (document.getElementById("mySelect").value == "user3") {
-            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record3 %} <h>{{i}}</h><br> {%endfor%} ";
-            // } else if (document.getElementById("mySelect").value == "user4") {
-            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record4 %} <h>{{i}}</h><br> {%endfor%} ";
-            // } else if (document.getElementById("mySelect").value == "user5") {
-            //     document.getElementById("Travelrecord_Text").innerHTML =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
-            // }
-// 2
-            // var which_user = document.getElementById("mySelect").value;
-            // var text;
-            // switch(which_user) {
-            //     case "user1" :
-            //       text =  "  {%for i in array_record1 %} <h>{{i}}</h><br> {%endfor%} ";
-            //     break;
-            //     case "user2" :
-            //        text =  "  {%for i in array_record2 %} <h>{{i}}</h><br> {%endfor%} ";
-            //     break;
-            //     case "user3" :
-            //         text =  "  {%for i in array_record3 %} <h>{{i}}</h><br> {%endfor%} ";
-            //     break;
-            //     case "user4" :
-            //        text =  "  {%for i in array_record4 %} <h>{{i}}</h><br> {%endfor%} ";
-            //     break;
-            //     case "user5" :
-            //        text =  "  {%for i in array_record5 %} <h>{{i}}</h><br> {%endfor%} ";
-            //     break;
-            // }
-            // document.getElementById("Travelrecord_Text").innerHTML  = text;
-// 3
+  
             var which_user = document.getElementById("mySelect").value;
             var text_record;
             switch(which_user) {
                 case "user1" :
-                    text_record =  "  {%for i in array_record1 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
+                    text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat1 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record1 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
                 break;
                 case "user2" :
-                    text_record = "  {%for i in array_record2 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
+                text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat2 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record2 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
                 break;
                 case "user3" :
-                    text_record = "  {%for i in array_record3 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
+                text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat3 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record3 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
                 break;
                 case "user4" :
-                    text_record = "  {%for i in array_record4 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
+                text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat4 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record4 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
                 break;
                 case "user5" :
-                    text_record = "  {%for i in array_record5 %} <h1 style='font-size:15px;'>{{i}}</h1><br> {%endfor%} ";
+                text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat5 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record5 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
                 break;
             }
             document.getElementById("Travelrecord_Text").innerHTML  = text_record;

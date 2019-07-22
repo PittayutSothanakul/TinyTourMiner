@@ -40,6 +40,57 @@ interest_user = ""
 interest_array_user = ""
 region_user = ""
 
+travel_record1 = ""
+travel_record2 = ""
+travel_record3 = ""
+travel_record4 = ""
+travel_record5 = ""
+
+array_record1 = []
+array_record2 = []
+array_record3 = []
+array_record4 = []
+array_record5 = []
+array_latitude = []
+array_longitude = []
+array_latitude2 = []
+array_longitude2 = []
+array_latitude3 = []
+array_longitude3 = []
+array_latitude4 = []
+array_longitude4 = []
+array_latitude5 = []
+array_longitude5 = []
+array_longlat =[]
+
+modify_array_cat1 = []
+modify_array_cat2 = []
+modify_array_cat3 = []
+modify_array_cat4 = []
+modify_array_cat5 = []
+array_cat1 = []
+array_cat2 = []
+array_cat3 = []
+array_cat4 = []
+array_cat5 = []
+
+check_date = ""
+text_date = ""
+text_time = ""
+text_category = ""
+text_plcename = ""
+array_date =[]
+array_time = []
+array_category = []
+array_location = []
+
+user1=""
+user2=""
+user3=""
+user4=""
+user5=""
+
+
 
 @app.route("/", methods=["GET", "POST"])
 def start():
@@ -86,7 +137,71 @@ def mapview3():
         elif(len(interest_array_user) == 10):
             result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1,str(interest_array_user[8]):1,str(interest_array_user[9]):1},'JP',str(interest_region))
 
-        return render_template("mapview3.html")
+
+
+        modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
+        modify_array_cat1 = array_cat1
+        for i in range(len(modify_array_cat1)):
+            txt_cat = modify_array_cat1[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
+            else :
+                modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
+
+        modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
+        modify_array_cat2 = array_cat2
+        for i in range(len(modify_array_cat2)):
+            txt_cat = modify_array_cat2[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat2[i] = modify_array_cat2[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
+            else :
+                modify_array_cat2[i] = modify_array_cat2[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
+
+        modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
+        modify_array_cat3 = array_cat3
+        for i in range(len(modify_array_cat3)):
+            txt_cat = modify_array_cat3[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat3[i] = modify_array_cat3[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
+            else :
+                modify_array_cat3[i] = modify_array_cat3[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
+
+        modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
+        modify_array_cat4 = array_cat4
+        for i in range(len(modify_array_cat4)):
+            txt_cat = modify_array_cat4[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat4[i] = modify_array_cat4[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
+            else :
+                modify_array_cat4[i] = modify_array_cat4[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
+
+        modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
+        modify_array_cat5 = array_cat5
+        for i in range(len(modify_array_cat5)):
+            txt_cat = modify_array_cat5[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat5[i] = modify_array_cat5[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
+            else :
+                modify_array_cat5[i] = modify_array_cat5[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
+
+
+
+        print("==================== Test Load ====================")  
+        print(interest_region)
+        print(modify_array_cat2)
+        print("==================== Finished Load ====================")  
+
+        return render_template("mapview3.html"
+        , modify_array_cat1 = modify_array_cat1 , modify_array_cat2 = modify_array_cat2 , modify_array_cat3 = modify_array_cat3 , modify_array_cat4 = modify_array_cat4 , modify_array_cat5 = modify_array_cat5 
+        , modify_array_record1 = modify_array_record1, modify_array_record2 = modify_array_record2, modify_array_record3 = modify_array_record3, modify_array_record4 = modify_array_record4, modify_array_record5 = modify_array_record5
+        , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
+
+
 
 
 @app.route("/region3", methods=["GET", "POST"])
@@ -132,47 +247,7 @@ def region():
     
     return render_template('region.html', testtext = testtext)
     
-travel_record1 = ""
-travel_record2 = ""
-travel_record3 = ""
-travel_record4 = ""
-travel_record5 = ""
 
-array_record1 = []
-array_record2 = []
-array_record3 = []
-array_record4 = []
-array_record5 = []
-array_latitude = []
-array_longitude = []
-array_latitude2 = []
-array_longitude2 = []
-array_latitude3 = []
-array_longitude3 = []
-array_latitude4 = []
-array_longitude4 = []
-array_latitude5 = []
-array_longitude5 = []
-array_longlat =[]
-
-array_cat1 = []
-
-check_date = ""
-text_date = ""
-text_time = ""
-text_category = ""
-text_plcename = ""
-array_date =[]
-array_time = []
-array_category = []
-array_location = []
-
-
-user1=""
-user2=""
-user3=""
-user4=""
-user5=""
 
 
 # This is new version of interest2
@@ -347,6 +422,8 @@ def my_form_post2():
     modify_array_cat1 = array_cat1
     for i in range(len(modify_array_cat1)):
       txt_cat = modify_array_cat1[i]
+      if '/' in txt_cat :
+         txt_cat = txt_cat.replace('/' , ':')
       modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
 
 
@@ -1248,6 +1325,10 @@ def visualize(person, country, rankings,all_interest,original_input):
     array_longitude5.clear()
 
     array_cat1.clear()
+    array_cat2.clear()
+    array_cat3.clear()
+    array_cat4.clear()
+    array_cat5.clear()
 
     global ranking_number
 
@@ -1406,36 +1487,41 @@ def visualize(person, country, rankings,all_interest,original_input):
                     if(ranking_number==0) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record1 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
-                        # travel_record1 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
                         array_latitude.append(str(float(q['LATITUDE'])))
                         array_longitude.append(str(float(q['LONGITUDE'])))
                         array_cat1.append(q['CATEGORY'])
                         array_record1.append(travel_record1)
-                        # Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50
-                        # print(array_record1)
+
                     elif(ranking_number==1) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
-                        travel_record2 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
+                        travel_record2 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude2.append(str(float(q['LATITUDE'])))
                         array_longitude2.append(str(float(q['LONGITUDE'])))
+                        array_cat2.append(q['CATEGORY'])
                         array_record2.append(travel_record2)
+
                     elif(ranking_number==2) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
-                        travel_record3 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
+                        travel_record3 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude3.append(str(float(q['LATITUDE'])))
                         array_longitude3.append(str(float(q['LONGITUDE'])))
+                        array_cat3.append(q['CATEGORY'])
                         array_record3.append(travel_record3)
+
                     elif(ranking_number==3) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
-                        travel_record4 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
+                        travel_record4 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude4.append(str(float(q['LATITUDE'])))
                         array_longitude4.append(str(float(q['LONGITUDE'])))
+                        array_cat4.append(q['CATEGORY'])
                         array_record4.append(travel_record4)
+
                     elif(ranking_number==4) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
-                        travel_record5 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
+                        travel_record5 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude5.append(str(float(q['LATITUDE'])))
                         array_longitude5.append(str(float(q['LONGITUDE'])))
+                        array_cat5.append(q['CATEGORY'])
                         array_record5.append(travel_record5)
 
                 # print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
