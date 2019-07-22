@@ -34,43 +34,82 @@ GoogleMaps(app, key="AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o")
   
 #     return render_template('mapview.html', mymap=mymap)
 
+age_user = ""
+gender_user = ""
+interest_user = ""
+interest_array_user = ""
+region_user = ""
+
+
 @app.route("/", methods=["GET", "POST"])
 def start():
     
     return render_template('home.html')
 
-@app.route("/mapview3", methods=["POST"])
+@app.route("/mapview3", methods=["GET", "POST"])
 def mapview3():
     if request.method == 'POST':
         interest_region = "("+request.form['interest_region']+")"
-
-        print(interest_region)
         
+        global age_user
+        global gender_user
+        global interest_user
+        global interest_array_user
+        global region_user
+        region_user = interest_region
+        
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print(gender_user)
+        print(age_user)
+        print(interest_array_user) #['Temple', 'Shrine']
+        print(region_user)
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
         return render_template("mapview3.html")
 
 
-@app.route("/region3", methods=["POST"])
+@app.route("/region3", methods=["GET", "POST"])
 def region3():
     if request.method == 'POST':
         cat1_array = []
         cat1 = request.form['interest_category']
-        print("")
         print(cat1)
-
         cat1_array = cat1.split(',')
-        print(cat1_array) #['Temple', 'Shrine']
+
+        global age_user
+        global gender_user
+        global interest_user
+        global interest_array_user
+        interest_user = cat1
+        interest_array_user = cat1_array
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print(gender_user)
+        print(age_user)
+        print(interest_array_user) #['Temple', 'Shrine']
+        print(interest_user)
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+
 
         return render_template("region3.html")
 
 
-@app.route("/interest3", methods=["POST"])
+@app.route("/interest3", methods=["GET", "POST"])
 def interest3():
     if request.method == 'POST':
         gender = request.form.get('input_gender')
         age = request.form['input_age']
-        print(gender)
-        print(age)
-        return render_template("interest3.html",gender = gender,age=age)
+        global age_user
+        global gender_user
+        age_user = age
+        gender_user = gender
+
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print(gender_user)
+        print(age_user)
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+        return render_template("interest3.html")
 
 
 
