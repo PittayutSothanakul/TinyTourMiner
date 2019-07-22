@@ -65,6 +65,27 @@ def mapview3():
         print(region_user)
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
+        if(len(interest_array_user) == 1):
+            result = main_v2({str(interest_array_user[0]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 2):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 3):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 4):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 5):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 6):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 7):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 8):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 9):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1,str(interest_array_user[8]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 10):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1,str(interest_array_user[8]):1,str(interest_array_user[9]):1},'JP',str(interest_region))
+
         return render_template("mapview3.html")
 
 
@@ -82,14 +103,6 @@ def region3():
         global interest_array_user
         interest_user = cat1
         interest_array_user = cat1_array
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print(gender_user)
-        print(age_user)
-        print(interest_array_user) #['Temple', 'Shrine']
-        print(interest_user)
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-
-
 
         return render_template("region3.html")
 
@@ -103,11 +116,6 @@ def interest3():
         global gender_user
         age_user = age
         gender_user = gender
-
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print(gender_user)
-        print(age_user)
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
         return render_template("interest3.html")
 
@@ -1366,33 +1374,38 @@ def visualize(person, country, rankings,all_interest,original_input):
                             counter = weight
 
                     if(ranking_number==0) :
+                        print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record1 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         # travel_record1 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
                         array_latitude.append(str(float(q['LATITUDE'])))
                         array_longitude.append(str(float(q['LONGITUDE'])))
                         array_record1.append(travel_record1)
                     elif(ranking_number==1) :
+                        print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record2 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude2.append(str(float(q['LATITUDE'])))
                         array_longitude2.append(str(float(q['LONGITUDE'])))
                         array_record2.append(travel_record2)
                     elif(ranking_number==2) :
+                        print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record3 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude3.append(str(float(q['LATITUDE'])))
                         array_longitude3.append(str(float(q['LONGITUDE'])))
                         array_record3.append(travel_record3)
                     elif(ranking_number==3) :
+                        print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record4 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude4.append(str(float(q['LATITUDE'])))
                         array_longitude4.append(str(float(q['LONGITUDE'])))
                         array_record4.append(travel_record4)
                     elif(ranking_number==4) :
+                        print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record5 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
                         array_latitude5.append(str(float(q['LATITUDE'])))
                         array_longitude5.append(str(float(q['LONGITUDE'])))
                         array_record5.append(travel_record5)
 
-                print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
+                # print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
 
 
 
