@@ -128,6 +128,9 @@
                             </map>
                         </div>
 
+                        <h3 style="text-align:center; font-size: 15px;"><input style="width:400px; " id="myInputRegionsEx" type="text" name="interest_regionEx" placeholder="Please select region" readonly>
+                        </h3>
+
                     </div>
                   </div>
 
@@ -140,27 +143,21 @@
 
               <div class = "row">
                   <div class = "col align-self-center">
-                      <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;display: none;" id="myInputCategories1" type="text" name="interest_category" placeholder="Please select category" readonly>
-                      <h3 style="text-align:center; font-size: 15px;"><input  style="width:300px;display: none;" id="myInputCategories2" type="text" name="interest_category" placeholder="Please select category" readonly> -->
-                      <br>
-                      <br>
-                        <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px; display: none;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category"> -->
-                      </h3>
-                          <form action="/" method="post" style="text-align:center">
-                              <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Home" >
-                          </form>
+                        <form action="/" method="post" style="text-align:center">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Home" >
+                        </form>
                   </div>
 
                   <div class = "col align-self-center">
                         <form action="/form" method="GET" style="text-align:center">
-                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Back">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Back">
                         </form>
                   </div> 
               
                   <div class = "col align-self-center">
                         <form action="/mapview3" method="post" style="text-align:center">
 
-                            <h3 style="text-align:center; font-size: 15px;"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
+                            <h3 style="text-align:center; font-size: 15px;display: none"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
                             </h3>
                             <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
                         </form>
@@ -180,36 +177,19 @@
     </div>
     <!-- </form> -->
 <script>
-    var button_1 = document.getElementById("button_1");
-    var button_2 = document.getElementById("button_2");
-    var button_3 = document.getElementById("button_3");
-    var button_4 = document.getElementById("button_4");
-    var button_5 = document.getElementById("button_5");
-    var button_6 = document.getElementById("button_6");
-    var button_7 = document.getElementById("button_7");
-    var button_8 = document.getElementById("button_8");
-    var button_9 = document.getElementById("button_9");
-    var button_10 = document.getElementById("button_10");
 
     var region_id = document.getElementById("myInputRegions");
+    var regionEx_id = document.getElementById("myInputRegionsEx");
+
     
     function IsEmpty(){
-      if(document.getElementById("myInputRegion").value === "" ){
+      if(document.getElementById("myInputRegions").value === "" ){
           alert("Please Select Your Interest Region");
           return false;
       }
           return true;
     }
-    var boolean_btcat1 = false
-    var boolean_btcat2 = false
-    var boolean_btcat3 = false
-    var boolean_btcat4 = false
-    var boolean_btcat5 = false
-    var boolean_btcat6 = false
-    var boolean_btcat7 = false
-    var boolean_btcat8 = false
-    var boolean_btcat9 = false
-    var boolean_btcat10 = false
+
     
     var boolean_hokkaido = false
     var boolean_tohoku = false
@@ -229,6 +209,7 @@
         str_array = str_array.filter(x=> x !== "Hokkaido") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
     function region_tohoku() {
       if(!boolean_tohoku){
@@ -239,6 +220,7 @@
         str_array = str_array.filter(x=> x !== "Tohoku") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
     function region_kanto() {
       if(!boolean_kanto){
@@ -249,6 +231,7 @@
         str_array = str_array.filter(x=> x !== "Kanto") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
     function region_chubu() {
       if(!boolean_chubu){
@@ -259,6 +242,7 @@
         str_array = str_array.filter(x=> x !== "Chubu") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
     function region_kansai() {
       if(!boolean_kansai){
@@ -269,6 +253,7 @@
         str_array = str_array.filter(x=> x !== "Kinki") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
     function region_chugoku() {
       if(!boolean_chugoku){
@@ -279,6 +264,7 @@
         str_array = str_array.filter(x=> x !== "Chugoku") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
     function region_kyushu() {
       if(!boolean_kyushu){
@@ -289,139 +275,11 @@
         str_array = str_array.filter(x=> x !== "Kyushu") 
       }
       region_id.value = str_array
+      regionEx_id.value = str_array
     }
 
     cat_array = []
-    function myFunction() {
-        // var cate_value = document.getElementById("interest_category")
-        if(!boolean_btcat1){
-          boolean_btcat1 = true
-          button_1.classList.toggle("button_black");
-          cat_array.push("Temple")
-        }else {
-          boolean_btcat1 = false
-          button_1.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Temple") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction2() {
-        if(!boolean_btcat2){
-          boolean_btcat2 = true
-          button_2.classList.toggle("button_black");
-          cat_array.push("Shrine")
-        }else {
-          boolean_btcat2 = false
-          button_2.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Shrine") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction3() {
-        if(!boolean_btcat3){
-          boolean_btcat3 = true
-          button_3.classList.toggle("button_black");
-          cat_array.push("Castle")
-        }else {
-          boolean_btcat3 = false
-          button_3.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Castle") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction4() {
-        if(!boolean_btcat4){
-          boolean_btcat4 = true
-          button_4.classList.toggle("button_black");
-          cat_array.push("Historic Site")
-        }else {
-          boolean_btcat4 = false
-          button_4.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Historic Site") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction5() {
-        if(!boolean_btcat5){
-          boolean_btcat5 = true
-          button_5.classList.toggle("button_black");
-          cat_array.push("Museum")
-        }else {
-          boolean_btcat5 = false
-          button_5.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Museum") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction6() {
-        if(!boolean_btcat6){
-          boolean_btcat6 = true
-          button_6.classList.toggle("button_black");
-          cat_array.push("Theme Park")
-        }else {
-          boolean_btcat6 = false
-          button_6.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Theme Park") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction7() {
-        if(!boolean_btcat7){
-          boolean_btcat7 = true
-          button_7.classList.toggle("button_black");
-          cat_array.push("Mall")
-        }else {
-          boolean_btcat7 = false
-          button_7.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Mall") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction8() {
-        if(!boolean_btcat8){
-          boolean_btcat8 = true
-          button_8.classList.toggle("button_black");
-          cat_array.push("Japanese Restaurant")
-        }else {
-          boolean_btcat8 = false
-          button_8.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Japanese Restaurant") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-      function myFunction9() {
-      if(!boolean_btcat9){
-          boolean_btcat9 = true
-          button_9.classList.toggle("button_black");
-          cat_array.push("Baseball Stadium")
-        }else {
-          boolean_btcat9 = false
-          button_9.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Baseball Stadium") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
-
-    function myFunction10() {
-       if(!boolean_btcat10){
-          boolean_btcat10 = true
-          button_10.classList.toggle("button_black");
-          cat_array.push("Garden")
-        }else {
-          boolean_btcat10 = false
-          button_10.classList.remove("button_black");
-          cat_array = cat_array.filter(x=> x !== "Garden") 
-        }
-        document.getElementById("myInputCategories").value = cat_array
-    }
+   
 </script>
 </body>
 

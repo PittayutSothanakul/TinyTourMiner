@@ -136,6 +136,8 @@
                             </div>
                         </div>
                         
+                        <h3 style="text-align:center; font-size: 15px;"><input  style="width:800px;" id="myInputCategoriesEx" type="text" name="interest_categoryEx" placeholder="Please select category" readonly>
+                        </h3>
                   </div>
 
               </div>
@@ -158,14 +160,14 @@
 
                   <div class = "col align-self-center">
                           <form action="/form" method="GET" style="text-align:center">
-                              <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="Back">
+                              <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Back">
                           </form>
                   </div> 
               
                   <div class = "col align-self-center">
                         <form action="/region3" method="post" style="text-align:center">
 
-                            <h3 style="text-align:center; font-size: 15px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
+                            <h3 style="text-align:center; font-size: 15px;display: none"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
                             </h3>
                             <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Next">
                         </form>
@@ -215,85 +217,7 @@
     var boolean_btcat9 = false
     var boolean_btcat10 = false
     
-    var boolean_hokkaido = false
-    var boolean_tohoku = false
-    var boolean_kanto = false
-    var boolean_chubu = false
-    var boolean_kansai = false
-    var boolean_chugoku = false
-    var boolean_kyushu = false
     var str_array = [];
-
-    function region_hokkaido() {
-      if(!boolean_hokkaido){
-        boolean_hokkaido = true
-        str_array.push("Hokkaido")
-      }else {
-        boolean_hokkaido = false
-        str_array = str_array.filter(x=> x !== "Hokkaido") 
-      }
-      region_id.value = str_array
-    }
-    function region_tohoku() {
-      if(!boolean_tohoku){
-        boolean_tohoku = true
-        str_array.push("Tohoku")
-      }else {
-        boolean_tohoku = false
-        str_array = str_array.filter(x=> x !== "Tohoku") 
-      }
-      region_id.value = str_array
-    }
-    function region_kanto() {
-      if(!boolean_kanto){
-        boolean_kanto = true
-        str_array.push("Kanto")
-      }else {
-        boolean_kanto = false
-        str_array = str_array.filter(x=> x !== "Kanto") 
-      }
-      region_id.value = str_array
-    }
-    function region_chubu() {
-      if(!boolean_chubu){
-        boolean_chubu = true
-        str_array.push("Chubu")
-      }else {
-        boolean_chubu = false
-        str_array = str_array.filter(x=> x !== "Chubu") 
-      }
-      region_id.value = str_array
-    }
-    function region_kansai() {
-      if(!boolean_kansai){
-        boolean_kansai = true
-        str_array.push("Kinki")
-      }else {
-        boolean_kansai = false
-        str_array = str_array.filter(x=> x !== "Kinki") 
-      }
-      region_id.value = str_array
-    }
-    function region_chugoku() {
-      if(!boolean_chugoku){
-        boolean_chugoku = true
-        str_array.push("Chugoku")
-      }else {
-        boolean_chugoku = false
-        str_array = str_array.filter(x=> x !== "Chugoku") 
-      }
-      region_id.value = str_array
-    }
-    function region_kyushu() {
-      if(!boolean_kyushu){
-        boolean_kyushu = true
-        str_array.push("Kyushu")
-      }else {
-        boolean_kyushu = false
-        str_array = str_array.filter(x=> x !== "Kyushu") 
-      }
-      region_id.value = str_array
-    }
 
     cat_array = []
     function myFunction() {
@@ -308,6 +232,8 @@
           cat_array = cat_array.filter(x=> x !== "Temple") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction2() {
@@ -321,6 +247,8 @@
           cat_array = cat_array.filter(x=> x !== "Shrine") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction3() {
@@ -334,6 +262,8 @@
           cat_array = cat_array.filter(x=> x !== "Castle") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction4() {
@@ -347,6 +277,8 @@
           cat_array = cat_array.filter(x=> x !== "Historic Site") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction5() {
@@ -360,6 +292,8 @@
           cat_array = cat_array.filter(x=> x !== "Museum") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction6() {
@@ -373,6 +307,8 @@
           cat_array = cat_array.filter(x=> x !== "Theme Park") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction7() {
@@ -386,6 +322,8 @@
           cat_array = cat_array.filter(x=> x !== "Mall") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction8() {
@@ -399,6 +337,8 @@
           cat_array = cat_array.filter(x=> x !== "Japanese Restaurant") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
       function myFunction9() {
@@ -412,6 +352,8 @@
           cat_array = cat_array.filter(x=> x !== "Baseball Stadium") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 
     function myFunction10() {
@@ -425,6 +367,8 @@
           cat_array = cat_array.filter(x=> x !== "Garden") 
         }
         document.getElementById("myInputCategories").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array
+
     }
 </script>
 </body>
