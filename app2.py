@@ -190,6 +190,30 @@ def mapview3():
                 modify_array_cat5[i] = modify_array_cat5[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
 
 
+        list_latlong = []         
+        temp_dict = {}
+        for i in range(len(array_latitude)):   
+            temp_dict = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
+            list_latlong.append(copy.deepcopy(temp_dict))
+
+        polyline = {
+            'stroke_color': '#0000FF',
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
+        polyline.update({'path': list_latlong})
+
+        mymap = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude, array_longitude)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline]
+        
+        )
 
         print("==================== Test Load ====================")  
         print(interest_region)
@@ -199,6 +223,7 @@ def mapview3():
         return render_template("mapview3.html"
         , modify_array_cat1 = modify_array_cat1 , modify_array_cat2 = modify_array_cat2 , modify_array_cat3 = modify_array_cat3 , modify_array_cat4 = modify_array_cat4 , modify_array_cat5 = modify_array_cat5 
         , modify_array_record1 = modify_array_record1, modify_array_record2 = modify_array_record2, modify_array_record3 = modify_array_record3, modify_array_record4 = modify_array_record4, modify_array_record5 = modify_array_record5
+        , mymap = mymap
         , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
 
