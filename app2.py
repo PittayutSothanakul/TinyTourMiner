@@ -340,14 +340,14 @@ def my_form_post2():
         style = "height:400px;width:500px;margin:auto;" ,
         polylines=[polyline5]
     )
-    test_pic = "Pic"
-    test_pic = test_pic.replace('Pic', '<img style="width: 59px" src ="/static/Shrine.png"/>')
+
     
     modify_array_cat1 = []
 
     modify_array_cat1 = array_cat1
     for i in range(len(modify_array_cat1)):
-      modify_array_cat1[i] = modify_array_cat1[i].replace('Shrine','<img style="width: 59px" src ="/static/Shrine.png"/>')
+      txt_cat = modify_array_cat1[i]
+      modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
 
 
     test_text = "Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50"
@@ -363,9 +363,9 @@ def my_form_post2():
     # print(modify_array_record1)
     # print(array_record1)
     print(interest_region)
-    print(modify_array_cat1)
+    # print(modify_array_cat1)
     print("@@@@@")
-    print(array_cat1)
+    # print(array_cat1)
     print("==================== Finished Load ====================")   
 
 
@@ -379,7 +379,7 @@ def my_form_post2():
     , array_record1=array_record1 
     , modify_array_record1 =modify_array_record1
     , modify_array_cat1 = modify_array_cat1
-    , test_text = test_text , test_pic = test_pic
+    , test_text = test_text 
     , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
     , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
@@ -1246,6 +1246,8 @@ def visualize(person, country, rankings,all_interest,original_input):
     array_longitude4.clear()
     array_latitude5.clear()
     array_longitude5.clear()
+
+    array_cat1.clear()
 
     global ranking_number
 
