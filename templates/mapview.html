@@ -90,9 +90,26 @@
 
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
-                        <ol> 
-                                {%for i in array_record1 %} <h1 style="font-size:15px;">{{i}}</h1><br> {%endfor%}
-                        </ol> 
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    {% autoescape false %}
+                                        {{test_pic}}
+                                    {% endautoescape %}
+                                </div>
+
+                                <div class="col-sm-10">
+                                    {% autoescape false %}
+                                        <h1 style="font-size:15px;text-align: left;">{{test_text}}</h1>
+                                    {% endautoescape %}
+                                </div>
+                                <ol> 
+                                        {%for i in array_record1 %} <h1 style="font-size:15px;text-align: left;">{{i}}</h1><br> {%endfor%}
+                                </ol> 
+                            </div>
+
+                        <!-- <ol> 
+                                {%for i in array_record1 %} <h1 style="font-size:15px;text-align: left;">{{i}}</h1><br> {%endfor%}
+                        </ol>  -->
                     </div>
                 </div>
         </div>

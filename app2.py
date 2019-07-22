@@ -338,11 +338,19 @@ def my_form_post2():
         style = "height:400px;width:500px;margin:auto;" ,
         polylines=[polyline5]
     )
+    test_pic = "Pic"
+    test_pic = test_pic.replace('Pic', '<img style="width: 50px" src ="/static/Shrine.png"/>')
+    test_text = "Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50"
+    # test_text = test_text.split('\n')
+    # test_text = test_text.replace('\n', '<br>')
+    test_text = test_text.replace('\n', '<br>')
+
 
 
     print("==================== Test Load ====================")  
     # print(array_record1)
     # print(polyline)
+    print(test_text)
     print(interest_region)
     print("==================== Finished Load ====================")   
 
@@ -354,7 +362,9 @@ def my_form_post2():
     , array_latitude=array_latitude , array_longitude=array_longitude
     , text_date = text_date , text_plcename = text_plcename , text_time = text_time
     , array_category = array_category, array_location=array_location , array_date= array_date
-    , array_record1=array_record1 , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
+    , array_record1=array_record1 
+    , test_text = test_text , test_pic = test_pic
+    , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
     , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
 @app.route("/interest2", methods=["GET", "POST"])
@@ -1375,11 +1385,13 @@ def visualize(person, country, rankings,all_interest,original_input):
 
                     if(ranking_number==0) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
-                        travel_record1 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
+                        travel_record1 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         # travel_record1 = (q['DATE']  + q['CATEGORY']  + location_name + " "+ location_name2)
                         array_latitude.append(str(float(q['LATITUDE'])))
                         array_longitude.append(str(float(q['LONGITUDE'])))
                         array_record1.append(travel_record1)
+                        # Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50
+                        print(array_record1)
                     elif(ranking_number==1) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record2 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
@@ -1406,7 +1418,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                         array_record5.append(travel_record5)
 
                 # print(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))
-
+                # print(array_record1)
 
 
 
