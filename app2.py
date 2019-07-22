@@ -343,14 +343,14 @@ def my_form_post2():
     test_pic = "Pic"
     test_pic = test_pic.replace('Pic', '<img style="width: 59px" src ="/static/Shrine.png"/>')
     
+    modify_array_cat1 = []
 
-    # for i in array_cat1:
-    #     modify_array_cat1[i] = array_cat1[i].replace('Shrine','<img style="width: 59px" src ="/static/Shrine.png"/>')
+    modify_array_cat1 = array_cat1
+    for i in range(len(modify_array_cat1)):
+      modify_array_cat1[i] = modify_array_cat1[i].replace('Shrine','<img style="width: 59px" src ="/static/Shrine.png"/>')
 
 
     test_text = "Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50"
-    # test_text = test_text.split('\n')
-    # test_text = test_text.replace('\n', '<br>')
     test_text = test_text.replace('\n', '<br>')
 
     modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
@@ -360,10 +360,11 @@ def my_form_post2():
     print("==================== Test Load ====================")  
     # print(array_record1)
     # print(polyline)
-    print(modify_array_record1)
-    print("@@@@@")
-    print(array_record1)
+    # print(modify_array_record1)
+    # print(array_record1)
     print(interest_region)
+    print(modify_array_cat1)
+    print("@@@@@")
     print(array_cat1)
     print("==================== Finished Load ====================")   
 
@@ -377,6 +378,7 @@ def my_form_post2():
     , array_category = array_category, array_location=array_location , array_date= array_date
     , array_record1=array_record1 
     , modify_array_record1 =modify_array_record1
+    , modify_array_cat1 = modify_array_cat1
     , test_text = test_text , test_pic = test_pic
     , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
     , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
@@ -1408,7 +1410,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                         array_cat1.append(q['CATEGORY'])
                         array_record1.append(travel_record1)
                         # Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50
-                        print(array_record1)
+                        # print(array_record1)
                     elif(ranking_number==1) :
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record2 = (text_date+" " +text_time +" "+ q['CATEGORY'] +" "+ location_name2)
