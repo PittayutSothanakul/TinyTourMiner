@@ -62,7 +62,7 @@
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px;">Map and Travel record of User: {{user1}}
+        <br><h1 style=" font-size: 20px;">Map and Travel record of User: {{user3}}
                 <!-- <select type="text" id="mySelect" onchange="myFunction()">
                         <option value="user1">{{user1}}</option>
                         <option value="user2">{{user2}}</option>
@@ -105,7 +105,7 @@
         <div class = "row">
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Map">
-                        {{ mymap.html }}{{ mymap.js}}
+                        {{ mymap3.html }}{{ mymap3.js}}
                     </div>
                 </div>
 
@@ -113,14 +113,14 @@
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
                             <div class='row'>
                                 <div class='col-sm-2'>
-                                        {%for i in modify_array_cat1 %} 
+                                        {%for i in modify_array_cat3 %} 
                                             {% autoescape false %}
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
                                             {% endautoescape %}
                                         {%endfor%}
                                 </div>
                                 <div class='col-sm-10'>
-                                        {%for i in modify_array_record1 %} 
+                                        {%for i in modify_array_record3 %} 
                                             {% autoescape false %}
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
                                             {% endautoescape %}

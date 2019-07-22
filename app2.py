@@ -145,50 +145,10 @@ def mapview3():
             txt_cat = modify_array_cat1[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
+                modify_array_cat1[i] = '<img style="width: 54px" src ="/static/%s.png"/>'%change_text
+                # modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
             else :
-                modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
-
-        modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
-        modify_array_cat2 = array_cat2
-        for i in range(len(modify_array_cat2)):
-            txt_cat = modify_array_cat2[i]
-            if '/' in txt_cat :
-                change_text = txt_cat.replace('/' , ':')
-                modify_array_cat2[i] = modify_array_cat2[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
-            else :
-                modify_array_cat2[i] = modify_array_cat2[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
-
-        modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
-        modify_array_cat3 = array_cat3
-        for i in range(len(modify_array_cat3)):
-            txt_cat = modify_array_cat3[i]
-            if '/' in txt_cat :
-                change_text = txt_cat.replace('/' , ':')
-                modify_array_cat3[i] = modify_array_cat3[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
-            else :
-                modify_array_cat3[i] = modify_array_cat3[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
-
-        modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
-        modify_array_cat4 = array_cat4
-        for i in range(len(modify_array_cat4)):
-            txt_cat = modify_array_cat4[i]
-            if '/' in txt_cat :
-                change_text = txt_cat.replace('/' , ':')
-                modify_array_cat4[i] = modify_array_cat4[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
-            else :
-                modify_array_cat4[i] = modify_array_cat4[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
-
-        modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
-        modify_array_cat5 = array_cat5
-        for i in range(len(modify_array_cat5)):
-            txt_cat = modify_array_cat5[i]
-            if '/' in txt_cat :
-                change_text = txt_cat.replace('/' , ':')
-                modify_array_cat5[i] = modify_array_cat5[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%change_text)
-            else :
-                modify_array_cat5[i] = modify_array_cat5[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
-
+                modify_array_cat1[i] = '<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat
 
         list_latlong = []         
         temp_dict = {}
@@ -215,19 +175,270 @@ def mapview3():
         
         )
 
+
         print("==================== Test Load ====================")  
         print(interest_region)
-        print(modify_array_cat2)
+        print(array_cat1)
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print(modify_array_cat1)
         print("==================== Finished Load ====================")  
 
         return render_template("mapview3.html"
-        , modify_array_cat1 = modify_array_cat1 , modify_array_cat2 = modify_array_cat2 , modify_array_cat3 = modify_array_cat3 , modify_array_cat4 = modify_array_cat4 , modify_array_cat5 = modify_array_cat5 
-        , modify_array_record1 = modify_array_record1, modify_array_record2 = modify_array_record2, modify_array_record3 = modify_array_record3, modify_array_record4 = modify_array_record4, modify_array_record5 = modify_array_record5
-        , mymap = mymap
+        , modify_array_cat1 = modify_array_cat1 
+        , modify_array_record1 = modify_array_record1
+        , mymap = mymap 
         , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@app.route("/mapview3_ranking1", methods=["GET", "POST"])
+def mapview3_ranking1():
+    if request.method == 'POST':
+        
+        modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
+        modify_array_cat1 = array_cat1
+        for i in range(len(modify_array_cat1)):
+            txt_cat = array_cat1[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat1[i] = '<img style="width: 54px" src ="/static/%s.png"/>'%change_text
+            else :
+                modify_array_cat1[i] = '<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat
+            print(modify_array_cat1[i])
+
+        list_latlong = []         
+        temp_dict = {}
+        for i in range(len(array_latitude)):   
+            temp_dict = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
+            list_latlong.append(copy.deepcopy(temp_dict))
+
+        polyline = {
+            'stroke_color': '#0000FF',
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
+        polyline.update({'path': list_latlong})
+
+        mymap = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude, array_longitude)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline]
+        
+        )
+
+        return render_template("mapview3_ranking1.html"
+        , modify_array_cat1 = modify_array_cat1
+        , modify_array_record1 = modify_array_record1
+        , mymap=mymap
+        , user1=user1)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@app.route("/mapview3_ranking2", methods=["GET", "POST"])
+def mapview3_ranking2():
+    if request.method == 'POST':
+        
+        modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
+        modify_array_cat2 = array_cat2
 
 
+        for i in range(len(array_cat2)):
+            txt_cat = array_cat2[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat2[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%change_text
+            else :
+                modify_array_cat2[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%txt_cat
+            print(array_cat2[i])
+            print("@@@@@@@@@@@@@@@@@@")
+            print(txt_cat)
+        
+            # print(array_cat2[i])
+            # print(modify_array_cat2[i])
+
+# <img style="width: 54px" src ="/static/Historic Site.png"/>
+# <img style="width: 54px" src ="/static/<img style="width: 54px" src =":static:Historic Site.png":>.png"/>
+
+# <img style="width: 54px" src ="/static/
+# <img style="width: 54px" src =":static:
+# <img style="width: 54px" src =":static:Temple.png":>.png":>.png"/>
+
+
+        list_latlong2 = []         
+        temp_dict2 = {}
+        for i in range(len(array_latitude2)):   
+            temp_dict2 = {'lat': float(array_latitude2[i]) , 'lng': float(array_longitude2[i])}
+            list_latlong2.append(copy.deepcopy(temp_dict2))
+
+        polyline2 = {
+            'stroke_color': '#FFA500',
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
+
+        polyline2.update({'path': list_latlong2})
+        mymap2 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude2, array_longitude2)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline2]
+        ) 
+
+        return render_template("mapview3_ranking2.html"
+        , modify_array_cat2 = modify_array_cat2 
+        , modify_array_record2 = modify_array_record2
+        , mymap2=mymap2
+        , user2=user2)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@app.route("/mapview3_ranking3", methods=["GET", "POST"])
+def mapview3_ranking3():
+    if request.method == 'POST':
+        
+        modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
+        modify_array_cat3 = array_cat3
+
+
+        for i in range(len(array_cat3)):
+            txt_cat = array_cat3[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat3[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%change_text
+            else :
+                modify_array_cat3[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%txt_cat
+
+        list_latlong3 = []         
+        temp_dict3 = {}
+        for i in range(len(array_latitude3)):   
+            temp_dict3 = {'lat': float(array_latitude3[i]) , 'lng': float(array_longitude3[i])}
+            list_latlong3.append(copy.deepcopy(temp_dict3))
+
+        polyline3 = {
+            'stroke_color': '#008000',
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
+
+        polyline3.update({'path': list_latlong3})
+        mymap3 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude3, array_longitude3)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline3]
+        ) 
+
+        return render_template("mapview3_ranking3.html"
+        , modify_array_cat3 = modify_array_cat3
+        , modify_array_record3 = modify_array_record3
+        , mymap3=mymap3
+        , user3=user3)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@app.route("/mapview3_ranking4", methods=["GET", "POST"])
+def mapview3_ranking4():
+    if request.method == 'POST':
+        
+        modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
+        modify_array_cat4 = array_cat4
+
+
+        for i in range(len(array_cat4)):
+            txt_cat = array_cat4[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat4[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%change_text
+            else :
+                modify_array_cat4[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%txt_cat
+        
+        list_latlong4 = []         
+        temp_dict4 = {}
+        for i in range(len(array_latitude4)):   
+            temp_dict4 = {'lat': float(array_latitude4[i]) , 'lng': float(array_longitude4[i])}
+            list_latlong4.append(copy.deepcopy(temp_dict4))
+
+        polyline4 = {
+            'stroke_color': '#B22222',
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
+
+        polyline4.update({'path': list_latlong4})
+        mymap4 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude4, array_longitude4)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline4]
+        ) 
+
+        return render_template("mapview3_ranking4.html"
+        , modify_array_cat4 = modify_array_cat4
+        , modify_array_record4 = modify_array_record4
+        , mymap4=mymap4
+        , user4=user4)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@app.route("/mapview3_ranking5", methods=["GET", "POST"])
+def mapview3_ranking5():
+    if request.method == 'POST':
+        
+        modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
+        modify_array_cat5 = array_cat5
+
+
+        for i in range(len(array_cat5)):
+            txt_cat = array_cat5[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat5[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%change_text
+            else :
+                modify_array_cat5[i] = "<img style='width: 54px' src ='/static/%s.png'/>"%txt_cat
+        
+        list_latlong5 = []         
+        temp_dict5 = {}
+        for i in range(len(array_latitude5)):   
+            temp_dict5 = {'lat': float(array_latitude5[i]) , 'lng': float(array_longitude5[i])}
+            list_latlong5.append(copy.deepcopy(temp_dict5))
+
+        polyline5 = {
+            'stroke_color': '#800080',
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+
+        }
+
+        polyline5.update({'path': list_latlong5})
+        mymap5 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude5, array_longitude5)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline5]
+        ) 
+
+        return render_template("mapview3_ranking5.html"
+        , modify_array_cat5 = modify_array_cat5
+        , modify_array_record5 = modify_array_record5
+        , mymap5=mymap5
+        , user5=user5)
 
 @app.route("/region3", methods=["GET", "POST"])
 def region3():
