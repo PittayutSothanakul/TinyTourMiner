@@ -63,9 +63,9 @@
         </div>
         <br>
         <br>
-        <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user1}} -->
+                <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user1}} -->
                 {% autoescape false %}
-                    <h1 style='font-size:25px;'>{{txt_no_result}}</h1><br>
+                      <h1 style='font-size:25px;'>{{txt_no_result}}</h1>
                 {% endautoescape %}
                 <!-- <select type="text" id="mySelect" onchange="myFunction()">
                         <option value="user1">{{user1}}</option>
@@ -77,33 +77,6 @@
                 </select> -->
             </h1>
         </br>
-        <div class = "row">
-            <div class = "col ">
-                    <form action="/mapview3_ranking1" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking1">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking2" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking2">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking3" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking3">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking4" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking4">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking5" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking5">
-                    </form>
-            </div>
-        </div>
 
 
         <div class = "row">
@@ -117,9 +90,10 @@
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
                             <div class='row'>
                                 <div class='col-sm-2'>
+                                        
                                         {%for i in modify_array_cat1 %} 
                                             {% autoescape false %}
-                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1>
                                             {% endautoescape %}
                                         {%endfor%}
                                 </div>
@@ -136,8 +110,6 @@
                 </div>
         </div>
 
-        </div>
-
         <br>
      
 
@@ -148,12 +120,22 @@
                   </form>
           </div>
 
-          <div class = "col align-self-center">
+          <div class = "col ">
+                <form action="/mapview3_ranking5" method="post" style="text-align:center">
+                    <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="<-">
+                </form>
+          </div>
+
+          <!-- <div class = "col align-self-center">
                   <form action="/form" method="GET" style="text-align:center">
                       <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Back">
                   </form>
+          </div> -->
+          <div class = "col ">
+                <form action="/mapview3_ranking2" method="post" style="text-align:center">
+                    <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="->">
+                </form>
           </div>
-
 
         <div class="footer">
             <br>

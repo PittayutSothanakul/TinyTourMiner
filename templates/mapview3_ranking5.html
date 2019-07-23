@@ -63,47 +63,13 @@
         </div>
         <br>
         <br>
-        <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user5}} -->
-            {% autoescape false %}
-                <h1 style='font-size:25px;'>{{txt_no_result}}</h1><br>
-            {% endautoescape %}
-                <!-- <select type="text" id="mySelect" onchange="myFunction()">
-                        <option value="user1">{{user1}}</option>
-                        <option value="user2">{{user2}}</option>
-                        <option value="user3">{{user3}}</option>
-                        <option value="user4">{{user4}}</option>
-                        <option value="user5">{{user5}}</option>
-            
-                </select> -->
+                <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user5}} -->
+                {% autoescape false %}
+                      <h1 style='font-size:25px;'>{{txt_no_result}}</h1>
+                {% endautoescape %}
+
             </h1>
         </br>
-        <div class = "row">
-            <div class = "col ">
-                    <form action="/mapview3_ranking1" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking1">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking2" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking2">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking3" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking3">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking4" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking4">
-                    </form>
-            </div>
-            <div class = "col ">
-                    <form action="/mapview3_ranking5" method="post" style="text-align:center">
-                        <input type="submit"  style="background-color:#98BC65;color:white;width:100px;height:20px;font-size:10px;" value="Ranking5">
-                    </form>
-            </div>
-        </div>
 
 
         <div class = "row">
@@ -117,6 +83,7 @@
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
                             <div class='row'>
                                 <div class='col-sm-2'>
+                                        
                                         {%for i in modify_array_cat5 %} 
                                             {% autoescape false %}
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
@@ -136,8 +103,6 @@
                 </div>
         </div>
 
-        </div>
-
         <br>
      
 
@@ -148,12 +113,18 @@
                   </form>
           </div>
 
-          <div class = "col align-self-center">
-                  <form action="/form" method="GET" style="text-align:center">
-                      <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Back">
-                  </form>
+          <div class = "col ">
+                <form action="/mapview3_ranking4" method="post" style="text-align:center">
+                    <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="<-">
+                </form>
           </div>
 
+
+          <div class = "col ">
+                <form action="/mapview3_ranking1" method="post" style="text-align:center">
+                    <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="->">
+                </form>
+          </div>
 
         <div class="footer">
             <br>
@@ -164,31 +135,7 @@
 
 
     <script>
-        
-        // function myFunction() {
-  
-        //     var which_user = document.getElementById("mySelect").value;
-        //     var text_record;
-        //     switch(which_user) {
-        //         case "user1" :
-        //             text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat1 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record1 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
-        //         break;
-        //         case "user2" :
-        //         text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat2 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record2 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
-        //         break;
-        //         case "user3" :
-        //         text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat3 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record3 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
-        //         break;
-        //         case "user4" :
-        //         text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat4 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record4 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
-        //         break;
-        //         case "user5" :
-        //         text_record =  " <div class='row'> <div class='col-sm-2'> {%for i in modify_array_cat5 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> <div class='col-sm-10'> {%for i in modify_array_record5 %} {% autoescape false %} <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br> {% endautoescape %} {%endfor%} </div> </div>";
-        //         break;
-        //     }
-        //     document.getElementById("Travelrecord_Text").innerHTML  = text_record;
 
-        // }
     </script>
 
 </body>
