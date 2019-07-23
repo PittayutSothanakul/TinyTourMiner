@@ -112,17 +112,16 @@
 
         <div class = "row">
                 <div class = "col align-self-center">
-                        <!-- <form action="/interest" method="get" style="text-align:center">
-                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="StartOld">
-                        </form> -->
-                        <form action="/" method="get" style="text-align:center">
-                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="ホーム">
-                       </form>
-                </div>
 
-                <div class = "col align-self-center">
-                    <!-- <form method="POST" action=""> -->
-                        <form action="/interest3_jp" method="POST" style="text-align:center">
+                        <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
+                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="ホーム">
+                        </form>
+
+                        <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="戻る">
+                        </form>
+
+                        <form action="/interest3_jp" method="POST" style="text-align:center;display:inline;padding: 35px">
 
                             <h3 style="text-align:center; font-size: 15px;display: none"><input  style="width:300px;" id="myInputGender" type="text" name="input_gender" placeholder="Please select your gender" readonly></h3>
 
@@ -130,7 +129,6 @@
 
                             <input type="submit"onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="次へ">
                         </form>
-                    <!-- </form>     -->
                 </div>
                 
         </div>
