@@ -181,8 +181,8 @@
 
     var region_id = document.getElementById("myInputRegions");
     var regionEx_id = document.getElementById("myInputRegionsEx");
-    var x = document.getElementById("loading");
-    var y = document.getElementById("region_map");
+    var loading = document.getElementById("loading");
+    var map = document.getElementById("region_map");
     var head_text = document.getElementById("head_text");
     var next_button = document.getElementById("nextButton")
 
@@ -192,11 +192,12 @@
           alert("Please Select Your Interest Region");
           return false;
       }else{
-        if (x.style.display === "none") {
-          x.style.display = "block";
-          y.style.display = "none";
+        if (loading.style.display === "none") {
+          loading.style.display = "block";
+          map.style.display = "none";
           // next_button.disabled = true;
           head_text.innerHTML = "Loading For Your Result.";
+          regionEx_id.style.display = "none";
 
         } else {
           x.style.display = "none";
