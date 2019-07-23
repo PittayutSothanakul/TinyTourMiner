@@ -139,6 +139,12 @@ def mapview3():
             result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1,str(interest_array_user[8]):1,str(interest_array_user[9]):1},'JP',str(interest_region))
 
 
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user1)
+
 
         modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
         modify_array_cat1 = []
@@ -190,6 +196,7 @@ def mapview3():
         , modify_array_cat1 = modify_array_cat1 
         , modify_array_record1 = modify_array_record1
         , mymap = mymap 
+        , txt_no_result = txt_no_result
         , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -198,6 +205,12 @@ def mapview3():
 def mapview3_ranking1():
     if request.method == 'POST':
         
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user2)
+
         modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
         modify_array_cat1 = []
         for i in range(len(array_cat1)):
@@ -239,6 +252,7 @@ def mapview3_ranking1():
         , modify_array_cat1 = modify_array_cat1 
         , modify_array_record1 = modify_array_record1
         , mymap1=mymap1
+        , txt_no_result =txt_no_result
         , user1=user1)
 
 
@@ -248,6 +262,12 @@ def mapview3_ranking1():
 def mapview3_ranking2():
     if request.method == 'POST':
         
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user2)
+
         modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
         modify_array_cat2 = []
         for i in range(len(array_cat2)):
@@ -289,12 +309,20 @@ def mapview3_ranking2():
         , modify_array_cat2 = modify_array_cat2 
         , modify_array_record2 = modify_array_record2
         , mymap2=mymap2
+        , txt_no_result =txt_no_result
         , user2=user2)
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @app.route("/mapview3_ranking3", methods=["GET", "POST"])
 def mapview3_ranking3():
     if request.method == 'POST':
+
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user3)
+
         
         modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
         modify_array_cat3 = []
@@ -337,6 +365,7 @@ def mapview3_ranking3():
         , modify_array_cat3 = modify_array_cat3
         , modify_array_record3 = modify_array_record3
         , mymap3=mymap3
+        , txt_no_result =txt_no_result
         , user3=user3)
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -344,6 +373,12 @@ def mapview3_ranking3():
 def mapview3_ranking4():
     if request.method == 'POST':
         
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user4)
+
         modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
         modify_array_cat4 = []
         for i in range(len(array_cat4)):
@@ -385,6 +420,7 @@ def mapview3_ranking4():
         , modify_array_cat4 = modify_array_cat4 
         , modify_array_record4 = modify_array_record4
         , mymap4=mymap4
+        , txt_no_result =txt_no_result
         , user4=user4)
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -392,6 +428,12 @@ def mapview3_ranking4():
 def mapview3_ranking5():
     if request.method == 'POST':
         
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user5)
+
         modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
         modify_array_cat5 = []
         for i in range(len(array_cat5)):
@@ -432,6 +474,7 @@ def mapview3_ranking5():
         return render_template("mapview3_ranking5.html"
         , modify_array_cat5 = modify_array_cat5
         , modify_array_record5 = modify_array_record5
+        , txt_no_result =txt_no_result
         , mymap5=mymap5
         , user5=user5)
 
@@ -1290,11 +1333,12 @@ def main_v2(all_interest, country,interest_region):
     for u in rankings:
         # if(1<=i<len(rankings)-1):
         try:
-            boolean_check_rankings = True
-            print(boolean_check_rankings)
+            boolean_check_rankings = False
+            # print(boolean_check_rankings)
             new_rankings.append([u[0], u[1], user_visited_region_num[u[1]]])
         except IndexError:
-            print("No result")
+            boolean_check_rankings = True
+            break
 
         #     gotdata = 'null'
 #    print(new_rankings)   

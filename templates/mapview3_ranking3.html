@@ -62,7 +62,11 @@
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px;">Map and Travel record of User: {{user3}}
+        <br>
+        <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user3}} -->
+            {% autoescape false %}
+                <h1 style='font-size:25px;'>{{txt_no_result}}</h1><br>
+            {% endautoescape %}
                 <!-- <select type="text" id="mySelect" onchange="myFunction()">
                         <option value="user1">{{user1}}</option>
                         <option value="user2">{{user2}}</option>

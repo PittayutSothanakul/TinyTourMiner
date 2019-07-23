@@ -62,7 +62,11 @@
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px;">Map and Travel record of User: {{user1}}
+        <br>
+                <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user1}} -->
+                {% autoescape false %}
+                      <h1 style='font-size:25px;'>{{txt_no_result}}</h1><br>
+                {% endautoescape %}
                 <!-- <select type="text" id="mySelect" onchange="myFunction()">
                         <option value="user1">{{user1}}</option>
                         <option value="user2">{{user2}}</option>
@@ -113,6 +117,7 @@
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
                             <div class='row'>
                                 <div class='col-sm-2'>
+                                        
                                         {%for i in modify_array_cat1 %} 
                                             {% autoescape false %}
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
