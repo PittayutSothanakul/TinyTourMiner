@@ -115,12 +115,14 @@ def mapview3():
         global region_user
         region_user = interest_region
         
-        # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        # print(gender_user)
-        # print(age_user)
-        # print(interest_array_user) #['Temple', 'Shrine']
-        # print(region_user)
-        # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("=================== Information of User ===================")
+        print("User Gender : " + gender_user)
+        print("Age : "+ age_user)
+        print("Interest : ") 
+        print(interest_array_user) #['Temple', 'Shrine']
+        print("Region : " ) 
+        print(region_user)
+        print("=================== ==================== ===================")
 
         if(len(interest_array_user) == 1):
             result = main_v2({str(interest_array_user[0]):1},'JP',str(interest_region))
@@ -190,12 +192,11 @@ def mapview3():
         )
 
 
-        print("==================== Test Load ====================")  
-        # print(interest_region)
-        # print(array_cat1)
-        # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        # print(modify_array_cat1)
-        print("==================== Finished Load ====================")  
+        # print("==================== Test Load ====================")  
+        # print("User interest : "+ array_cat1)
+        # print("Region : "+interest_region)
+        # # print(modify_array_cat1)
+        # print("==================== Finished Load ====================")  
 
         return render_template("mapview3.html"
         , modify_array_cat1 = modify_array_cat1 
@@ -228,8 +229,8 @@ def mapview3_ranking1():
                 modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(modify_array_cat1[i])
+            # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            # print(modify_array_cat1[i])
 
         list_latlong1= []         
         temp_dict1 = {}
@@ -287,8 +288,8 @@ def mapview3_ranking2():
                 modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(modify_array_cat2[i])
+            # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            # print(modify_array_cat2[i])
 
         list_latlong2 = []         
         temp_dict2 = {}
@@ -345,8 +346,8 @@ def mapview3_ranking3():
                 modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(modify_array_cat3[i])
+            # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            # print(modify_array_cat3[i])
 
         list_latlong3 = []         
         temp_dict3 = {}
@@ -402,8 +403,8 @@ def mapview3_ranking4():
                 modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(modify_array_cat4[i])
+            # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            # print(modify_array_cat4[i])
 
         list_latlong4= []         
         temp_dict4 = {}
@@ -459,8 +460,8 @@ def mapview3_ranking5():
                 modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(modify_array_cat5[i])
+            # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            # print(modify_array_cat5[i])
 
         list_latlong5= []         
         temp_dict5 = {}
@@ -517,7 +518,6 @@ def region3_jp():
     if request.method == 'POST':
         cat1_array = []
         cat1 = request.form['interest_category']
-        print(cat1)
         cat1_array = cat1.split(',')
 
         global age_user
