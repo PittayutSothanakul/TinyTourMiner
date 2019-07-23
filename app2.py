@@ -92,6 +92,11 @@ user5=""
 
 boolean_check_rankings = False
 
+@app.route("/member", methods=["GET", "POST"])
+def member():
+    
+    return render_template('member.html')
+
 @app.route("/En", methods=["GET", "POST"])
 def start():
     

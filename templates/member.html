@@ -1,0 +1,116 @@
+<!doctype html> {% extends "bootstrap/base.html" %} {% block content %}
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .styleCenter{
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    }
+
+    .header {
+  padding: 10px;
+  text-align: center;
+  background: #56813A;
+  color: white;
+  }
+
+    .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #56813A;
+   color: white;
+   text-align: center;  
+    }
+
+    .button {
+        border: none;
+        /* color: black; */
+        padding: 15px 32px;
+        /* background-color: #e7e7e7; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width:200px;
+    }
+
+    .button_white {background-color: #e7e7e7; color: black;} /* Gray */ 
+    .button_black {background-color: #555555; color: white;} /* Black */
+
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    
+    <div class = "styleCenter">
+        <div class = "row">
+            <div class = "col align-self-center">
+                    <div class ="header">
+                            <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
+                    </div>
+            </div>
+        </div>
+        <br>
+        <br><h1 style=" font-size: 30px;">STAFF</h1></br>
+        <!-- <img style="width: 70px" src ="/static/YamaMe.jpg"/> -->
+        <h style=" font-size: 20px;">PROFESSOR Shingo Yamaguchi (YU)</h><br>
+        <h style=" font-size: 20px;">ASST. PROFESSOR Pattara Leelaprute (KU)</h><br>
+        <h style=" font-size: 20px;">ASST. PROFESSOR M.A. Bin Ahmadon (YU)</h><br>
+        <h style=" font-size: 20px;">STUDENT Taro Okabe (YU)</h><br>
+        <h style=" font-size: 20px;">STUDENT Daisuke Makihara (YU)</h><br>
+        <h style=" font-size: 20px;">INTERNSHIP STUDENT Pittayut Sothanakul (KU)</1><br><br>
+        <h style=" font-size: 20px;">SPECIAL THANKS Yama-Me</h><br>
+        <h style=" font-size: 20px;">Tour Miner has been developed by Yamaguchi University</h><br>
+        <h style=" font-size: 20px;">and Kasetsart University, Thailand.</h><br>
+
+
+ 
+        
+        <br>
+        <br><br>
+
+
+
+        <div class = "row">
+                <div class = "col align-self-center">
+
+                        <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
+                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="ホーム">
+                        </form>
+
+                        <form action="/form_jp" method="get" style="text-align:center;display:inline;padding: 35px">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="はじめる">
+                        </form>
+
+                </div>
+                
+        </div>
+
+        <div class="footer">
+            <br>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
+            <br>   
+        </div>
+    </div>
+<script>
+
+</script>
+
+</body>
+
+</html>
+{% endblock %}
+
