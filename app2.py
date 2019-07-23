@@ -152,12 +152,12 @@ def mapview3():
             txt_cat = array_cat1[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat1.append("<img style='width: 54px' src ='/static/"+change_text+".png'/>")
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             elif ' ' in txt_cat :
                 change_text = txt_cat.replace(' ' , '')
                 modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
-                modify_array_cat1.append("<img style='width: 54px' src ='/static/"+txt_cat+".png'/>")
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
         list_latlong = []         
         temp_dict = {}
@@ -217,12 +217,12 @@ def mapview3_ranking1():
             txt_cat = array_cat1[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat1.append("<img style='width: 54px' src ='/static/"+change_text+".png'/>")
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             elif ' ' in txt_cat :
                 change_text = txt_cat.replace(' ' , '')
                 modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
-                modify_array_cat1.append("<img style='width: 54px' src ='/static/"+txt_cat+".png'/>")
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
         list_latlong1= []         
         temp_dict1 = {}
@@ -274,12 +274,12 @@ def mapview3_ranking2():
             txt_cat = array_cat2[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat2.append("<img style='width: 54px' src ='/static/"+change_text+".png'/>")
+                modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             elif ' ' in txt_cat :
                 change_text = txt_cat.replace(' ' , '')
                 modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
-                modify_array_cat2.append("<img style='width: 54px' src ='/static/"+txt_cat+".png'/>")
+                modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
         list_latlong2 = []         
         temp_dict2 = {}
@@ -330,12 +330,12 @@ def mapview3_ranking3():
             txt_cat = array_cat3[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat3.append("<img style='width: 54px' src ='/static/"+change_text+".png'/>")
+                modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             elif ' ' in txt_cat :
                 change_text = txt_cat.replace(' ' , '')
                 modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
-                modify_array_cat3.append("<img style='width: 54px' src ='/static/"+txt_cat+".png'/>")
+                modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
         list_latlong3 = []         
         temp_dict3 = {}
@@ -385,12 +385,12 @@ def mapview3_ranking4():
             txt_cat = array_cat4[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat4.append("<img style='width: 54px' src ='/static/"+change_text+".png'/>")
+                modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             elif ' ' in txt_cat :
                 change_text = txt_cat.replace(' ' , '')
                 modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
-                modify_array_cat4.append("<img style='width: 54px' src ='/static/"+txt_cat+".png'/>")
+                modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
         list_latlong4= []         
         temp_dict4 = {}
@@ -440,12 +440,12 @@ def mapview3_ranking5():
             txt_cat = array_cat5[i]
             if '/' in txt_cat :
                 change_text = txt_cat.replace('/' , ':')
-                modify_array_cat5.append("<img style='width: 54px' src ='/static/"+change_text+".png'/>")
+                modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             elif ' ' in txt_cat :
                 change_text = txt_cat.replace(' ' , '')
                 modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
-                modify_array_cat5.append("<img style='width: 54px' src ='/static/"+txt_cat+".png'/>")
+                modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
         list_latlong5= []         
         temp_dict5 = {}
