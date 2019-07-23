@@ -220,19 +220,23 @@
     var str_array = [];
 
     cat_array = []
+    cat_array_jp = []
     function myFunction() {
         // var cate_value = document.getElementById("interest_category")
         if(!boolean_btcat1){
           boolean_btcat1 = true
           button_1.classList.toggle("button_black");
           cat_array.push("Temple")
+          cat_array_jp.push("寺")
+          
         }else {
           boolean_btcat1 = false
           button_1.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Temple") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "寺") 
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -241,13 +245,17 @@
           boolean_btcat2 = true
           button_2.classList.toggle("button_black");
           cat_array.push("Shrine")
+          cat_array_jp.push("神社")
+
         }else {
           boolean_btcat2 = false
           button_2.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Shrine") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "神社") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -256,13 +264,17 @@
           boolean_btcat3 = true
           button_3.classList.toggle("button_black");
           cat_array.push("Castle")
+          cat_array_jp.push("城")
+
         }else {
           boolean_btcat3 = false
           button_3.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Castle") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "城") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -271,13 +283,17 @@
           boolean_btcat4 = true
           button_4.classList.toggle("button_black");
           cat_array.push("Historic Site")
+          cat_array_jp.push("歴史")
+
         }else {
           boolean_btcat4 = false
           button_4.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Historic Site") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "歴史") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -286,13 +302,17 @@
           boolean_btcat5 = true
           button_5.classList.toggle("button_black");
           cat_array.push("Museum")
+          cat_array_jp.push("博物館")
+
         }else {
           boolean_btcat5 = false
           button_5.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Museum") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "博物館") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -301,13 +321,17 @@
           boolean_btcat6 = true
           button_6.classList.toggle("button_black");
           cat_array.push("Theme Park")
+          cat_array_jp.push("テーマパーク")
+
         }else {
           boolean_btcat6 = false
           button_6.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Theme Park") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "テーマパーク") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -316,13 +340,17 @@
           boolean_btcat7 = true
           button_7.classList.toggle("button_black");
           cat_array.push("Mall")
+          cat_array_jp.push("買い物")
+
         }else {
           boolean_btcat7 = false
           button_7.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Mall") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "買い物") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -331,13 +359,17 @@
           boolean_btcat8 = true
           button_8.classList.toggle("button_black");
           cat_array.push("Japanese Restaurant")
+          cat_array_jp.push("食事")
+
         }else {
           boolean_btcat8 = false
           button_8.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Japanese Restaurant") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "食事") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -346,13 +378,17 @@
           boolean_btcat9 = true
           button_9.classList.toggle("button_black");
           cat_array.push("Baseball Stadium")
+          cat_array_jp.push("野球")
+
         }else {
           boolean_btcat9 = false
           button_9.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Baseball Stadium") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "野球") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 
@@ -361,13 +397,17 @@
           boolean_btcat10 = true
           button_10.classList.toggle("button_black");
           cat_array.push("Garden")
+          cat_array_jp.push("庭園")
+
         }else {
           boolean_btcat10 = false
           button_10.classList.remove("button_black");
           cat_array = cat_array.filter(x=> x !== "Garden") 
+          cat_array_jp = cat_array_jp.filter(x=> x !== "庭園") 
+
         }
         document.getElementById("myInputCategories").value = cat_array
-        document.getElementById("myInputCategoriesEx").value = cat_array
+        document.getElementById("myInputCategoriesEx").value = cat_array_jp
 
     }
 </script>
