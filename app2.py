@@ -166,7 +166,7 @@ def mapview3():
             list_latlong.append(copy.deepcopy(temp_dict))
 
         polyline = {
-            'stroke_color': '#0000FF',
+            'stroke_color': '#2C528C', #Blue
             'stroke_opacity': 1.0,
             'stroke_weight': 3,
             'path': []
@@ -209,7 +209,7 @@ def mapview3_ranking1():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user2)
+            txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user1)
 
         modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
         modify_array_cat1 = []
@@ -231,7 +231,7 @@ def mapview3_ranking1():
             list_latlong1.append(copy.deepcopy(temp_dict1))
 
         polyline1 = {
-            'stroke_color': '#0000FF',
+            'stroke_color': '#2C528C', #Blue
             'stroke_opacity': 1.0,
             'stroke_weight': 3,
             'path': []
@@ -288,7 +288,7 @@ def mapview3_ranking2():
             list_latlong2.append(copy.deepcopy(temp_dict2))
 
         polyline2 = {
-            'stroke_color': '#FFA500',
+            'stroke_color': '#E86100', #Orange
             'stroke_opacity': 1.0,
             'stroke_weight': 3,
             'path': []
@@ -344,7 +344,7 @@ def mapview3_ranking3():
             list_latlong3.append(copy.deepcopy(temp_dict3))
 
         polyline3 = {
-            'stroke_color': '#008000',
+            'stroke_color': '#296E01', #Green
             'stroke_opacity': 1.0,
             'stroke_weight': 3,
             'path': []
@@ -399,7 +399,7 @@ def mapview3_ranking4():
             list_latlong4.append(copy.deepcopy(temp_dict4))
 
         polyline4 = {
-            'stroke_color': '#0000FF',
+            'stroke_color': '#FF0000', #Red
             'stroke_opacity': 1.0,
             'stroke_weight': 3,
             'path': []
@@ -454,7 +454,7 @@ def mapview3_ranking5():
             list_latlong5.append(copy.deepcopy(temp_dict5))
 
         polyline5 = {
-            'stroke_color': '#0000FF',
+            'stroke_color': '#7D44AA', #Purple
             'stroke_opacity': 1.0,
             'stroke_weight': 3,
             'path': []
@@ -601,7 +601,7 @@ def my_form_post2():
         list_latlong2.append(copy.deepcopy(temp_dict2))
 
     polyline2 = {
-        'stroke_color': '#FFA500',
+        'stroke_color': '#E86100', #Orange
         'stroke_opacity': 1.0,
         'stroke_weight': 3,
         'path': []
