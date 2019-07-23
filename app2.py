@@ -92,11 +92,16 @@ user5=""
 
 boolean_check_rankings = False
 
-
-@app.route("/", methods=["GET", "POST"])
+@app.route("/En", methods=["GET", "POST"])
 def start():
     
     return render_template('home.html')
+
+
+@app.route("/", methods=["GET", "POST"])
+def start_jp():
+    
+    return render_template('home_jp.html')
 
 @app.route("/mapview3", methods=["GET", "POST"])
 def mapview3():
@@ -223,6 +228,8 @@ def mapview3_ranking1():
                 modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print(modify_array_cat1[i])
 
         list_latlong1= []         
         temp_dict1 = {}
@@ -280,6 +287,8 @@ def mapview3_ranking2():
                 modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print(modify_array_cat2[i])
 
         list_latlong2 = []         
         temp_dict2 = {}
@@ -336,6 +345,8 @@ def mapview3_ranking3():
                 modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print(modify_array_cat3[i])
 
         list_latlong3 = []         
         temp_dict3 = {}
@@ -391,6 +402,8 @@ def mapview3_ranking4():
                 modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print(modify_array_cat4[i])
 
         list_latlong4= []         
         temp_dict4 = {}
@@ -446,6 +459,8 @@ def mapview3_ranking5():
                 modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
             else :
                 modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print(modify_array_cat5[i])
 
         list_latlong5= []         
         temp_dict5 = {}
@@ -497,6 +512,24 @@ def region3():
         return render_template("region3.html")
 
 
+@app.route("/region3_jp", methods=["GET", "POST"])
+def region3_jp():
+    if request.method == 'POST':
+        cat1_array = []
+        cat1 = request.form['interest_category']
+        print(cat1)
+        cat1_array = cat1.split(',')
+
+        global age_user
+        global gender_user
+        global interest_user
+        global interest_array_user
+        interest_user = cat1
+        interest_array_user = cat1_array
+
+
+        return render_template("region3_jp.html")
+
 @app.route("/interest3", methods=["GET", "POST"])
 def interest3():
     if request.method == 'POST':
@@ -509,12 +542,27 @@ def interest3():
 
         return render_template("interest3.html")
 
+@app.route("/interest3_jp", methods=["GET", "POST"])
+def interest3_jp():
+    if request.method == 'POST':
+        gender = request.form.get('input_gender')
+        age = request.form['input_age']
+        global age_user
+        global gender_user
+        age_user = age
+        gender_user = gender
+
+        return render_template("interest3_jp.html")
 
 
 
 @app.route("/form")
 def form():
    return render_template('form.html')
+
+@app.route("/form_jp")
+def form_jp():
+   return render_template('form_jp.html')
 
 @app.route("/region", methods=["GET", "POST"])
 def region():
