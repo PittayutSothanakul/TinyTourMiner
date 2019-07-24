@@ -94,11 +94,6 @@ user5=""
 
 boolean_check_rankings = False
 
-@app.route("/member", methods=["GET", "POST"])
-def member():
-    
-    return render_template('member.html')
-
 @app.route("/En", methods=["GET", "POST"])
 def start():
     
@@ -109,6 +104,37 @@ def start():
 def start_jp():
     
     return render_template('home_jp.html')
+
+
+@app.route("/form")
+def form():
+   return render_template('form.html')
+
+@app.route("/interest3", methods=["GET", "POST"])
+def interest3():
+    if request.method == 'POST':
+        gender = request.form.get('input_gender')
+        age = request.form['input_age']
+        global age_user
+        global gender_user
+        age_user = age
+        gender_user = gender
+        return render_template("interest3.html")
+
+@app.route("/region3", methods=["GET", "POST"])
+def region3():
+    if request.method == 'POST':
+        cat1_array = []
+        cat1 = request.form['interest_category']
+        print(cat1)
+        cat1_array = cat1.split(',')
+        global age_user
+        global gender_user
+        global interest_user
+        global interest_array_user
+        interest_user = cat1
+        interest_array_user = cat1_array
+        return render_template("region3.html")
 
 @app.route("/mapview3", methods=["GET", "POST"])
 def mapview3():
@@ -509,24 +535,33 @@ def mapview3_ranking5():
         , mymap5=mymap5
         , user5=user5)
 
-@app.route("/region3", methods=["GET", "POST"])
-def region3():
-    if request.method == 'POST':
-        cat1_array = []
-        cat1 = request.form['interest_category']
-        print(cat1)
-        cat1_array = cat1.split(',')
 
+
+
+
+
+
+#========================================================== Version Japan ==========================================================
+@app.route("/member", methods=["GET", "POST"])
+def member():
+    
+    return render_template('member.html')
+
+@app.route("/form_jp")
+def form_jp():
+   return render_template('form_jp.html')
+
+@app.route("/interest3_jp", methods=["GET", "POST"])
+def interest3_jp():
+    if request.method == 'POST':
+        gender = request.form.get('input_gender')
+        age = request.form['input_age']
         global age_user
         global gender_user
-        global interest_user
-        global interest_array_user
-        interest_user = cat1
-        interest_array_user = cat1_array
+        age_user = age
+        gender_user = gender
 
-
-        return render_template("region3.html")
-
+        return render_template("interest3_jp.html")
 
 @app.route("/region3_jp", methods=["GET", "POST"])
 def region3_jp():
@@ -542,678 +577,389 @@ def region3_jp():
         interest_user = cat1
         interest_array_user = cat1_array
 
-
         return render_template("region3_jp.html")
 
-@app.route("/interest3", methods=["GET", "POST"])
-def interest3():
+
+@app.route("/mapview3_jp", methods=["GET", "POST"])
+def mapview3_jp():
     if request.method == 'POST':
-        gender = request.form.get('input_gender')
-        age = request.form['input_age']
+        interest_region = "("+request.form['interest_region']+")"
+        
         global age_user
         global gender_user
-        age_user = age
-        gender_user = gender
+        global interest_user
+        global interest_array_user
+        global region_user
+        region_user = interest_region
+        
+        print("=================== Information of User ===================")
+        print("User Gender : " + gender_user)
+        print("Age : "+ age_user)
+        print("Interest : ") 
+        print(interest_array_user) #['Temple', 'Shrine']
+        print("Region : " ) 
+        print(region_user)
+        print("=================== ==================== ===================")
 
-        return render_template("interest3.html")
+        if(len(interest_array_user) == 1):
+            result = main_v2({str(interest_array_user[0]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 2):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 3):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 4):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 5):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 6):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 7):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 8):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 9):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1,str(interest_array_user[8]):1},'JP',str(interest_region))
+        elif(len(interest_array_user) == 10):
+            result = main_v2({str(interest_array_user[0]):1,str(interest_array_user[1]):1,str(interest_array_user[2]):1,str(interest_array_user[3]):1,str(interest_array_user[4]):1,str(interest_array_user[5]):1,str(interest_array_user[6]):1,str(interest_array_user[7]):1,str(interest_array_user[8]):1,str(interest_array_user[9]):1},'JP',str(interest_region))
 
-@app.route("/interest3_jp", methods=["GET", "POST"])
-def interest3_jp():
+
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user1)][2])
+            print("Showing User : " + user1)
+            # txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user1)
+
+
+        modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
+        modify_array_cat1 = []
+        for i in range(len(array_cat1)):
+            txt_cat = array_cat1[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            elif ' ' in txt_cat :
+                change_text = txt_cat.replace(' ' , '')
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            else :
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
+
+        list_latlong = []         
+        temp_dict = {}
+        for i in range(len(array_latitude)):   
+            temp_dict = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
+            list_latlong.append(copy.deepcopy(temp_dict))
+
+        polyline = {
+            'stroke_color': '#2C528C', #Blue
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
+        polyline.update({'path': list_latlong})
+
+        mymap = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude, array_longitude)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline]
+        
+        )
+
+        return render_template("mapview3_jp.html"
+        , modify_array_cat1 = modify_array_cat1 
+        , modify_array_record1 = modify_array_record1
+        , mymap = mymap 
+        , txt_no_result = txt_no_result
+        , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@app.route("/mapview3_ranking1_jp", methods=["GET", "POST"])
+def mapview3_ranking1_jp():
     if request.method == 'POST':
-        gender = request.form.get('input_gender')
-        age = request.form['input_age']
-        global age_user
-        global gender_user
-        age_user = age
-        gender_user = gender
-
-        return render_template("interest3_jp.html")
-
-
-
-@app.route("/form")
-def form():
-   return render_template('form.html')
-
-@app.route("/form_jp")
-def form_jp():
-   return render_template('form_jp.html')
-
-@app.route("/region", methods=["GET", "POST"])
-def region():
-
-    
-    return render_template('region.html', testtext = testtext)
-    
-
-
-
-# This is new version of interest2
-@app.route('/interest2', methods=['POST'])
-def my_form_post2():
-    cat1_array = []
-    cat1 = request.form['interest_category']
-    print("")
-    print(cat1)
-
-    cat1_array = cat1.split(',')
-    print(cat1_array) #['Temple', 'Shrine']
-
-    interest_region = "("+request.form['interest_region']+")"
-    # interest_cat = request.form['interest_category']
-    #result = main_v2({'Temple':1},'JP')
-
-    if(len(cat1_array) == 1):
-        result = main_v2({str(cat1_array[0]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 2):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 3):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 4):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 5):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 6):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 7):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 8):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 9):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1,str(cat1_array[8]):1},'JP',str(interest_region))
-    elif(len(cat1_array) == 10):
-        result = main_v2({str(cat1_array[0]):1,str(cat1_array[1]):1,str(cat1_array[2]):1,str(cat1_array[3]):1,str(cat1_array[4]):1,str(cat1_array[5]):1,str(cat1_array[6]):1,str(cat1_array[7]):1,str(cat1_array[8]):1,str(cat1_array[9]):1},'JP',str(interest_region))
-    # main_v2({'Museum':1,'Mall':1,'Baseball Stadium':1},'JP',str(interest_region))
-    # result = main_v2({'Shrine,Temple': 1},'JP')
-    # main_v2({'Shrine':1,'Temple':1},'JP',str(interest_region))
-    # result = main_v2({str(cat1):1},'JP',str(interest_region))
-    # print(cat1)
-    
-    list_latlong = []         
-    temp_dict = {}
-    for i in range(len(array_latitude)):   
-        temp_dict = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
-        list_latlong.append(copy.deepcopy(temp_dict))
-
-    polyline = {
-        'stroke_color': '#0000FF',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
-
-    polyline.update({'path': list_latlong})
-
-
-    mymap = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude, array_longitude)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline]
         
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user1)][2])
+            print("Showing User : " + user2)
 
-    )
+        modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
+        modify_array_cat1 = []
+        for i in range(len(array_cat1)):
+            txt_cat = array_cat1[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            elif ' ' in txt_cat :
+                change_text = txt_cat.replace(' ' , '')
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            else :
+                modify_array_cat1.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
-    list_latlong2 = []         
-    temp_dict2 = {}
-    for i in range(len(array_latitude2)):   
-        temp_dict2 = {'lat': float(array_latitude2[i]) , 'lng': float(array_longitude2[i])}
-        list_latlong2.append(copy.deepcopy(temp_dict2))
+        list_latlong1= []         
+        temp_dict1 = {}
+        for i in range(len(array_latitude)):   
+            temp_dict1 = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
+            list_latlong1.append(copy.deepcopy(temp_dict1))
 
-    polyline2 = {
-        'stroke_color': '#E86100', #Orange
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
+        polyline1 = {
+            'stroke_color': '#2C528C', #Blue
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
 
-    polyline2.update({'path': list_latlong2})
-    mymap2 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude2, array_longitude2)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline2]
-    )
+        polyline1.update({'path': list_latlong1})
+        mymap1 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude, array_longitude)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline1]
+        ) 
 
-    list_latlong3 = []         
-    temp_dict3 = {}
-    for i in range(len(array_latitude3)):   
-        temp_dict3 = {'lat': float(array_latitude3[i]) , 'lng': float(array_longitude3[i])}
-        list_latlong3.append(copy.deepcopy(temp_dict3))
-
-    polyline3 = {
-        'stroke_color': '#008000',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
-
-    polyline3.update({'path': list_latlong3})
-    mymap3 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude3, array_longitude3)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline3]
-    )
-    
-
-    list_latlong4 = []         
-    temp_dict4 = {}
-    for i in range(len(array_latitude4)):   
-        temp_dict4 = {'lat': float(array_latitude4[i]) , 'lng': float(array_longitude4[i])}
-        list_latlong4.append(copy.deepcopy(temp_dict4))
-
-    polyline4 = {
-        'stroke_color': '#B22222',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
-
-    polyline4.update({'path': list_latlong4})
-    mymap4 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude4, array_longitude4)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline4]
-    )
-
-    list_latlong5 = []         
-    temp_dict5 = {}
-    for i in range(len(array_latitude5)):   
-        temp_dict5 = {'lat': float(array_latitude5[i]) , 'lng': float(array_longitude5[i])}
-        list_latlong5.append(copy.deepcopy(temp_dict5))
-
-    polyline5 = {
-        'stroke_color': '#800080',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-
-    }
-    polyline5.update({'path': list_latlong5})
-    mymap5 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude5, array_longitude5)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline5]
-    )
-
-    
-    modify_array_cat1 = []
-
-    modify_array_cat1 = array_cat1
-    for i in range(len(modify_array_cat1)):
-      txt_cat = modify_array_cat1[i]
-      if '/' in txt_cat :
-         txt_cat = txt_cat.replace('/' , ':')
-      modify_array_cat1[i] = modify_array_cat1[i].replace(txt_cat,'<img style="width: 54px" src ="/static/%s.png"/>'%txt_cat)
+        return render_template("mapview3_ranking1_jp.html"
+        , modify_array_cat1 = modify_array_cat1 
+        , modify_array_record1 = modify_array_record1
+        , mymap1=mymap1
+        , txt_no_result =txt_no_result
+        , user1=user1)
 
 
-    test_text = "Date : 20130821\nName : 4e75ac42aeb780be0a541d80\nTime : 12:28:50"
-    test_text = test_text.replace('\n', '<br>')
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
-
-
-
-    print("==================== Test Load ====================")  
-    # print(array_record1)
-    # print(polyline)
-    # print(modify_array_record1)
-    # print(array_record1)
-    print(interest_region)
-    # print(modify_array_cat1)
-    print("@@@@@")
-    # print(array_cat1)
-    print("==================== Finished Load ====================")   
-
-
-    return render_template('mapview.html'
-    
-    , mymap = mymap , mymap2=mymap2 , mymap3=mymap3 , mymap4=mymap4 , mymap5=mymap5
-    , interest_region =interest_region
-    , array_latitude=array_latitude , array_longitude=array_longitude
-    , text_date = text_date , text_plcename = text_plcename , text_time = text_time
-    , array_category = array_category, array_location=array_location , array_date= array_date
-    , array_record1=array_record1 
-    , modify_array_record1 =modify_array_record1
-    , modify_array_cat1 = modify_array_cat1
-    , test_text = test_text 
-    , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
-    , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
-
-@app.route("/interest2", methods=["GET", "POST"])
-def home2():
-    with open('categories.json', encoding='utf-8') as data_file:
-        data = json.loads(data_file.read())
-
-
-    with open('countries.json', encoding='utf-8') as country_file:
-        country = json.loads(country_file.read())
-
-    all_interest = [];
-    all_countries = [];
-    arrayTest = ["thai","japan"];
-    country_list =  [d['name'] for d in country] 
-
-    AllBigName = data["response"]["categories"]
-
-    for bigName in AllBigName:
-        big_category = bigName["name"]
-        all_interest.append(big_category)
-        for midName in bigName["categories"]:
-            mid_category = midName["name"]
-            all_interest.append(mid_category)
-            for smallName in midName["categories"]:
-                small_category = smallName["name"]
-                all_interest.append(small_category)
-                for tinyName in smallName["categories"]:
-                    tiny_category = tinyName["name"]
-                    all_interest.append(tiny_category)
-                    
-    country_list.sort()
-    all_interest.sort()
-
-    return render_template('interest2.html', all_country_list = country_list ,all_list_interest = all_interest , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
-
-
-
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# This is oldversion of interest
-@app.route('/interest', methods=['POST'])
-def my_form_post():
-    country = request.form['country']
-
-    cat1 = request.form['category1']
-    cat2 = request.form['category2']
-    cat3 = request.form['category3']
-    cat4 = request.form['category4']
-    cat5 = request.form['category5']
-
-    country_text = country
-    cate_text = cat1+cat2+cat3+cat4+cat5
-
-    #result = main_v2({'Temple':1},'JP')
-    result = main_v2({str(cat1):1},country)
-    # print(cat1)
-    
-    list_latlong = []         
-    temp_dict = {}
-    for i in range(len(array_latitude)):   
-        temp_dict = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
-        list_latlong.append(copy.deepcopy(temp_dict))
-
-    polyline = {
-        'stroke_color': '#0000FF',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        # 'path': [
-        #     {'lat': float(array_latitude[0]) , 'lng': float(array_longitude[0])} ,
-        #     {'lat': float(array_latitude[1]) , 'lng': float(array_longitude[1])} ,
-        #     {'lat': float(array_latitude[2]) , 'lng': float(array_longitude[2])} ,
-        #     {'lat': float(array_latitude[3]) , 'lng': float(array_longitude[3])} ,
-        #     {'lat': float(array_latitude[4]) , 'lng': float(array_longitude[4])} ,
-        #     {'lat': float(array_latitude[5]) , 'lng': float(array_longitude[5])} ,
-        #     {'lat': float(array_latitude[6]) , 'lng': float(array_longitude[6])} ,
-        #     {'lat': float(array_latitude[7]) , 'lng': float(array_longitude[7])} ,
-        # ]
-        'path': []
-    }
-
-    polyline.update({'path': list_latlong})
-
-
-    mymap = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude, array_longitude)] ,
-        # markers=[(array_longitude[0], array_latitude[0]) , (array_longitude[1], array_latitude[1])] ,
-        # markers=[(33.9567931, 131.2709503)] ,         
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        # polylines=[polyline, path1, path2, path3, path4]
-        polylines=[polyline]
+@app.route("/mapview3_ranking2_jp", methods=["GET", "POST"])
+def mapview3_ranking2_jp():
+    if request.method == 'POST':
         
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user2)][2])
+            print("Showing User : " + user2)
 
-    )
+        modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
+        modify_array_cat2 = []
+        for i in range(len(array_cat2)):
+            txt_cat = array_cat2[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            elif ' ' in txt_cat :
+                change_text = txt_cat.replace(' ' , '')
+                modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            else :
+                modify_array_cat2.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
-    list_latlong2 = []         
-    temp_dict2 = {}
-    for i in range(len(array_latitude2)):   
-        temp_dict2 = {'lat': float(array_latitude2[i]) , 'lng': float(array_longitude2[i])}
-        list_latlong2.append(copy.deepcopy(temp_dict2))
+        list_latlong2 = []         
+        temp_dict2 = {}
+        for i in range(len(array_latitude2)):   
+            temp_dict2 = {'lat': float(array_latitude2[i]) , 'lng': float(array_longitude2[i])}
+            list_latlong2.append(copy.deepcopy(temp_dict2))
 
-    polyline2 = {
-        'stroke_color': '#FFA500',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
+        polyline2 = {
+            'stroke_color': '#E86100', #Orange
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
 
-    polyline2.update({'path': list_latlong2})
-    mymap2 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude2, array_longitude2)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline2]
-    )
+        polyline2.update({'path': list_latlong2})
+        mymap2 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude2, array_longitude2)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline2]
+        ) 
 
-    list_latlong3 = []         
-    temp_dict3 = {}
-    for i in range(len(array_latitude3)):   
-        temp_dict3 = {'lat': float(array_latitude3[i]) , 'lng': float(array_longitude3[i])}
-        list_latlong3.append(copy.deepcopy(temp_dict3))
+        return render_template("mapview3_ranking2_jp.html"
+        , modify_array_cat2 = modify_array_cat2 
+        , modify_array_record2 = modify_array_record2
+        , mymap2=mymap2
+        , txt_no_result =txt_no_result
+        , user2=user2)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    polyline3 = {
-        'stroke_color': '#008000',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
+@app.route("/mapview3_ranking3_jp", methods=["GET", "POST"])
+def mapview3_ranking3_jp():
+    if request.method == 'POST':
 
-    polyline3.update({'path': list_latlong3})
-    mymap3 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude3, array_longitude3)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline3]
-    )
-    
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user3)][2])
+            print("Showing User : " + user3)
 
-    list_latlong4 = []         
-    temp_dict4 = {}
-    for i in range(len(array_latitude4)):   
-        temp_dict4 = {'lat': float(array_latitude4[i]) , 'lng': float(array_longitude4[i])}
-        list_latlong4.append(copy.deepcopy(temp_dict4))
+        
+        modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
+        modify_array_cat3 = []
+        for i in range(len(array_cat3)):
+            txt_cat = array_cat3[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            elif ' ' in txt_cat :
+                change_text = txt_cat.replace(' ' , '')
+                modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            else :
+                modify_array_cat3.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
-    polyline4 = {
-        'stroke_color': '#B22222',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-    }
+        list_latlong3 = []         
+        temp_dict3 = {}
+        for i in range(len(array_latitude3)):   
+            temp_dict3 = {'lat': float(array_latitude3[i]) , 'lng': float(array_longitude3[i])}
+            list_latlong3.append(copy.deepcopy(temp_dict3))
 
-    polyline4.update({'path': list_latlong4})
-    mymap4 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude4, array_longitude4)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline4]
-    )
+        polyline3 = {
+            'stroke_color': '#296E01', #Green
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
 
-    list_latlong5 = []         
-    temp_dict5 = {}
-    for i in range(len(array_latitude5)):   
-        temp_dict5 = {'lat': float(array_latitude5[i]) , 'lng': float(array_longitude5[i])}
-        list_latlong5.append(copy.deepcopy(temp_dict5))
+        polyline3.update({'path': list_latlong3})
+        mymap3 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude3, array_longitude3)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline3]
+        ) 
 
-    polyline5 = {
-        'stroke_color': '#800080',
-        'stroke_opacity': 1.0,
-        'stroke_weight': 3,
-        'path': []
-        # 'path': [
-        #     {'lat': float(array_latitude[0]) , 'lng': float(array_longitude[0])} ,
-        #     {'lat': float(array_latitude[1]) , 'lng': float(array_longitude[1])} ,
-        #     {'lat': float(array_latitude[2]) , 'lng': float(array_longitude[2])} ,
-        #     {'lat': float(array_latitude[3]) , 'lng': float(array_longitude[3])} ,
-        #     {'lat': float(array_latitude[4]) , 'lng': float(array_longitude[4])} ,
-        #     {'lat': float(array_latitude[5]) , 'lng': float(array_longitude[5])} ,
-        #     {'lat': float(array_latitude[6]) , 'lng': float(array_longitude[6])} ,
-        #     {'lat': float(array_latitude[7]) , 'lng': float(array_longitude[7])} ,
-        # ]
-    }
-    polyline5.update({'path': list_latlong5})
-    mymap5 = Map(
-        identifier="view-side",
-        lat= 36.2048,
-        lng= 138.2529,
-        markers=[ i for i in zip(array_latitude5, array_longitude5)] ,
-        zoom = 4.5  ,
-        style = "height:400px;width:500px;margin:auto;" ,
-        polylines=[polyline5]
-    )
+        return render_template("mapview3_ranking3_jp.html"
+        , modify_array_cat3 = modify_array_cat3
+        , modify_array_record3 = modify_array_record3
+        , mymap3=mymap3
+        , txt_no_result =txt_no_result
+        , user3=user3)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+@app.route("/mapview3_ranking4_jp", methods=["GET", "POST"])
+def mapview3_ranking4_jp():
+    if request.method == 'POST':
+        
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user4)][2])
+            print("Showing User : " + user4)
 
-    # list_marker1 =[]
-    # temp_marker1 ={}
-    # for i in range(len(array_latitude)) :
-    #     temp_marker1 = {'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-    #                     'lat' : float(array_latitude[i]),
-    #                     'lng': float(array_longitude[i]),
-    #                     'infobox': "<img src ='/static/Building.png'/>"
-    #     }
-    # list_marker1.append(copy.deepcopy(temp_marker1))
+        modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
+        modify_array_cat4 = []
+        for i in range(len(array_cat4)):
+            txt_cat = array_cat4[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            elif ' ' in txt_cat :
+                change_text = txt_cat.replace(' ' , '')
+                modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            else :
+                modify_array_cat4.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
-    # mymap_all = Map(
-    #     identifier="view-side",
-    #     lat= 36.2048,
-    #     lng= 138.2529,
-    #     markers=[ i for i in zip(array_latitude, array_longitude)] ,
+        list_latlong4= []         
+        temp_dict4 = {}
+        for i in range(len(array_latitude)):   
+            temp_dict4 = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
+            list_latlong4.append(copy.deepcopy(temp_dict4))
 
-    #     # markers=[(array_longitude[0], array_latitude[0]) , (array_longitude[1], array_latitude[1])] ,
-    #     # markers=[(33.9567931, 131.2709503)] ,         
-    #     zoom = 4.5  ,
-    #     style = "height:400px;width:500px;margin:auto;" ,
-    #     polylines=[polyline,polyline2,polyline3,polyline4,polyline5]
+        polyline4 = {
+            'stroke_color': '#FF0000', #Red
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
 
-    # )
+        polyline4.update({'path': list_latlong4})
+        mymap4 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude, array_longitude)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline4]
+        ) 
 
-    # mymap_all.update({'markers' : list_marker1})
+        return render_template("mapview3_ranking4_jp.html"
+        , modify_array_cat4 = modify_array_cat4 
+        , modify_array_record4 = modify_array_record4
+        , mymap4=mymap4
+        , txt_no_result =txt_no_result
+        , user4=user4)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    print("==================== Test Load ====================")  
-    print(array_record1)
-    print(polyline)
+@app.route("/mapview3_ranking5_jp", methods=["GET", "POST"])
+def mapview3_ranking5_jp():
+    if request.method == 'POST':
+        
+        txt_no_result = "\n"
+        if(boolean_check_rankings== True):
+            txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
+        else :
+            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user5)][2])
+            print("Showing User : " + user5)
 
-    # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Record2")
-    # print(array_record2)
-    # print(polyline2)
+        modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
+        modify_array_cat5 = []
+        for i in range(len(array_cat5)):
+            txt_cat = array_cat5[i]
+            if '/' in txt_cat :
+                change_text = txt_cat.replace('/' , ':')
+                modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            elif ' ' in txt_cat :
+                change_text = txt_cat.replace(' ' , '')
+                modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+change_text+".png'/>")
+            else :
+                modify_array_cat5.append("<img style='width: 54px;height:54px;' src ='/static/"+txt_cat+".png'/>")
 
-    # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Record3")
-    # print(array_record3)
-    # print(polyline3)
+        list_latlong5= []         
+        temp_dict5 = {}
+        for i in range(len(array_latitude)):   
+            temp_dict5 = {'lat': float(array_latitude[i]) , 'lng': float(array_longitude[i])}
+            list_latlong5.append(copy.deepcopy(temp_dict5))
 
-    # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Record4")
-    # print(array_record4)
-    # print(polyline4)
+        polyline5 = {
+            'stroke_color': '#7D44AA', #Purple
+            'stroke_opacity': 1.0,
+            'stroke_weight': 3,
+            'path': []
+        }
 
-    # print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Record5")
-    # print(array_record5)
-    # print(polyline5)
+        polyline5.update({'path': list_latlong5})
+        mymap5 = Map(
+            identifier="view-side",
+            lat= 36.2048,
+            lng= 138.2529,
+            markers=[ i for i in zip(array_latitude, array_longitude)] ,
+            zoom = 4.5  ,
+            style = "height:400px;width:500px;margin:auto;" ,
+            polylines=[polyline5]
+        ) 
 
-
-
-    # print(polyline)
-    # print(len(array_latitude))
-
-    # print(type(array_latitude))
-    # print(array_longitude[0])
-    print("==================== Finished Load ====================")   
-
-
-    return render_template('mapview.html'
-    , country_text = country_text , cate_text = cate_text 
-    , mymap = mymap , mymap2=mymap2 , mymap3=mymap3 , mymap4=mymap4 , mymap5=mymap5
-    , array_latitude=array_latitude , array_longitude=array_longitude
-    , text_date = text_date , text_plcename = text_plcename , text_time = text_time
-    , array_category = array_category, array_location=array_location , array_date= array_date
-    , array_record1=array_record1 , array_record2=array_record2 , array_record3=array_record3 , array_record4=array_record4 , array_record5=array_record5
-    , user1=user1,user2=user2,user3=user3,user4=user4,user5=user5,)
-
-@app.route("/interest", methods=["GET", "POST"])
-def home():
-    with open('categories.json', encoding='utf-8') as data_file:
-        data = json.loads(data_file.read())
-
-
-    with open('countries.json', encoding='utf-8') as country_file:
-        country = json.loads(country_file.read())
-
-    all_interest = [];
-    all_countries = [];
-    arrayTest = ["thai","japan"];
-    country_list =  [d['name'] for d in country] 
-
-    AllBigName = data["response"]["categories"]
-
-    for bigName in AllBigName:
-        big_category = bigName["name"]
-        all_interest.append(big_category)
-        for midName in bigName["categories"]:
-            mid_category = midName["name"]
-            all_interest.append(mid_category)
-            for smallName in midName["categories"]:
-                small_category = smallName["name"]
-                all_interest.append(small_category)
-                for tinyName in smallName["categories"]:
-                    tiny_category = tinyName["name"]
-                    all_interest.append(tiny_category)
-                    
-    country_list.sort()
-    all_interest.sort()
-
-    return render_template('interest.html', all_country_list = country_list ,all_list_interest = all_interest , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
-
-
-
-@app.route("/index2")
-def index():
-    with open('categories.json', encoding='utf-8') as data_file:
-        data = json.loads(data_file.read())
-    all_interest = [];
-    AllBigName = data["response"]["categories"]
-    for bigName in AllBigName:
-        big_category = "Main Categories : " + bigName["name"]
-        all_interest.append(big_category)
-        for midName in bigName["categories"]:
-            mid_category = "  Sub Categories : " + midName["name"]
-            all_interest.append(mid_category)
-            # for smallName in midName["categories"]:
-            #     small_category = "    Small Categories : " + smallName["name"]
-            #     all_interest.append(small_category)
-                # for tinyName in smallName["categories"]:
-                #     tiny_category = "       Current Tiny : " + tinyName["name"]
-                #     all_interest.append(tiny_category)
-  
-    return render_template('index.html' , all_interest = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) )
-
-@app.route("/index2")
-def index3():
-    with open('categories.json', encoding='utf-8') as data_file:
-        data = json.loads(data_file.read())
-    all_interest = [];
-    AllBigName = data["response"]["categories"]
-    for bigName in AllBigName:
-        big_category = "Main Categories : " + bigName["name"]
-        all_interest.append(big_category)
-        for midName in bigName["categories"]:
-            mid_category = "  Sub Categories : " + midName["name"]
-            all_interest.append(mid_category)
-            # for smallName in midName["categories"]:
-            #     small_category = "    Small Categories : " + smallName["name"]
-            #     all_interest.append(small_category)
-                # for tinyName in smallName["categories"]:
-                #     tiny_category = "       Current Tiny : " + tinyName["name"]
-                #     all_interest.append(tiny_category)
-  
-    return render_template('index3.html' , all_interest1 = enumerate(all_interest) , all_interest2 = enumerate(all_interest) , all_interest3 = enumerate(all_interest) , all_interest4 = enumerate(all_interest) , all_interest5 = enumerate(all_interest) )
-
-
-# @app.route("/")
-# def index2():
-#     with open('categories.json', encoding='utf-8') as data_file:
-#         data = json.loads(data_file.read())
-
-#     with open('countries.json', encoding='utf-8') as country_file:
-#         country = json.loads(country_file.read())
-
-#     all_interest = [];
-#     AllBigName = data["response"]["categories"]
-#     for bigName in AllBigName:
-#         big_category = "Main Categories : " + bigName["name"]
-#         all_interest.append(big_category)
-#         for midName in bigName["categories"]:
-#             mid_category = "  Sub Categories : " + midName["name"]
-#             all_interest.append(mid_category)
-#             # for smallName in midName["categories"]:
-#             #     small_category = "    Small Categories : " + smallName["name"]
-#             #     all_interest.append(small_category)
-#                 # for tinyName in smallName["categories"]:
-#                 #     tiny_category = "       Current Tiny : " + tinyName["name"]
-#                 #     all_interest.append(tiny_category)
-#     country_list =  [d['name'] for d in country] 
-#     print (country_list[0])
-#     return render_template('index2.html' , country_list = [d['name'] for d in country] , all_interest1 = enumerate(all_interest) ,  all_interest2 = enumerate(all_interest)  , all_interest3 = enumerate(all_interest)  , all_interest4 = enumerate(all_interest)  , all_interest5 = enumerate(all_interest)    )
-
-@app.route("/search" ,methods=['POST'])
-def search():
-    #take all parameter
-    input_country = request.form['country']
-    interest1 = request.form['interest1']
-    weight1 = request.form['weight1']
-    interest2 = request.form['interest2']
-    weight2 = request.form['weight2']
-    interest3 = request.form['interest3']
-    weight3 = request.form['weight3']
-    interest4 = request.form['interest4']
-    weight4 = request.form['weight4']
-    interest5 = request.form['interest5']
-    weight5 = request.form['weight5']
-
-    input_dict = {}
-    input_dict.update({interest1:weight1})
-    input_dict.update({interest2:weight2})
-    input_dict.update({interest3:weight3})
-    input_dict.update({interest4:weight4})
-    input_dict.update({interest5:weight5})
-    
-    #{'Music Venue' : 1 , 'Food' : 2},'US'
-    #dict_ver = json.loads(input_interest)
-    #print("Result from web"  + input_interest +",Country " + input_country+",Weight " + input_weight)
-    result = "Hey"
-    input = input_country
-    #result = main_v2(dict_ver , input_country)
-    # result = main_v2({'Music Venue' : 1 , 'Food' : 2},'US')
-    return render_template('result.html', result = result , input = input)
-
-
-@app.route("/plot", methods=["GET", "POST"])
-def plot():
-
-    input_interest = request.form['interest']
-    input_country = request.form['country']
-    #{'Music Venue' : 1 , 'Food' : 2},'US'
-    result = main_v2(input_interest , input_country)
-
-    return render_template('plot.html', result = result , input = input)
-
-
+        return render_template("mapview3_ranking5_jp.html"
+        , modify_array_cat5 = modify_array_cat5
+        , modify_array_record5 = modify_array_record5
+        , txt_no_result =txt_no_result
+        , mymap5=mymap5
+        , user5=user5)
 
 
 # Ver 21.6 ANDに対応 main_v2({"Train Station":3 , "Mall" : 3} , "JP")は
@@ -1750,7 +1496,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                 
             # queryの実行
                 print("\nUser:" + u[1])
-                print("from : " + userid_country[int(u[1])][1])
+                print("from : " + userid_country[int(u[1])][1] + userid_country[int(u[1])][2])
                 query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = '          + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
                 #print(query)
 
