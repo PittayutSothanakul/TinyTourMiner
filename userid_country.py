@@ -30,7 +30,7 @@ userid_country = {
 1247: ("MY", "Malaysia", "マレーシア"),
 1478: ("DE", "Germany", "ドイツ"),
 1523: ("CN", "China", "中華人民共和国"),
-1523: ("VE", "Venezuela,  Bolivarian Republic of"),
+1523: ("VE", "Venezuela,  Bolivarian Republic of","ベネズエラ"),
 1546: ("KR", "Korea,  Republic of", "韓国"),
 1658: ("TH", "Thailand", "タイ"),
 1659: ("TH", "Thailand", "タイ"),
