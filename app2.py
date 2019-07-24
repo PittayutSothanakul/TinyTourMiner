@@ -158,6 +158,8 @@ def mapview3():
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
             txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user1)][1])
+            print("Showing User : " + user1)
+
             # txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user1)
 
 
@@ -224,6 +226,7 @@ def mapview3_ranking1():
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
             txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user1)][1])
+            print("Showing User : " + user2)
 
         modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
         modify_array_cat1 = []
@@ -283,6 +286,7 @@ def mapview3_ranking2():
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
             txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user2)][1])
+            print("Showing User : " + user2)
 
         modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
         modify_array_cat2 = []
@@ -340,6 +344,7 @@ def mapview3_ranking3():
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
             txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user3)][1])
+            print("Showing User : " + user3)
 
         
         modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
@@ -398,6 +403,7 @@ def mapview3_ranking4():
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
             txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user4)][1])
+            print("Showing User : " + user4)
 
         modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
         modify_array_cat4 = []
@@ -455,6 +461,7 @@ def mapview3_ranking5():
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
             txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user5)][1])
+            print("Showing User : " + user5)
 
         modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
         modify_array_cat5 = []
