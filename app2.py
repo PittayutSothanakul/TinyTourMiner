@@ -9,32 +9,11 @@ from flask_googlemaps import Map
 import copy
 from userid_country import userid_country
 
-
-
-
 app = Flask(__name__)
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o"
 
 Bootstrap(app)
 GoogleMaps(app, key="AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o")
-
-
-# @app.route("/mapview", methods=["GET", "POST"])
-# def mapview():
-#     # creating a map in the view
-
-#     mymap = Map(
-#         identifier="view-side",
-#         lat= 36.2048,
-#         lng= 138.2529,
-#         markers=[(33.9567931, 131.2709503)] ,
-#         zoom = 4.5  ,
-#         style = "height:400px;width:500px;margin:auto;"
-
-#     )
-
-  
-#     return render_template('mapview.html', mymap=mymap)
 
 age_user = ""
 gender_user = ""
@@ -94,17 +73,15 @@ user5=""
 
 boolean_check_rankings = False
 
+@app.route("/member", methods=["GET", "POST"])
+def member():
+    
+    return render_template('member.html')
+    
 @app.route("/En", methods=["GET", "POST"])
 def start():
     
     return render_template('home.html')
-
-
-@app.route("/", methods=["GET", "POST"])
-def start_jp():
-    
-    return render_template('home_jp.html')
-
 
 @app.route("/form")
 def form():
@@ -542,10 +519,10 @@ def mapview3_ranking5():
 
 
 #========================================================== Version Japan ==========================================================
-@app.route("/member", methods=["GET", "POST"])
-def member():
+@app.route("/", methods=["GET", "POST"])
+def start_jp():
     
-    return render_template('member.html')
+    return render_template('home_jp.html')
 
 @app.route("/form_jp")
 def form_jp():
@@ -1496,7 +1473,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                 
             # queryの実行
                 print("\nUser:" + u[1])
-                print("from : " + userid_country[int(u[1])][1] + userid_country[int(u[1])][2])
+                print("From : " + userid_country[int(u[1])][1] +"   "+ userid_country[int(u[1])][2])
                 query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = '          + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
                 #print(query)
 
