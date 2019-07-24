@@ -1186,9 +1186,9 @@ def show_category():
  
 #    timestamp = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 #    f = open("output_gaterory" +timestamp+ ".txt", "w" ,encoding='utf-8')
-    f = open("output_gaterory.txt", "w" ,encoding='utf-8')
-    for item in all_interest:
-        f.write(item+"\n")  
+    # f = open("output_gaterory.txt", "w" ,encoding='utf-8')
+    # for item in all_interest:
+    #     f.write(item+"\n")  
  
 # take_input() はUserが指定するカテゴリー名及びその下階層のサブカテゴリーを全て出力
 # tiny_category(Categoryの4階層目)に適用できるようにDebugした
@@ -1417,13 +1417,6 @@ def visualize(person, country, rankings,all_interest,original_input):
 
     timestamp = datetime.now().strftime("%Y%m%d_%H_%M_%S") 
     f = open("output_result " + timestamp + ".txt", "w" ,encoding='utf-8')
-    f2 = open("output_result2 " + timestamp + ".txt", "w" ,encoding='utf-8')
-    f3 = open("output_result3 " + timestamp + ".txt", "w" ,encoding='utf-8')
-#    f = open("output_result.txt", "w" ,encoding='utf-8')
-#    f2 = open("output_result2.txt", "w" ,encoding='utf-8')
-
-
-
 
     #PROJECT_ID = 'tour-miner-project'
 #    SERVICE_ACCOUNT = 'bigquery-admin@tour-miner-project-2019.iam.gserviceaccount.com'
@@ -1432,36 +1425,15 @@ def visualize(person, country, rankings,all_interest,original_input):
     client = get_client(json_key_file=JSON_KEY_PATH, readonly=True)
        
     #Interest Keyとその重みを表示
+
+    f.write("User Gender : "+gender_user + "\nAge : " + age_user+"\n")
+    f.write("Interest : ")
+    for item in interest_array_user:
+        f.write("%s ," % item)
+    f.write("\nRegion : " + region_user +"\n")
+    f.write("\n")
     print("Matched Interested Category: ") 
-    for key , value in all_interest.items():
-        sys.stdout.write(key + ":" +str(value) +",")
-#    print("\n")
-    
-# Output2への書き込み用； Interest Keyとその重みをHeaderとして書き込む
-    f2.write("Input Country from User: " + country + "\n")
-    f2.write("Input Interested Category from User: ")
-    for key , value in original_input.items():
-        f2.write(key + ":" +str(value) +",")
-    f2.write("\nMatched Interested Category: \n") 
-    for key , value in all_interest.items():
-        f2.write(key + ":" +str(value) +",")
-    f2.write("\n \n")
-    f2.write("Top Rankings (Similarity,User Name): " + str(rankings)+ "\n \n")
-    
-    
-    
-#Output 3 
-    f3.write("Input Country from User: " + country + "\n")
-    f3.write("Input Interested Category from User: ")
-    for key , value in original_input.items():
-        f3.write(key + ":" +str(value) +",")
-    f3.write("\nMatched Interested Category: \n") 
-    for key , value in all_interest.items():
-        f3.write(key + ":" +str(value) +",")
-    f3.write("\n \n")
-    f3.write("Top Rankings (Similarity,User Name): " + str(rankings)+ "\n \n")
-
-
+    f.write("Matched Interested Category: ") 
 
     # print(len(rankings))
     ranking_number = 0
@@ -1485,7 +1457,10 @@ def visualize(person, country, rankings,all_interest,original_input):
                 
             # queryの実行
                 print("\nUser:" + u[1])
+                f.write("\nUser:" + u[1])
                 print("From : " + userid_country[int(u[1])][1] +"   "+ userid_country[int(u[1])][2])
+                f.write("\nFrom : " + userid_country[int(u[1])][1] +"   "+ userid_country[int(u[1])][2] + "\n")
+
                 query = 'SELECT VENUE_ID, LATITUDE, LONGITUDE, COUNTRY, HOME, CATEGORY, DATE FROM dataset_TIST2015.Checkins_POIs_Travel_marked WHERE USER_ID = '          + u[1] + ' and TRAVEL = 1 and COUNTRY = \'' + country + '\''
                 #print(query)
 
@@ -1569,14 +1544,16 @@ def visualize(person, country, rankings,all_interest,original_input):
                             counter = weight
 
                     if(ranking_number==0) :
+                        f.write("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2+"\n")
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record1 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude.append(str(float(q['LATITUDE'])))
                         array_longitude.append(str(float(q['LONGITUDE'])))
                         array_cat1.append(q['CATEGORY'])
                         array_record1.append(travel_record1)
-
+                        
                     elif(ranking_number==1) :
+                        f.write("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2+"\n")
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record2 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude2.append(str(float(q['LATITUDE'])))
@@ -1585,6 +1562,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                         array_record2.append(travel_record2)
 
                     elif(ranking_number==2) :
+                        f.write("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2+"\n")
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record3 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude3.append(str(float(q['LATITUDE'])))
@@ -1593,6 +1571,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                         array_record3.append(travel_record3)
 
                     elif(ranking_number==3) :
+                        f.write("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2+"\n")                       
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record4 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude4.append(str(float(q['LATITUDE'])))
@@ -1601,6 +1580,7 @@ def visualize(person, country, rankings,all_interest,original_input):
                         array_record4.append(travel_record4)
 
                     elif(ranking_number==4) :
+                        f.write("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2+"\n")
                         print("Date : " + text_date + " " + "Time : " + text_time +" "+ "Category : " + q['CATEGORY'] + " " + "Place Name : " + location_name2 )
                         travel_record5 = ("Date : " + text_date + "\n" + "Name : " + location_name2  +"\n" + "Time : " + text_time)
                         array_latitude5.append(str(float(q['LATITUDE'])))
@@ -1614,17 +1594,14 @@ def visualize(person, country, rankings,all_interest,original_input):
 
 
 
-
         #          print(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + q['VENUE_ID'])
             
     # Output1へ書き込み:主観的評価用（岡部さん用）:ここから
-                f = open("output_result " + timestamp + ".txt", "a" ,encoding='utf-8')
-    #          f = open("output_result.txt", "a" ,encoding='utf-8')
+
                 
-                writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter) + ", Similarity:" + str("{0:.4f}".format(u[0])))  
-        #          writing_information =(q['DATE'] + ',' + q['CATEGORY'] + ',' + str(q['LONGITUDE']) + ',' + str(q['LATITUDE']) + ',' + get_venue_name_from_venue_id(q['VENUE_ID']) + ",weight:" + str(counter))  
-                f.write(("user:" + u[1]) + ', ')  
-                f.write(writing_information+"\n")  
+                # writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter) + ", Similarity:" + str("{0:.4f}".format(u[0])))  
+                # f.write(("user:" + u[1]) + ', ')  
+                # f.write(writing_information+"\n")  
     # Output1へ書き込み：ここまで
             
     # Output2へ書き込み:客観的評価用（パッタラ用）:ここから          
@@ -1638,20 +1615,10 @@ def visualize(person, country, rankings,all_interest,original_input):
                             total_weight += weight
                 previous_venue = q['VENUE_ID']
                 previous_date = q['DATE']
-                
-                writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
-                f2.write(("user:" + u[1]) + ',')  
-                f2.write(writing_information+"\n") 
-                
-                if (counter>0):
-                    writing_information =(q['DATE'] + ', ' + q['CATEGORY'] + ', ' + location_name + ", Weight:" + str(counter))  
-                    f3.write(("user:" + u[1]) + ',')  
-                    f3.write(writing_information+"\n") 
-                
-                
-                f2.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + ", Number of correspond place = "+ str(time_counter) + "\n \n")
-                f3.write("Sum Weight = " + str(total_weight) + ", Similarity = " + str("{0:.4f}".format(u[0])) + "\n \n")
+                                
         ranking_number = ranking_number + 1
+        f.write("\n")
+    f.close() 
 
 
 #   上記Debug用  
