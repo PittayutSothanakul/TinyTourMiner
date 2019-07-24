@@ -63,7 +63,7 @@
         </div>
         <br>
         <br>
-                <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user5}} -->
+                <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user3}} -->
                 {% autoescape false %}
                       <h1 style='font-size:25px;'>{{txt_no_result}}</h1>
                 {% endautoescape %}
@@ -75,7 +75,7 @@
         <div class = "row">
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Map">
-                        {{ mymap5.html }}{{ mymap5.js}}
+                        {{ mymap3.html }}{{ mymap3.js}}
                     </div>
                 </div>
 
@@ -84,14 +84,14 @@
                             <div class='row'>
                                 <div class='col-sm-2'>
                                         
-                                        {%for i in modify_array_cat5 %} 
+                                        {%for i in modify_array_cat3 %} 
                                             {% autoescape false %}
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
                                             {% endautoescape %}
                                         {%endfor%}
                                 </div>
                                 <div class='col-sm-10'>
-                                        {%for i in modify_array_record5 %} 
+                                        {%for i in modify_array_record3 %} 
                                             {% autoescape false %}
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
                                             {% endautoescape %}
@@ -108,20 +108,20 @@
 
         <div class = "row">
           <div class = "col align-self-center">
-                <form action="/En" method="post" style="text-align:center;display:inline;padding: 35px">
-                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="Home">
+                <form action="/" method="post" style="text-align:center;display:inline;padding: 35px">
+                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="ホーム">
                 </form>
 
-                <form action="/mapview3_ranking4" method="post" style="text-align:center;display:inline;padding: 35px">
+                <form action="/mapview3_ranking2_jp" method="post" style="text-align:center;display:inline;padding: 35px">
                     <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="<-">
                 </form>
 
-                <form action="/mapview3_ranking1" method="post" style="text-align:center;display:inline;padding: 35px">
+                <form action="/mapview3_ranking4_jp" method="post" style="text-align:center;display:inline;padding: 35px">
                     <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="->">
                 </form>
 
                 <form action="/member" method="get" style="text-align:center;display:inline;padding: 35px">
-                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="Member">
+                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="メンバー">
                 </form>
           </div>
 

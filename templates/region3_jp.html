@@ -152,7 +152,7 @@
                             <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="戻る">
                         </form>
               
-                        <form action="/mapview3" method="post" style="text-align:center;display:inline;padding: 35px">
+                        <form action="/mapview3_jp" method="post" style="text-align:center;display:inline;padding: 35px">
 
                             <h3 style="text-align:center; font-size: 15px;display: none"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
                             </h3>
@@ -192,7 +192,7 @@
           loading.style.display = "block";
           map.style.display = "none";
           // next_button.disabled = true;
-          head_text.innerHTML = "Loading For Your Result.";
+          head_text.innerHTML = "結果を読み込む.";
           regionEx_id.style.display = "none";
 
         } else {
@@ -214,83 +214,112 @@
     var boolean_chugoku = false
     var boolean_kyushu = false
     var str_array = [];
+    var str_array_jp = [];
+
 
     function region_hokkaido() {
       if(!boolean_hokkaido){
         boolean_hokkaido = true
         str_array.push("Hokkaido")
+        str_array_jp.push("北海道")
       }else {
         boolean_hokkaido = false
         str_array = str_array.filter(x=> x !== "Hokkaido") 
+        str_array_jp = str_array_jp.filter(x=> x !== "北海道") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
     function region_tohoku() {
       if(!boolean_tohoku){
         boolean_tohoku = true
         str_array.push("Tohoku")
+        str_array_jp.push("東北")
+
       }else {
         boolean_tohoku = false
         str_array = str_array.filter(x=> x !== "Tohoku") 
+        str_array_jp = str_array_jp.filter(x=> x !== "東北") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
     function region_kanto() {
       if(!boolean_kanto){
         boolean_kanto = true
         str_array.push("Kanto")
+        str_array_jp.push("関東")
+
       }else {
         boolean_kanto = false
         str_array = str_array.filter(x=> x !== "Kanto") 
+        str_array_jp = str_array_jp.filter(x=> x !== "関東") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
     function region_chubu() {
       if(!boolean_chubu){
         boolean_chubu = true
         str_array.push("Chubu")
+        str_array_jp.push("中部")
+
       }else {
         boolean_chubu = false
         str_array = str_array.filter(x=> x !== "Chubu") 
+        str_array_jp = str_array_jp.filter(x=> x !== "中部") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
     function region_kansai() {
       if(!boolean_kansai){
         boolean_kansai = true
         str_array.push("Kinki")
+        str_array_jp.push("関西")
+
       }else {
         boolean_kansai = false
         str_array = str_array.filter(x=> x !== "Kinki") 
+        str_array_jp = str_array_jp.filter(x=> x !== "関西") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
     function region_chugoku() {
       if(!boolean_chugoku){
         boolean_chugoku = true
         str_array.push("Chugoku")
+        str_array_jp.push("中国")
+
       }else {
         boolean_chugoku = false
         str_array = str_array.filter(x=> x !== "Chugoku") 
+        str_array_jp = str_array_jp.filter(x=> x !== "中国") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
     function region_kyushu() {
       if(!boolean_kyushu){
         boolean_kyushu = true
         str_array.push("Kyushu")
+        str_array_jp.push("九州")
+
       }else {
         boolean_kyushu = false
         str_array = str_array.filter(x=> x !== "Kyushu") 
+        str_array_jp = str_array_jp.filter(x=> x !== "九州") 
+
       }
       region_id.value = str_array
-      regionEx_id.value = str_array
+      regionEx_id.value = str_array_jp
     }
 
     cat_array = []

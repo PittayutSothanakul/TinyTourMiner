@@ -77,7 +77,7 @@ boolean_check_rankings = False
 def member():
     
     return render_template('member.html')
-    
+
 @app.route("/En", methods=["GET", "POST"])
 def start():
     
@@ -516,8 +516,6 @@ def mapview3_ranking5():
 
 
 
-
-
 #========================================================== Version Japan ==========================================================
 @app.route("/", methods=["GET", "POST"])
 def start_jp():
@@ -604,7 +602,11 @@ def mapview3_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user1)][2])
+            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            + "これは"
+            + userid_country[int(user1)][2]
+            + "からの旅行者のものです")
+
             print("Showing User : " + user1)
             # txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user1)
 
@@ -664,8 +666,10 @@ def mapview3_ranking1_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user1)][2])
-            print("Showing User : " + user2)
+            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            + "これは"
+            + userid_country[int(user1)][2]
+            + "からの旅行者のものです")
 
         modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
         modify_array_cat1 = []
@@ -722,8 +726,10 @@ def mapview3_ranking2_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user2)][2])
-            print("Showing User : " + user2)
+            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            + "これは"
+            + userid_country[int(user2)][2]
+            + "からの旅行者のものです")
 
         modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
         modify_array_cat2 = []
@@ -778,8 +784,10 @@ def mapview3_ranking3_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user3)][2])
-            print("Showing User : " + user3)
+            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            + "これは"
+            + userid_country[int(user3)][2]
+            + "からの旅行者のものです")
 
         
         modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
@@ -835,8 +843,10 @@ def mapview3_ranking4_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user4)][2])
-            print("Showing User : " + user4)
+            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            + "これは"
+            + userid_country[int(user4)][2]
+            + "からの旅行者のものです")
 
         modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
         modify_array_cat4 = []
@@ -891,8 +901,10 @@ def mapview3_ranking5_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','Map and Travel From Traveler : '+ userid_country[int(user5)][2])
-            print("Showing User : " + user5)
+            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            + "これは"
+            + userid_country[int(user5)][2]
+            + "からの旅行者のものです")
 
         modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
         modify_array_cat5 = []
