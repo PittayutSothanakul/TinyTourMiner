@@ -602,10 +602,10 @@ def mapview3_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            txt_no_result = txt_no_result.replace('\n','<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>見</rb><rt>み</rt></ruby>つけました．'
             + "これは"
             + userid_country[int(user1)][2]
-            + "からの旅行者のものです")
+            + "からの<ruby><rb>旅行者</rb><rt>りょこうしゃ</rt></ruby>のものです")
 
             print("Showing User : " + user1)
             # txt_no_result = txt_no_result.replace('\n','Map and Travel record of User:'+ user1)
@@ -666,10 +666,10 @@ def mapview3_ranking1_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            txt_no_result = txt_no_result.replace('\n','<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>見</rb><rt>み</rt></ruby>つけました．'
             + "これは"
             + userid_country[int(user1)][2]
-            + "からの旅行者のものです")
+            + "からの<ruby><rb>旅行者</rb><rt>りょこうしゃ</rt></ruby>のものです")
 
         modify_array_record1 = [w.replace('\n','<br>') for w in array_record1]
         modify_array_cat1 = []
@@ -726,10 +726,10 @@ def mapview3_ranking2_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            txt_no_result = txt_no_result.replace('\n','<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>見</rb><rt>み</rt></ruby>つけました．'
             + "これは"
             + userid_country[int(user2)][2]
-            + "からの旅行者のものです")
+            + "からの<ruby><rb>旅行者</rb><rt>りょこうしゃ</rt></ruby>のものです")
 
         modify_array_record2 = [w.replace('\n','<br>') for w in array_record2]
         modify_array_cat2 = []
@@ -784,10 +784,10 @@ def mapview3_ranking3_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            txt_no_result = txt_no_result.replace('\n','<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>見</rb><rt>み</rt></ruby>つけました．'
             + "これは"
             + userid_country[int(user3)][2]
-            + "からの旅行者のものです")
+            + "からの<ruby><rb>旅行者</rb><rt>りょこうしゃ</rt></ruby>のものです")
 
         
         modify_array_record3 = [w.replace('\n','<br>') for w in array_record3]
@@ -843,10 +843,10 @@ def mapview3_ranking4_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            txt_no_result = txt_no_result.replace('\n','<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>見</rb><rt>み</rt></ruby>つけました．'
             + "これは"
             + userid_country[int(user4)][2]
-            + "からの旅行者のものです")
+            + "からの<ruby><rb>旅行者</rb><rt>りょこうしゃ</rt></ruby>のものです")
 
         modify_array_record4 = [w.replace('\n','<br>') for w in array_record4]
         modify_array_cat4 = []
@@ -901,10 +901,10 @@ def mapview3_ranking5_jp():
         if(boolean_check_rankings== True):
             txt_no_result = txt_no_result.replace('\n','No Result That Match Your Interest')
         else :
-            txt_no_result = txt_no_result.replace('\n','興味に合った旅行記録を見つけました : '
+            txt_no_result = txt_no_result.replace('\n','<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>見</rb><rt>み</rt></ruby>つけました．'
             + "これは"
             + userid_country[int(user5)][2]
-            + "からの旅行者のものです")
+            + "からの<ruby><rb>旅行者</rb><rt>りょこうしゃ</rt></ruby>のものです")
 
         modify_array_record5 = [w.replace('\n','<br>') for w in array_record5]
         modify_array_cat5 = []

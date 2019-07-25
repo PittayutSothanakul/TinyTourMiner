@@ -80,26 +80,29 @@
                 </div>
 
                 <div class = "col align-self-center">
-                    <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
-                            <div class='row'>
-                                <div class='col-sm-2'>
-                                        
-                                        {%for i in modify_array_cat5 %} 
-                                            {% autoescape false %}
-                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
-                                            {% endautoescape %}
-                                        {%endfor%}
-                                </div>
-                                <div class='col-sm-10'>
-                                        {%for i in modify_array_record5 %} 
-                                            {% autoescape false %}
-                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
-                                            {% endautoescape %}
-                                        {%endfor%}
-                                </div>
-                            </div>
 
-                    </div>
+                        <div class="container">
+                            <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
+    
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                            {%for i in modify_array_cat5 %} 
+                                                {% autoescape false %}
+                                                    <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                                {% endautoescape %}
+                                            {%endfor%}
+                                    </div>
+                                    <div class="col-sm-10">
+                                            {%for i in modify_array_record5 %} 
+                                                {% autoescape false %}
+                                                    <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                                {% endautoescape %}
+                                            {%endfor%}
+                                    </div>
+
+                                </div>
+                            </div>    
+                        </div>      
                 </div>
         </div>
 
