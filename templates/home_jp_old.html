@@ -13,19 +13,6 @@
     text-align:center;
     }
 
-    .title {
-  padding: 10px;
-  text-align: center;
-  max-width: 800px;
-  margin: auto;
-  }
-    .yamame {
-  padding: 0px;
-  text-align: center;
-  max-width: 500px;
-  margin: auto;
-  }
-
     .header {
   padding: 10px;
   text-align: center;
@@ -33,21 +20,11 @@
   color: white;
   }
 
-    .command {
-   position: fixed;
-   left: 0;
-   bottom: 30px;
-   width: 100%;
-   padding: 0px;
-   text-align: center;  
-    }
-
     .footer {
    position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
-   padding: 0px;
    background-color: #56813A;
    color: white;
    text-align: center;  
@@ -64,54 +41,49 @@
     <div class = "styleCenter">
         <div class = "row">
             <div class = "col align-self-center">
-                    <div class ="title">
-			<IMG SRC="/static/index.png" width=100%>
-<!--
                     <div class ="header">
                             <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
--->
                     </div>
             </div>
         </div>
         <br>
-        <br><h1 style=" font-size: 20px; width: 80%; text-align: left; margin: auto"><ruby><rb>Tour Miner</rb><rt>ツアー・マイナー</rt></ruby>はインターネットに<ruby><rb>蓄積</rb><rt>ちくせき</rt></ruby>された<ruby><rb>無数</rb><rt>むすう<rt/></ruby>の<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>から<ruby><rb>個人</rb><rt>こじん</rt></ruby>の<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>発掘</rb><rt>はっくつ</rt></ruby>するシステムです。</h1></br>
+        <br><h1 style=" font-size: 20px;">Tour Minerはインターネットに蓄積された無数の旅行記録から個人の興味に合った旅行記録を発掘するシステムです。</h1></br>
 
         <br><br>
         <div class = "row">
                 <div class = "col align-self-center">
                     <!-- <img src ="./static/image/YamaMe.jpg"/> -->
-		<a href="/member">`
-                    <img src="{{url_for('static', filename='YamaMe.jpg')}}" />
-                </a>
+                    <img src="{{url_for('static', filename='YamaMe.jpg')}}"/>
 
                     <!-- <img src = "YamaMe.jpg"> -->
                 </div>
         </div>
-        <br><br>
-        <div class="command">
+        <br><br><br><br>
+        <div class = "row">
+                <div class = "col align-self-center">
                         <!-- <form action="/interest" method="get" style="text-align:center">
                             <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="StartOld">
                         </form> -->
                        <form action="/form_jp" method="get" style="text-align:center;display:inline;padding: 35px">
-                          <input type="submit" style="background-color:#56813A;color:white;width:150px;height:40px;font-size:20px" value="はじめる">
+                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="はじめる">
                        </form>
-<!--
+
                        <form action="/member" method="get" style="text-align:center;display:inline;padding: 35px">
                           <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="メンバー">
                        </form>
--->
+                </div>
 
                 <!-- <div class = "col align-self-center">
                     <form action="/interest2" method="get" style="text-align:center">
                         <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="StartInterest2">
                     </form>
                 </div> -->
-        </div>
                 
-        <div class="footer">
+        </div>
 
+        <div class="footer">
             <br>
-            <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi  Lab., All Rights Reserved</h1>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
             <br>   
         </div>
     </div>

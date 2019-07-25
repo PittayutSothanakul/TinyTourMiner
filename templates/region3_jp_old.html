@@ -20,21 +20,6 @@
       background: #56813A;
       color: white;
     }
-    .title {
-  padding: 5px;
-  text-align: center;
-  max-width: 500px;
-  margin: auto;
-  }
-    .command {
-   position: fixed;
-   left: 0;
-   bottom: 30px;
-   width: 100%;
-   padding: 0px;
-   text-align: center;
-    }
-
 
       .footer {
       position: fixed;
@@ -90,25 +75,21 @@
     <div class = "styleCenter">
         <div class = "row">
             <div class = "col align-self-center">
-<!--
                     <div class ="header">
                             <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
                     </div>
--->
-                    <div class ="title">
-                        <IMG SRC="/static/headder.png" width=100%>
-                   </div>
             </div>
         </div>
-
         <br>
-        <div style="overflow-y: height:600px;">
+        
+        <br>
+        <div style="overflow-y: scroll; height:600px;">
 
               <div class = "row">
 
                 <div class = "col align-self-center">
                     <div class = "col align-self-center">
-                        <h1 id="head_text" style=" font-size: 20px;"><ruby><rb>地域</rb><rt>ちいき</rt></ruby>を<ruby><rb>選</rb><rt>えら</rt></ruby>んで<ruby><rb>下</rb><rt>くだ</rt><ruby>さい（<ruby><rb>複数選</rb><rt>ふくすうえら</rt></ruby>べます）<form>
+                        <h1 id="head_text" style=" font-size: 20px;">地域を選んで下さい<form>
                             <!-- <h3 style="text-align:center; font-size: 20px;"><input style="width:300px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region"> -->
                         </form></h1>                        
                     </div>
@@ -161,23 +142,24 @@
                     
               <br>
 
-              <div class = "command">
-                        <form action="/" method="post" style="text-align:center;display:inline;padding: 5px">
-<input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="はじめ">
+              <div class = "row">
+                  <div class = "col align-self-center">
+                        <form action="/" method="post" style="text-align:center;display:inline;padding: 35px">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="ホーム" >
                         </form>
 
-                        <form action="/interest3_jp" method="GET" style="text-align:center;display:inline;padding: 5px">
-			    <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="もどる">
+                        <form action="/form_jp" method="GET" style="text-align:center;display:inline;padding: 35px">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="戻る">
                         </form>
               
-                        <form action="/mapview3_jp" method="post" style="text-align:center;display:inline;padding: 5px">
+                        <form action="/mapview3_jp" method="post" style="text-align:center;display:inline;padding: 35px">
 
                             <h3 style="text-align:center; font-size: 15px;display: none"><input style="width:400px; " id="myInputRegions" type="text" name="interest_region" placeholder="Please select region" readonly>
                             </h3>
-                            <input type="submit"onclick="return IsEmpty()" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="つぎへ">
-
+                            <input type="submit" id= "nextButton"onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="次へ">
                         </form>
 
+                  </div>
               </div>
 
               <br>
@@ -186,7 +168,7 @@
 
         <div class="footer">
             <br>
-                <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi Laboratory, All Rights Reserved</h1>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
             <br>   
         </div>
     </div>
@@ -210,7 +192,7 @@
           loading.style.display = "block";
           map.style.display = "none";
           // next_button.disabled = true;
-          head_text.innerHTML = "インターネットから<ruby><rb>発掘</rb><rt>はっくつ</rt></ruby>しています";
+          head_text.innerHTML = "結果を読み込む.";
           regionEx_id.style.display = "none";
 
         } else {

@@ -20,22 +20,6 @@
       background: #56813A;
       color: white;
     }
-    .title {
-  padding: 5px;
-  text-align: center;
-  max-width: 500px;
-  margin: auto;
-  }
-
-   .command {
-   position: fixed;
-   left: 0;
-   bottom: 30px;
-   width: 100%;
-   padding: 0px;
-   text-align: center;
-    }
-
 
       .footer {
       position: fixed;
@@ -65,7 +49,7 @@
     .button {
         border: none;
         /* color: black; */
-        padding: 15px 20px;
+        padding: 15px 32px;
         /* background-color: #e7e7e7; */
         text-align: center;
         text-decoration: none;
@@ -91,23 +75,19 @@
     <div class = "styleCenter">
         <div class = "row">
             <div class = "col align-self-center">
-<!--
                     <div class ="header">
                             <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
                     </div>
--->
-                    <div class ="title">
-                        <IMG SRC="/static/headder.png" width=100%>
-		   </div> 
             </div>
         </div>
+        <br>
         
         <br>
-        <div style="overflow-y: height:600px;">
+        <div style="overflow-y: scroll; height:600px;">
 
               <div class = "row">
                   <div class = "col align-self-center">
-                      <h1 style=" font-size: 20px;"> <ruby><rb>興味</rb><rt>きょうみ</rt></ruby>があるものを<ruby><rb>選</rb><rt>えら</rt></ruby>んで<ruby><rb>下</rb><rt>くだ</rt></ruby>さい（<ruby><rb>複数選</rb><rt>ふくすうえら</rt></ruby>べます）<form>
+                      <h1 style=" font-size: 20px;"> 興味を選んでください<form>
                           <!-- <h3 style="text-align:center; font-size: 20px;"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category">
                           </h3> -->
                       </form></h1>
@@ -125,34 +105,34 @@
                         <div class="row">
                             <div class = "col align-self-center">
                               
-                              <button class="button button_white" id = "button_1"  onclick="myFunction()"><img src="/static/Temple.png" width="30" height="30" > <ruby><rb>寺</rb><rt>てら</rt></ruby></button>
+                              <button class="button button_white" id = "button_1"  onclick="myFunction()"><img src="/static/Temple.png" width="30" height="30" > 寺</button>
                               <!-- style="background: url('/static/Temple.png'); background-size: 50px 55px;" -->
-                              <button class="button button_white" id = "button_2"  onclick="myFunction2()"><img src="/static/Shrine.png" width="30" height="30" > <ruby><rb>神社</rb><rt>じんじゃ</rt></ruby></button>
+                              <button class="button button_white" id = "button_2"  onclick="myFunction2()"><img src="/static/Shrine.png" width="30" height="30" > 神社</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "button_3" onclick="myFunction3()"><img src="/static/Castle.png" width="30" height="30" > <ruby><rb>城</rn><rt>しろ</rt></ruby></button>
-                                <button class="button button_white" id = "button_4" onclick="myFunction4()"><img src="/static/Historic Site.png" width="30" height="30" > <ruby><rb>歴史</rb><rt>れきし</rt></ruby></button>
+                                <button class="button button_white" id = "button_3" onclick="myFunction3()"><img src="/static/Castle.png" width="30" height="30" > 城</button>
+                                <button class="button button_white" id = "button_4" onclick="myFunction4()"><img src="/static/Historic Site.png" width="30" height="30" > 歴史</button>
                               <!-- <button class="button button_black">Museum2</button> -->
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "button_5" onclick="myFunction5()"><img src="/static/Museum.png" width="30" height="30" > <ruby><rb>博物館</rb><rt>はくぶつかん</rt></ruby></button>
+                                <button class="button button_white" id = "button_5" onclick="myFunction5()"><img src="/static/Museum.png" width="30" height="30" > 博物館</button>
                                 <button class="button button_white" id = "button_6" onclick="myFunction6()"><img src="/static/Theme Park.png" width="25" height="30" > テーマパーク</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center">
-                                <button class="button button_white" id = "button_7" onclick="myFunction7()"><img src="/static/Mall.png" width="40" height="30" > <ruby><rb>買い物</rb><rt>かいもの</rt></ruby></button>
-                                <button class="button button_white" id = "button_8" onclick="myFunction8()"><img src="/static/Japanese Restaurant.png" width="30" height="30" > <ruby><rb>食事</rb><rt>しょくじ</rt></ruby></button>
+                                <button class="button button_white" id = "button_7" onclick="myFunction7()"><img src="/static/Mall.png" width="40" height="30" > 買い物</button>
+                                <button class="button button_white" id = "button_8" onclick="myFunction8()"><img src="/static/Japanese Restaurant.png" width="30" height="30" > 食事</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class = "col align-self-center"> 
-                                <button class="button button_white" id = "button_9" onclick="myFunction9()"><img src="/static/BaseballStadium.png" width="30" height="30" > <ruby><rb>野球</rb><rt>やきゅう</rt></ruby></button>
-                                <button class="button button_white" id = "button_10" onclick="myFunction10()"><img src="/static/Garden.png" width="30" height="30" > <ruby><rb>庭園</rB><rt>ていえん</rt></ruby></button>
+                                <button class="button button_white" id = "button_9" onclick="myFunction9()"><img src="/static/BaseballStadium.png" width="30" height="30" > 野球</button>
+                                <button class="button button_white" id = "button_10" onclick="myFunction10()"><img src="/static/Garden.png" width="30" height="30" > 庭園</button>
                             </div>
                         </div>
                         <br>
@@ -162,31 +142,35 @@
 
               </div>
 
-        </div>
                     
+              <br>
 
-        <div class = "command">
+              <div class = "row">
+                  <div class = "col align-self-center">
+                          <form action="/" method="post" style="text-align:center;display:inline;padding: 35px">
+                              <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="ホーム" >
+                          </form>
 
-                        <form action="/" method="get" style="text-align:center;display:inline;padding: 5px">
-                          <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="はじめ">
+                          <form action="/form_jp" method="GET" style="text-align:center;display:inline;padding: 35px">
+                              <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="戻る">
+                          </form>
+              
+                        <form action="/region3_jp" method="post" style="text-align:center;display:inline;padding: 35px">
+
+                            <h3 style="text-align:center; font-size: 15px;display: none"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
+                            </h3>
+                            <input type="submit" onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="次へ">
                         </form>
+                  </div>
+              </div>
 
-                        <form action="/form_jp" method="get" style="text-align:center;display:inline;padding: 5px">
-                            <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="もどる">
-                        </form>
-
-                        <form action="/region3_jp" method="POST" style="text-align:center;display:inline;padding: 5px">
-
-                            <input type="submit"onclick="return IsEmpty()" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="つぎへ">
-			    <h3 style="text-align:center; font-size: 15px;display: none"><input  style="width:300px;" id="myInputCategories" type="text" name="interest_category" placeholder="Please select category" readonly>
-			    <h3>
-                        </form>
+              <br>
 
         </div>
 
         <div class="footer">
             <br>
-                <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi Laboratory, All Rights Reserved</h1>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
             <br>   
         </div>
     </div>
@@ -207,7 +191,7 @@
     
     function IsEmpty(){
       if(document.getElementById("myInputCategories").value === "" ){
-          alert("興味のあるものを選んで下さい");
+          alert("Please Select Your Interest Category");
           return false;
       }
           return true;

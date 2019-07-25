@@ -19,21 +19,6 @@
   background: #56813A;
   color: white;
   }
-    .title {
-  padding: 5px;
-  text-align: center;
-  max-width: 500px;
-  margin: auto;
-  }
-
-    .command {
-   position: fixed;
-   left: 0;
-   bottom: 30px;
-   width: 100%;
-   padding: 0px;
-   text-align: center;
-    }
 
     .footer {
    position: fixed;
@@ -48,16 +33,16 @@
     .button {
         border: none;
         /* color: black; */
-        padding: 5px 10px;
+        padding: 15px 32px;
         /* background-color: #e7e7e7; */
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 15px;
         margin: 4px 2px;
+        height: 100px;
         cursor: pointer;
         width:200px;
-        height:50px;
     }
 
     .button_white {background-color: #e7e7e7; color: black;} /* Gray */ 
@@ -74,18 +59,15 @@
     <div class = "styleCenter">
         <div class = "row">
             <div class = "col align-self-center">
-<!--
                     <div class ="header">
                             <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
-		    </div>
--->
-                    <div class ="title">
-                        <IMG SRC="/static/headder.png" width=100%>
                     </div>
             </div>
         </div>
-        <br><h1 style=" font-size: 20px;">まず、あなたのことについて<ruby><rb>教</rb><rt>おし</rt></ruby>えて<ruby><rb>下</rb><rt>くだ</rt></ruby>さい</h1></br>
+        <br>
+        <br><h1 style=" font-size: 20px;">まず、あなたのことについて教えて下さい</h1></br>
         <!-- <img style="width: 70px" src ="/static/YamaMe.jpg"/> -->
+        <br>
         <br>
 
         <div class = "row">
@@ -93,10 +75,10 @@
                     
                     <div class="row">
                             <div class = "col align-self-center">
-                              <h1 style=" font-size: 20px;"><ruby><rb>性別</rb><rt>せいべつ</rt></ruby><br>
-                              <button class="button button_white" id = "button_male"  onclick="clicked_male()"><img src="/static/boy.png" width="20" height="20" > <ruby><rb>男</rb><rt>おとこ</rt></ruby></button>
+                              <h1 style=" font-size: 20px;"> 性別 :    <br>
+                              <button class="button button_white" id = "button_male"  onclick="clicked_male()"><img src="/static/boy.png" width="20" height="20" > 男</button>
                               <!-- style="background: url('/static/Temple.png'); background-size: 50px 55px;" -->
-                              <button class="button button_white" id = "button_female"  onclick="clicked_female()"><img src="/static/girl.png" width="20" height="20" > <ruby><rb>女</rb><rt>おんな</rt></ruby></button>
+                              <button class="button button_white" id = "button_female"  onclick="clicked_female()"><img src="/static/girl.png" width="20" height="20" > 女</button>
                             </h1>
                             </div>
                     </div>
@@ -104,19 +86,20 @@
       
                     <div class="row">
                             <div class = "col align-self-center">
-                                <h1 style=" font-size: 20px;"> <ruby><rb>年齢</rb><rt>ねんれい</rt></ruby>
-<br>
-                                    <button class="button button_white" id = "button_1"  onclick="myFunction()"> こども<SAMLL>（２０歳未満）</SMALL></button>
-                                    <button class="button button_white" id = "button_2"  onclick="myFunction2()">２０代</button>
-                                    <button class="button button_white" id = "button_3"  onclick="myFunction3()">３０代</button>
-                                    <br>
+                              <h1 style=" font-size: 20px;"> 年齢 :    <br>
+                              <button class="button button_white" id = "button_1"  onclick="myFunction()"> 20歳以下</button>
+                              <button class="button button_white" id = "button_2"  onclick="myFunction2()">20代</button>
+                              <button class="button button_white" id = "button_3"  onclick="myFunction3()"> 30代</button>
 
-                                    <button class="button button_white" id = "button_4"  onclick="myFunction4()"> ４０代</button>
-                                    <button class="button button_white" id = "button_5"  onclick="myFunction5()">５０代</button>
-                                    <button class="button button_white" id = "button_6"  onclick="myFunction6()">６０歳以上</button>
-                                    <br>
-
-                                </h1>
+                            </h1>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class = "col align-self-center">
+                                    <button class="button button_white" id = "button_4"  onclick="myFunction4()">40代</button>
+                                    <button class="button button_white" id = "button_5"  onclick="myFunction5()">50代 </button>
+                                    <button class="button button_white" id = "button_6"  onclick="myFunction6()">60歳以上</button>
+                            </h1>
                             </div>
                     </div>
 
@@ -128,24 +111,24 @@
 
 
 
-        <div class = "command">
+        <div class = "row">
                 <div class = "col align-self-center">
 
-                        <form action="/" method="get" style="text-align:center;display:inline;padding: 5px">
-                          <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="はじめ">
+                        <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
+                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="ホーム">
                         </form>
 
-                        <form action="/" method="get" style="text-align:center;display:inline;padding: 5px">
-                            <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="もどる">
+                        <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
+                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="戻る">
                         </form>
 
-                        <form action="/interest3_jp" method="POST" style="text-align:center;display:inline;padding: 5px">
+                        <form action="/interest3_jp" method="POST" style="text-align:center;display:inline;padding: 35px">
 
                             <h3 style="text-align:center; font-size: 15px;display: none"><input  style="width:300px;" id="myInputGender" type="text" name="input_gender" placeholder="Please select your gender" readonly></h3>
 
                             <h3 style="text-align:center; font-size: 15px;display: none"><input style="width:400px; " id="myInputAge" type="text" name="input_age" placeholder="Please select your age" readonly></h3>
 
-                            <input type="submit"onclick="return IsEmpty()" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="つぎへ">
+                            <input type="submit"onclick="return IsEmpty()" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="次へ">
                         </form>
                 </div>
                 
@@ -153,7 +136,7 @@
 
         <div class="footer">
             <br>
-		<h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi Lab., All Rights Reserved</h1>
+            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
             <br>   
         </div>
     </div>
@@ -185,11 +168,11 @@
     
     function IsEmpty(){
       if(var_gender.value === "" ){
-          alert("性別を選んで下さい");
+          alert("Please Select Your Gender");
           return false;
       }else if(var_age.value === ""){
-        alert("年齢を選ん下さい");
-           return false;
+        alert("Please Select Your Age");
+          return false;
 
       }
           return true;

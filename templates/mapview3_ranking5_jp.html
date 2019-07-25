@@ -33,6 +33,22 @@
   color: white;
   }
 
+    .title {
+  padding: 5px;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  }
+
+    .command {
+   position: fixed;
+   left: 0;
+   bottom: 30px;
+   width: 100%;
+   padding: 0px;
+   text-align: center;
+    }
+
     .footer {
    position: fixed;
    left: 0;
@@ -56,18 +72,29 @@
     <div class = "styleCenter">
         <div class = "row">
             <div class = "col align-self-center">
+<!--
                     <div class ="header">
                             <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
                     </div>
+-->
+                    <div class ="title">
+                        <IMG SRC="/static/headder2.png" width=100%>
+                   </div>
             </div>
         </div>
         <br>
-        <br>
                 <!-- <h1 style=" font-size: 20px;">Map and Travel record of User: {{user5}} -->
                 {% autoescape false %}
-                      <h1 style='font-size:25px;'>{{txt_no_result}}</h1>
+                      <h1 style='font-size:20px;'>{{txt_no_result}}</h1>
                 {% endautoescape %}
-
+                <!-- <select type="text" id="mySelect" onchange="myFunction()">
+                        <option value="user1">{{user1}}</option>
+                        <option value="user2">{{user2}}</option>
+                        <option value="user3">{{user3}}</option>
+                        <option value="user4">{{user4}}</option>
+                        <option value="user5">{{user5}}</option>
+            
+                </select> -->
             </h1>
         </br>
 
@@ -80,64 +107,63 @@
                 </div>
 
                 <div class = "col align-self-center">
-
-                        <div class="container">
-                            <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
-    
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                            {%for i in modify_array_cat5 %} 
-                                                {% autoescape false %}
-                                                    <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
-                                                {% endautoescape %}
-                                            {%endfor%}
-                                    </div>
-                                    <div class="col-sm-10">
-                                            {%for i in modify_array_record5 %} 
-                                                {% autoescape false %}
-                                                    <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
-                                                {% endautoescape %}
-                                            {%endfor%}
-                                    </div>
-
+                    <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
+                            <div class='row'>
+                                <div class='col-sm-2'>
+                                        
+                                        {%for i in modify_array_cat5 %} 
+                                            {% autoescape false %}
+                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                            {% endautoescape %}
+                                        {%endfor%}
                                 </div>
-                            </div>    
-                        </div>      
+                                <div class='col-sm-10'>
+                                        {%for i in modify_array_record5 %} 
+                                            {% autoescape false %}
+                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                            {% endautoescape %}
+                                        {%endfor%}
+                                </div>
+                            </div>
+
+                    </div>
                 </div>
         </div>
 
         <br>
      
 
-        <div class = "row">
-          <div class = "col align-self-center">
-                <form action="/" method="post" style="text-align:center;display:inline;padding: 35px">
-                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="ホーム">
+        <div class = "command">
+              
+                <form action="/" method="post" style="text-align:center;display:inline;padding: 5px">
+                          <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="はじめ">
+                </form>
+<!--
+
+                <form action="/mapview3_ranking5_jp" method="post" style="text-align:center;display:inline;padding: 5px">
+                    <input type="submit"  style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="<-">
+                </form>
+                <form action="/mapview3_ranking2_jp" method="post" style="text-align:center;display:inline;padding: 5px">
+                    <input type="submit"  style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="つぎへ">
+                </form>
+-->
+
+                <form action="/member" method="get" style="text-align:center;display:inline;padding: 5px">
+                    <input type="submit" style="background-color:#56813A;color:white;width:100px;height:40px;font-size:20px;" value="おわり">
                 </form>
 
-                <form action="/mapview3_ranking4_jp" method="post" style="text-align:center;display:inline;padding: 35px">
-                    <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="<-">
-                </form>
-
-                <form action="/mapview3_ranking1_jp" method="post" style="text-align:center;display:inline;padding: 35px">
-                    <input type="submit"  style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:17px;" value="->">
-                </form>
-
-                <form action="/member" method="get" style="text-align:center;display:inline;padding: 35px">
-                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="メンバー">
-                </form>
           </div>
 
         <div class="footer">
             <br>
-            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
+                <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi Laboratory, All Rights Reserved</h1>
             <br>   
         </div>
     </div>
 
 
     <script>
-
+        
     </script>
 
 </body>
