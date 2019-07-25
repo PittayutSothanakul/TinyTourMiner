@@ -86,24 +86,21 @@
                     </div>
                 </div>
 
+
+                
                 <div class = "col align-self-center">
                     <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
                             <div class='row'>
-                                <div class='col-2'>
-                                        
-                                        {%for i in modify_array_cat1 %} 
-                                            {% autoescape false %}
-                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
-                                            {% endautoescape %}
-                                        {%endfor%}
-                                </div>
-                                <div class='col-10'>
-                                        {%for i in modify_array_record1 %} 
-                                            {% autoescape false %}
-                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
-                                            {% endautoescape %}
-                                        {%endfor%}
-                                </div>
+                                    <table style="border:none; padding: 3px;">
+                                            {%for i in range(0,modify_array_cat1|length)%} 
+                                                {% autoescape false %}
+                                                <tr>
+                                                    <th>{{modify_array_cat1[i]}}</th>
+                                                    <th  style='font-size:15px;text-align: left;'>{{modify_array_record1[i]}}</th>
+                                                </tr>
+                                                {% endautoescape %}
+                                            {%endfor%}
+                                    </table>
                             </div>
 
                     </div>

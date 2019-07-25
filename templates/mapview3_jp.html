@@ -60,6 +60,13 @@
    text-align: center;  
     }
 
+    /* .tg  {border-collapse:collapse;border-spacing:0;border:none}
+    .td{font-family:Arial, sans-serif;font-size:14px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-0lax{text-align:left;vertical-align:top} */
+
+
   </style>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -101,20 +108,43 @@
 
 
         <div class = "row">
-                <div class = "col align-self-center">
+                <div class = "col">
                     <div id="Travelrecord_Map">
                         {{ mymap.html }}{{ mymap.js}}
                     </div>
                 </div>
-
-                <div class = "col align-self-center">
-                    <div id="Travelrecord_Text" style="overflow:scroll; height:400px;">
+                
+                <div class = "col">
+                    <div id="Travelrecord_Text" style="overflow:scroll; height:400px; ">
                             <div class='row'>
-                                <div class='col-2'>
+
+                                    <!-- <table class="tg"> -->
+                                    <table style="border:none; padding: 3px;">
+
+                                                {%for i in range(0,modify_array_cat1|length)%} 
+                                                    {% autoescape false %}
+                                                    <tr>
+                                                        <th>{{modify_array_cat1[i]}}</th>
+                                                        <th  style='font-size:15px;text-align: left;'>{{modify_array_record1[i]}}</th>
+                                                    </tr>
+
+                                                    {% endautoescape %}
+                                                {%endfor%}
+                                                
+                                <!-- <div  class='col-2'>
                                         
+                                        {%for i in range(0,modify_array_cat1|length)%} 
+                                            {% autoescape false %}
+                                                <h1 style='font-size:15px;text-align: left;'>{{modify_array_cat1[i]}}</h1>
+                                                <h1 style='font-size:15px;text-align: left;'>{{modify_array_record1[i]}}</h1>
+                                            {% endautoescape %}
+                                        {%endfor%}
+
                                         {%for i in modify_array_cat1 %} 
                                             {% autoescape false %}
-                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
+                                                <h1 style='font-size:15px;text-align: left;'>{{i}}</h1>
+                                                <h1 style='font-size:15px;text-align: left;'>{{modify_array_record1[i]}}</h1>
+
                                             {% endautoescape %}
                                         {%endfor%}
                                 </div>
@@ -124,7 +154,8 @@
                                                 <h1 style='font-size:15px;text-align: left;'>{{i}}</h1><br>
                                             {% endautoescape %}
                                         {%endfor%}
-                                </div>
+                                </div> -->
+                                    </table>
                             </div>
 
                     </div>
