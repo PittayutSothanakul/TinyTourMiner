@@ -19,6 +19,12 @@
   background: #56813A;
   color: white;
   }
+    .title {
+  padding: 5px;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  }
 
     .footer {
    position: fixed;
@@ -28,6 +34,15 @@
    background-color: #56813A;
    color: white;
    text-align: center;  
+    }
+
+    .command {
+   position: fixed;
+   left: 0;
+   bottom: 30px;
+   width: 100%;
+   padding: 0px;
+   text-align: center;
     }
 
     .button {
@@ -56,49 +71,37 @@
 <body>
     
     <div class = "styleCenter">
-        <div class = "row">
+       <div class = "row">
             <div class = "col align-self-center">
+<!--
                     <div class ="header">
                             <br><h1 style=" font-size: 40px; color: white">Tiny Tour Miner</h1></br>
                     </div>
+-->
+                    <div class ="title">
+                        <IMG SRC="/static/headder3.png" width=100%>
+                        <IMG SRC="/static/staff.png" width=100%>
+                   </div>
             </div>
         </div>
-        <br>
-        <br><h1 style=" font-size: 30px;">STAFF</h1></br>
-        <!-- <img style="width: 70px" src ="/static/YamaMe.jpg"/> -->
-        <h style=" font-size: 20px;">PROFESSOR Shingo Yamaguchi (YU)</h><br>
-        <h style=" font-size: 20px;">ASST. PROFESSOR Pattara Leelaprute (KU)</h><br>
-        <h style=" font-size: 20px;">ASST. PROFESSOR M.A. Bin Ahmadon (YU)</h><br>
-        <h style=" font-size: 20px;">STUDENT Taro Okabe (YU)</h><br>
-        <h style=" font-size: 20px;">STUDENT Daisuke Makihara (YU)</h><br>
-        <h style=" font-size: 20px;">INTERNSHIP STUDENT Pittayut Sothanakul (KU)</1><br><br>
-        <h style=" font-size: 20px;">SPECIAL THANKS Yama-Me</h><br>
-        <h style=" font-size: 20px;">Tour Miner has been developed by Yamaguchi University</h><br>
-        <h style=" font-size: 20px;">and Kasetsart University, Thailand.</h><br>
  
         
         <br>
 
 
 
-        <div class = "row">
-                <div class = "col align-self-center">
+        <div class = "command">
 
                         <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
-                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="ホーム">
+                            <input type="submit" style="background-color:#56813A;color:white;width:150px;height:40px;font-size:20px;" value="はじめ">
                         </form>
 
-                        <form action="/form_jp" method="get" style="text-align:center;display:inline;padding: 35px">
-                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="はじめる">
-                        </form>
-
-                </div>
                 
         </div>
 
         <div class="footer">
             <br>
-            <h1 style=" font-size: 10px; color: white"> Copyright (c) 2019 Yamaguchi  Laboratory, All Rights Reserved</h1>
+                <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi Lab., All Rights Reserved</h1>
             <br>   
         </div>
     </div>
