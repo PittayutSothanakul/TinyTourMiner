@@ -1,0 +1,119 @@
+<!doctype html> {% extends "bootstrap/base.html" %} {% block content %}
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .styleCenter{
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    }
+
+    .header {
+  padding: 10px;
+  text-align: center;
+  background: #56813A;
+  color: white;
+  }
+    .title {
+  padding: 5px;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  }
+
+    .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #56813A;
+   color: white;
+   text-align: center;  
+    }
+
+    .command {
+   position: fixed;
+   left: 0;
+   bottom: 30px;
+   width: 100%;
+   padding: 0px;
+   text-align: center;
+    }
+
+    .button {
+        border: none;
+        /* color: black; */
+        padding: 15px 32px;
+        /* background-color: #e7e7e7; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width:200px;
+    }
+
+    .button_white {background-color: #e7e7e7; color: black;} /* Gray */ 
+    .button_black {background-color: #555555; color: white;} /* Black */
+
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    
+    <div class = "styleCenter">
+        <div id="Travelrecord_Text" style="overflow:scroll; height:80%; ">
+
+                <div class = "row">
+                        <div class = "col align-self-center">
+
+                                <div class ="title">
+                                    <IMG SRC="/static/guidebook1.png" width=100%>
+                                    <IMG SRC="/static/guidebook2.png" width=100%>
+                                    <IMG SRC="/static/guidebook3.png" width=100%>
+                                    <IMG SRC="/static/guidebook4.png" width=100%>            
+                                    <IMG SRC="/static/guidebook5.png" width=100%>
+                                    <IMG SRC="/static/guidebook6.png" width=100%>
+                            </div>
+                        </div>
+                    </div>
+                    
+        </div>
+        
+        <br>
+
+
+
+        <div class = "command">
+
+                        <form action="/" method="get" style="text-align:center;display:inline;padding: 35px">
+                            <input type="submit" style="background-color:#56813A;color:white;width:150px;height:40px;font-size:20px;" value="はじめ">
+                        </form>
+
+                
+        </div>
+
+        <div class="footer">
+            <br>
+                <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi Lab., All Rights Reserved</h1>
+            <br>   
+        </div>
+    </div>
+<script>
+
+</script>
+
+</body>
+
+</html>
+{% endblock %}
+

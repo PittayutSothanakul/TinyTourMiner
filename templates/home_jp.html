@@ -76,37 +76,43 @@
         <br>
         <br><h1 style=" font-size: 20px; width: 80%; text-align: left; margin: auto"><ruby><rb>Tour Miner</rb><rt>ツアー・マイナー</rt></ruby>はインターネットに<ruby><rb>蓄積</rb><rt>ちくせき</rt></ruby>された<ruby><rb>無数</rb><rt>むすう<rt/></ruby>の<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>から<ruby><rb>個人</rb><rt>こじん</rt></ruby>の<ruby><rb>興味</rb><rt>きょうみ</rt></ruby>に<ruby><rb>合</rb><rt>あ</rt></ruby>った<ruby><rb>旅行記録</rb><rt>りょこうきろく</rt></ruby>を<ruby><rb>発掘</rb><rt>はっくつ</rt></ruby>するシステムです。</h1></br>
 
-        <br><br>
-        <div class = "row">
-                <div class = "col align-self-center">
-                    <!-- <img src ="./static/image/YamaMe.jpg"/> -->
-		<a href="/member">`
-                    <img src="{{url_for('static', filename='YamaMe.jpg')}}" />
-                </a>
+        <br>
 
-                    <!-- <img src = "YamaMe.jpg"> -->
+        <div class="col">
+
+            <form action="/guidebook" method="get" style="text-align:center;display:inline;padding: 35px">
+                <input type="submit" style="background-color:56813A;color:black;width:150px;height:40px;font-size:20px;float:right" value="マニュアル">
+              </form>
+        </div>
+        <br><br>
+
+
+
+        <div class = "col align-self-center">
+            <a href="/member">`
+            <img src="{{url_for('static', filename='YamaMe.jpg')}}" />
+            </a>
+
+        </div>
+        
+        <br>
+
+                  
+
+        <div class="col align-self-end">
+
+
+       </div>
+                <div class="command">
+
+                                <!-- <form action="/interest" method="get" style="text-align:center">
+                                    <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="StartOld">
+                                </form> -->
+                              <form action="/form_jp" method="get" style="text-align:center;display:inline;padding: 35px">
+                                  <input type="submit" style="background-color:#56813A;color:white;width:150px;height:40px;font-size:20px" value="はじめる">
+                              </form>
                 </div>
-        </div>
-        <br><br>
-        <div class="command">
-                        <!-- <form action="/interest" method="get" style="text-align:center">
-                            <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;" value="StartOld">
-                        </form> -->
-                       <form action="/form_jp" method="get" style="text-align:center;display:inline;padding: 35px">
-                          <input type="submit" style="background-color:#56813A;color:white;width:150px;height:40px;font-size:20px" value="はじめる">
-                       </form>
-<!--
-                       <form action="/member" method="get" style="text-align:center;display:inline;padding: 35px">
-                          <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="メンバー">
-                       </form>
--->
-
-                <!-- <div class = "col align-self-center">
-                    <form action="/interest2" method="get" style="text-align:center">
-                        <input type="submit" style="background-color:#98BC65;color:white;width:150px;height:40px;font-size:20px;" value="StartInterest2">
-                    </form>
-                </div> -->
-        </div>
+      </div>
                 
         <div class="footer">
 
@@ -114,7 +120,6 @@
             <h1 style=" font-size: 14px; color: white; margin: -10px"> Copyright (c) 2019 Yamaguchi  Lab., All Rights Reserved</h1>
             <br>   
         </div>
-    </div>
 
     <!-- <form name="frm">
         Question: <input name="question"/> <br />

@@ -73,6 +73,12 @@ user5=""
 
 boolean_check_rankings = False
 
+
+@app.route("/guidebook", methods=["GET", "POST"])
+def guidebook():
+    
+    return render_template('guidebook.html')
+
 @app.route("/member", methods=["GET", "POST"])
 def member():
     
