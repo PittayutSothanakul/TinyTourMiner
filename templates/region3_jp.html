@@ -142,6 +142,14 @@
     height: 30px;
   }
 
+  .pin_shikoku {
+    position: absolute; 
+    right: 284px; 
+    top: 80px; 
+    width: 30px ;
+    height: 30px;
+  }
+
 
   </style>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -205,6 +213,7 @@
                             <img id="pin_kansai" src="/static/pin.png" class="pin_kansai"style="display: none">
                             <img id="pin_chogoku" src="/static/pin.png" class="pin_chogoku"style="display: none">
                             <img id="pin_kyushu" src="/static/pin.png" class="pin_kyushu"style="display: none">
+                            <img id="pin_shikoku" src="/static/pin.png" class="pin_shikoku"style="display: none">
 
 
                             <map name="regionmap">
@@ -217,6 +226,8 @@
                                 <area shape="rect" coords="220,200,300,290" alt="Chubu" onclick="return region_chubu()" >
                                 <area shape="rect" coords="185,250,230,310" alt="Kansai" onclick="return region_kansai()" >
                                 <area shape="rect" coords="90,250,180,285" alt="Chugoku" onclick="return region_chugoku()" >
+                                <area shape="rect" coords="115,285,180,330" alt="Shikoku" onclick="return region_shikoku()">
+
                                 <!-- <area shape="rect" coords="115,285,180,330" alt="Shikoku" onclick= "document.forms[0].elements['interest_region'].value = 'Shikoku'"> -->
                                 <area shape="rect" coords="45,285,115,380" alt="Kyushu" onclick="return region_kyushu()" >
                                 <!-- <area shape="rect" coords="175,335,260,390" alt="Okinawa" onclick= "document.forms[0].elements['interest_region'].value = 'Okinawa'"> -->
@@ -283,6 +294,7 @@
     var pin_kansai = document.getElementById("pin_kansai")
     var pin_chogoku = document.getElementById("pin_chogoku")
     var pin_kyushu = document.getElementById("pin_kyushu")
+    var pin_shikoku = document.getElementById("pin_shikoku")
 
 
     // disabled
@@ -304,6 +316,7 @@
           pin_kansai.style.display= "none";
           pin_chogoku.style.display= "none";
           pin_kyushu.style.display= "none";
+          pin_shikoku.style.display= "none";
 
 
         } else {
@@ -324,6 +337,8 @@
     var boolean_kansai = false
     var boolean_chugoku = false
     var boolean_kyushu = false
+    var boolean_shikoku = false
+
     var str_array = [];
     var str_array_jp = [];
 
@@ -440,6 +455,24 @@
         str_array = str_array.filter(x=> x !== "Kyushu") 
         str_array_jp = str_array_jp.filter(x=> x !== "九州") 
         pin_kyushu.style.display= "none";
+
+      }
+      region_id.value = str_array
+      regionEx_id.value = str_array_jp
+    }
+
+    function region_shikoku() {
+      if(!boolean_shikoku){
+        boolean_shikoku = true
+        str_array.push("Shikoku")
+        str_array_jp.push("四国")
+        pin_shikoku.style.display= "block";
+
+      }else {
+        boolean_shikoku = false
+        str_array = str_array.filter(x=> x !== "Shikoku") 
+        str_array_jp = str_array_jp.filter(x=> x !== "四国") 
+        pin_shikoku.style.display= "none";
 
       }
       region_id.value = str_array
