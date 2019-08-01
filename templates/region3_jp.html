@@ -78,6 +78,71 @@
     .button_white {background-color: #e7e7e7; color: black;} /* Gray */ 
     .button_black {background-color: #555555; color: white;} /* Black */
 
+    .div2 {
+    position: relative;
+    display: inline;
+  }
+  .picmap {
+    /* position: relative;
+    display: inline; */
+    border: solid 3px #4CAF50; 
+
+  }
+  .pin_hokkaido {
+    position: absolute;
+    right: 75px; 
+    top: -173px; 
+    width: 30px ;
+    height: 30px;
+
+    /* border: solid 3px #9e70ba;  */
+  }
+  .pin_tohoku {
+    position: absolute; 
+    right: 120px; 
+    top: -65px; 
+    width: 30px ;
+    height: 30px;
+
+  }
+  .pin_kanto {
+    position: absolute; 
+    right: 153px; 
+    top: 16px; 
+    width: 30px ;
+    height: 30px;
+  }
+  .pin_chubu {
+    position: absolute; 
+    right: 202px; 
+    top: 19px; 
+    width: 30px ;
+    height: 30px;
+  }
+  .pin_kansai {
+    position: absolute; 
+    right: 248px; 
+    top: 40px; 
+    width: 30px ;
+    height: 30px;
+  }
+  .pin_chogoku {
+    position: absolute; 
+    right: 304px; 
+    top: 37px; 
+    width: 30px ;
+    height: 30px;
+  }
+
+  .pin_kyushu {
+    position: absolute; 
+    right: 364px; 
+    top: 79px; 
+    width: 30px ;
+    height: 30px;
+  }
+
+
   </style>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -127,10 +192,21 @@
                   <div class = "row">
                     <div class = "col align-self-center">
 
-                        <div id="container" >
+
+                        <div id="container" class="div2" >
                             <!-- <img src ='/static/Building.png'> -->
                             <div id="loading" style="display:none;"><img src="/static/loading.gif" alt="" /></div>
-                            <img id="region_map"src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap"/>
+                            <img id="region_map"src="{{url_for('static', filename='regionsOfJapan.png')}}" width="470" height="400" usemap="#regionmap" class="picmap">
+                            
+                            <img id="pin_hokkaido" src="/static/pin.png" class="pin_hokkaido" style="display: none">
+                            <img id="pin_tohoku" src="/static/pin.png" class="pin_tohoku"style="display: none">
+                            <img id="pin_kanto" src="/static/pin.png" class="pin_kanto"style="display: none">
+                            <img id="pin_chubu" src="/static/pin.png" class="pin_chubu"style="display: none">
+                            <img id="pin_kansai" src="/static/pin.png" class="pin_kansai"style="display: none">
+                            <img id="pin_chogoku" src="/static/pin.png" class="pin_chogoku"style="display: none">
+                            <img id="pin_kyushu" src="/static/pin.png" class="pin_kyushu"style="display: none">
+
+
                             <map name="regionmap">
                               <!-- x1 ,y1 ,x2 ,y2 -->
                                 <area shape="rect" coords="320,10,440,100" alt="Hokkaido" onclick="return region_hokkaido()" >
@@ -147,6 +223,8 @@
                                 <!-- Shikoku & Okinawa is no data -->
                             </map>
                         </div>
+                        <br>                        
+                        <br>
 
                         <h3 style="text-align:center; font-size: 15px;"><input style="width:600px; " id="myInputRegionsEx" type="text" name="interest_regionEx" placeholder="地域を選んで下さい" readonly>
                         </h3>
@@ -198,6 +276,14 @@
     var map = document.getElementById("region_map");
     var head_text = document.getElementById("head_text");
     var next_button = document.getElementById("nextButton")
+    var pin_hokkaido = document.getElementById("pin_hokkaido")
+    var pin_tohoku = document.getElementById("pin_tohoku")
+    var pin_kanto = document.getElementById("pin_kanto")
+    var pin_chubu = document.getElementById("pin_chubu")
+    var pin_kansai = document.getElementById("pin_kansai")
+    var pin_chogoku = document.getElementById("pin_chogoku")
+    var pin_kyushu = document.getElementById("pin_kyushu")
+
 
     // disabled
     function IsEmpty(){
@@ -239,11 +325,12 @@
         boolean_hokkaido = true
         str_array.push("Hokkaido")
         str_array_jp.push("北海道")
+        pin_hokkaido.style.display= "block";
       }else {
         boolean_hokkaido = false
         str_array = str_array.filter(x=> x !== "Hokkaido") 
         str_array_jp = str_array_jp.filter(x=> x !== "北海道") 
-
+        pin_hokkaido.style.display= "none";
       }
       region_id.value = str_array
       regionEx_id.value = str_array_jp
@@ -253,12 +340,12 @@
         boolean_tohoku = true
         str_array.push("Tohoku")
         str_array_jp.push("東北")
-
+        pin_tohoku.style.display= "block";
       }else {
         boolean_tohoku = false
         str_array = str_array.filter(x=> x !== "Tohoku") 
         str_array_jp = str_array_jp.filter(x=> x !== "東北") 
-
+        pin_tohoku.style.display= "none";
       }
       region_id.value = str_array
       regionEx_id.value = str_array_jp
@@ -268,11 +355,13 @@
         boolean_kanto = true
         str_array.push("Kanto")
         str_array_jp.push("関東")
+        pin_kanto.style.display= "block";
 
       }else {
         boolean_kanto = false
         str_array = str_array.filter(x=> x !== "Kanto") 
         str_array_jp = str_array_jp.filter(x=> x !== "関東") 
+        pin_kanto.style.display= "none";
 
       }
       region_id.value = str_array
@@ -283,11 +372,13 @@
         boolean_chubu = true
         str_array.push("Chubu")
         str_array_jp.push("中部")
+        pin_chubu.style.display= "block";
 
       }else {
         boolean_chubu = false
         str_array = str_array.filter(x=> x !== "Chubu") 
         str_array_jp = str_array_jp.filter(x=> x !== "中部") 
+        pin_chubu.style.display= "none";
 
       }
       region_id.value = str_array
@@ -298,11 +389,14 @@
         boolean_kansai = true
         str_array.push("Kinki")
         str_array_jp.push("関西")
+        pin_kansai.style.display= "block";
+
 
       }else {
         boolean_kansai = false
         str_array = str_array.filter(x=> x !== "Kinki") 
         str_array_jp = str_array_jp.filter(x=> x !== "関西") 
+        pin_kansai.style.display= "none";
 
       }
       region_id.value = str_array
@@ -313,11 +407,14 @@
         boolean_chugoku = true
         str_array.push("Chugoku")
         str_array_jp.push("中国")
+        pin_chogoku.style.display= "block";
+
 
       }else {
         boolean_chugoku = false
         str_array = str_array.filter(x=> x !== "Chugoku") 
         str_array_jp = str_array_jp.filter(x=> x !== "中国") 
+        pin_chogoku.style.display= "none";
 
       }
       region_id.value = str_array
@@ -328,11 +425,13 @@
         boolean_kyushu = true
         str_array.push("Kyushu")
         str_array_jp.push("九州")
+        pin_kyushu.style.display= "block";
 
       }else {
         boolean_kyushu = false
         str_array = str_array.filter(x=> x !== "Kyushu") 
         str_array_jp = str_array_jp.filter(x=> x !== "九州") 
+        pin_kyushu.style.display= "none";
 
       }
       region_id.value = str_array
