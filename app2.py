@@ -10,10 +10,13 @@ import copy
 from userid_country import userid_country
 
 app = Flask(__name__)
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o"
+app.config['GOOGLEMAPS_KEY'] = "AIzaSyAswPHPy8HBkOhb9aDWsadudZ8KX379hgY"
+
+# app.config['GOOGLEMAPS_KEY'] = "AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o"
 
 Bootstrap(app)
-GoogleMaps(app, key="AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o")
+GoogleMaps(app, key="AIzaSyAswPHPy8HBkOhb9aDWsadudZ8KX379hgY")
+# GoogleMaps(app, key="AIzaSyCDFpbv2jUwFTzHJ2Lo0odL52OJ0r3DX8o")
 
 age_user = ""
 gender_user = ""
